@@ -1,0 +1,32 @@
+{
+  "MENU": {
+    "HOME": "Inicio",
+    "PROJECTS": "Proyectos",
+    "BLOG": "Blog",
+    "SKILLS": "Conocimientos",
+    "NETWORKS": "Redes"
+  },
+  "HOME": {
+    "TITLE": "Mario Jiménez Marset",
+    "SUBTITLE": "Desarrollador Web Full Stack",
+    "DESCRIPTION": "Técnico en Desarrollo de Aplicaciones Web y Multiplataforma, con formación especializada en tecnologías Full Stack y despliegue Multicloud. Apasionado por crear soluciones eficientes, usables y bien estructuradas."
+  },
+  "THEME": {
+    "DARK": "Cambiar a modo claro",
+    "LIGHT": "Cambiar a modo oscuro"
+  },
+  "LANGUAGE": {
+    "SELECT": "Seleccionar idioma",
+    "SPANISH": "Español",
+    "ENGLISH": "Inglés"
+  },
+  "SOCIAL": {
+    "LINKEDIN": "LinkedIn",
+    "GITHUB": "GitHub",
+    "EMAIL": "Email"
+  },
+  "SKILLS": {
+    "TITLE": "Mis Conocimientos",
+    "PROJECTS": "Proyectos:"
+  }
+}

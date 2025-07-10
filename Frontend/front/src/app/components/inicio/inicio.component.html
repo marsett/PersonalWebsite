@@ -1,0 +1,40 @@
+<!-- Animated Grid Background -->
+<div class="grid-background"></div>
+
+<!-- Organic Blobs -->
+<div class="blob-container">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<!-- Main Container -->
+<div class="inicio-container">
+    <div class="hero-section">
+        <!-- Left Side - Content -->
+        <div class="content-side">
+            <h1 class="glitch-text" [attr.data-text]="'HOME.TITLE' | translate">
+                {{ 'HOME.TITLE' | translate }}
+            </h1>
+            <p class="subtitle">{{ 'HOME.SUBTITLE' | translate }}</p>
+            <p class="description">
+                {{ 'HOME.DESCRIPTION' | translate }}
+            </p>
+        </div>
+
+        <!-- Right Side - Interactive Avatar -->
+        <div class="avatar-side">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <div class="avatar-ring"></div>
+                <div class="avatar-ring"></div>
+                <div class="avatar-main" (click)="triggerAvatarEffect()">
+                    <img src="assets/images/mario.jpg" alt="Mario Jiménez Marset" class="avatar-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-menusociales></app-menusociales>
+<app-menu></app-menu>

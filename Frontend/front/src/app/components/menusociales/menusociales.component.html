@@ -1,0 +1,43 @@
+<!-- Social Links Cluster -->
+<div class="social-cluster">
+    <a href="https://www.linkedin.com/in/mario-jimenez-marset" class="social-link" 
+       [title]="'SOCIAL.LINKEDIN' | translate" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://github.com/marsett" class="social-link" 
+       [title]="'SOCIAL.GITHUB' | translate" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="mailto:mariojimenezmarset@outlook.com" class="social-link" 
+       [title]="'SOCIAL.EMAIL' | translate" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-envelope"></i>
+    </a>
+         
+    <!-- Botón para alternar modo oscuro -->
+    <button class="theme-toggle" (click)="toggleTheme()" 
+            [title]="(isDarkMode ? 'THEME.DARK' : 'THEME.LIGHT') | translate">
+        <i [class]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+    </button>
+
+    <!-- Selector de idiomas -->
+    <div class="language-selector" [class.open]="isLanguageMenuOpen">
+        <button class="language-toggle" (click)="toggleLanguageMenu()" 
+                [title]="'LANGUAGE.SELECT' | translate">
+            <span class="flag-icon" [class]="'flag-' + currentLanguage"></span>
+            <i class="fas fa-chevron-down arrow" [class.rotated]="isLanguageMenuOpen"></i>
+        </button>
+        
+        <div class="language-menu" [class.show]="isLanguageMenuOpen">
+            <button class="language-option" (click)="changeLanguage('es')" 
+                    [class.active]="currentLanguage === 'es'">
+                <span class="flag-icon flag-es"></span>
+                <span>{{ 'LANGUAGE.SPANISH' | translate }}</span>
+            </button>
+            <button class="language-option" (click)="changeLanguage('en')" 
+                    [class.active]="currentLanguage === 'en'">
+                <span class="flag-icon flag-en"></span>
+                <span>{{ 'LANGUAGE.ENGLISH' | translate }}</span>
+            </button>
+        </div>
+    </div>
+</div>

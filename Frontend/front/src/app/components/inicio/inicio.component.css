@@ -1,0 +1,556 @@
+/* Host styling - hace que el componente ocupe toda la pantalla */
+:host {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Grid Background */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 1;
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+/* Modo claro - Grid Background */
+:host-context(.light-mode) .grid-background {
+    background-image:
+        linear-gradient(rgba(0, 100, 200, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 100, 200, 0.2) 1px, transparent 1px);
+    opacity: 0.3;
+}
+
+/* Organic Blob Animations */
+.blob-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    animation: blobFloat 8s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #ff0080, #ff8c00);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(45deg, #00ff80, #0080ff);
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.blob-3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #8000ff, #ff0080);
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+/* Modo claro - Blobs más sutiles */
+:host-context(.light-mode) .blob {
+    opacity: 0.15;
+}
+
+:host-context(.light-mode) .blob-1 {
+    background: linear-gradient(45deg, #e74c3c, #f39c12);
+}
+
+:host-context(.light-mode) .blob-2 {
+    background: linear-gradient(45deg, #27ae60, #3498db);
+}
+
+:host-context(.light-mode) .blob-3 {
+    background: linear-gradient(45deg, #9b59b6, #e91e63);
+}
+
+/* Main Container */
+.inicio-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 3;
+}
+
+/* Hexagonal Layout */
+.hero-section {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Left Side - Content */
+.content-side {
+    position: relative;
+    z-index: 4;
+}
+
+.glitch-text {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1rem;
+    position: relative;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Texto principal */
+:host-context(.light-mode) .glitch-text {
+    color: #2c3e50;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    animation: glitch-1 0.5s infinite;
+    color: #ff0080;
+    z-index: -1;
+}
+
+.glitch-text::after {
+    animation: glitch-2 0.5s infinite;
+    color: #00ff80;
+    z-index: -2;
+}
+
+/* Modo claro - Efectos glitch */
+:host-context(.light-mode) .glitch-text::before {
+    color: #e74c3c;
+}
+
+:host-context(.light-mode) .glitch-text::after {
+    color: #27ae60;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #888;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Subtítulo */
+:host-context(.light-mode) .subtitle {
+    color: #34495e;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Descripción */
+:host-context(.light-mode) .description {
+    color: #7f8c8d;
+}
+
+/* Coding Stats Counter */
+.coding-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+/* Modo claro - Estadísticas */
+:host-context(.light-mode) .coding-stats {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.stats-icon {
+    font-size: 2rem;
+    color: #00ff80;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Icono estadísticas */
+:host-context(.light-mode) .stats-icon {
+    color: #27ae60;
+}
+
+.stats-content {
+    flex: 1;
+}
+
+.stats-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Etiqueta estadísticas */
+:host-context(.light-mode) .stats-label {
+    color: #7f8c8d;
+}
+
+.stats-numbers {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Números estadísticas */
+:host-context(.light-mode) .stats-numbers {
+    color: #2c3e50;
+}
+
+.stats-highlight {
+    color: #00ff80;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Destacado estadísticas */
+:host-context(.light-mode) .stats-highlight {
+    color: #27ae60;
+}
+
+/* Creative CV Link */
+.cv-terminal {
+    position: relative;
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #333;
+    box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Modo claro - Terminal */
+:host-context(.light-mode) .cv-terminal {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+    box-shadow: 0 0 20px rgba(39, 174, 96, 0.1);
+}
+
+.cv-terminal:hover {
+    border-color: #00ff80;
+    box-shadow: 0 0 30px rgba(0, 255, 128, 0.2);
+}
+
+/* Modo claro - Terminal hover */
+:host-context(.light-mode) .cv-terminal:hover {
+    border-color: #27ae60;
+    box-shadow: 0 0 30px rgba(39, 174, 96, 0.2);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+    transition: border-color 0.3s ease;
+}
+
+/* Modo claro - Header terminal */
+:host-context(.light-mode) .terminal-header {
+    border-bottom-color: #dee2e6;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red {
+    background: #ff5f5f;
+}
+
+.dot-yellow {
+    background: #ffff5f;
+}
+
+.dot-green {
+    background: #5fff5f;
+}
+
+.terminal-title {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-left: auto;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Título terminal */
+:host-context(.light-mode) .terminal-title {
+    color: #6c757d;
+}
+
+.terminal-command {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Comando terminal */
+:host-context(.light-mode) .terminal-command {
+    color: #2c3e50;
+}
+
+.prompt {
+    color: #00ff80;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Prompt */
+:host-context(.light-mode) .prompt {
+    color: #27ae60;
+}
+
+.command {
+    color: #ff0080;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Comando */
+:host-context(.light-mode) .command {
+    color: #e74c3c;
+}
+
+.output {
+    color: #ffff80;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Output */
+:host-context(.light-mode) .output {
+    color: #f39c12;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #00ff80;
+    animation: cursorBlink 1s infinite;
+    transition: background-color 0.3s ease;
+}
+
+/* Modo claro - Cursor */
+:host-context(.light-mode) .cursor {
+    background: #27ae60;
+}
+
+/* Right Side - Interactive Avatar */
+.avatar-side {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.avatar-ring {
+    position: absolute;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+}
+
+.avatar-ring:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    border-top: 2px solid #ff0080;
+    border-right: 2px solid #ff0080;
+}
+
+.avatar-ring:nth-child(2) {
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    border-bottom: 2px solid #00ff80;
+    border-left: 2px solid #00ff80;
+    animation-direction: reverse;
+    animation-duration: 15s;
+}
+
+.avatar-ring:nth-child(3) {
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    border-top: 2px solid #0080ff;
+    border-bottom: 2px solid #0080ff;
+    animation-duration: 8s;
+}
+
+/* Modo claro - Anillos del avatar */
+:host-context(.light-mode) .avatar-ring:nth-child(1) {
+    border-top-color: #e74c3c;
+    border-right-color: #e74c3c;
+}
+
+:host-context(.light-mode) .avatar-ring:nth-child(2) {
+    border-bottom-color: #27ae60;
+    border-left-color: #27ae60;
+}
+
+:host-context(.light-mode) .avatar-ring:nth-child(3) {
+    border-top-color: #3498db;
+    border-bottom-color: #3498db;
+}
+
+.avatar-main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #fff;
+    border: 3px solid #333;
+    box-shadow:
+        0 0 50px rgba(255, 0, 128, 0.3),
+        inset 0 0 50px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Modo claro - Avatar principal */
+:host-context(.light-mode) .avatar-main {
+    background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+    border-color: #95a5a6;
+    box-shadow:
+        0 0 50px rgba(231, 76, 60, 0.3),
+        inset 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-main:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow:
+        0 0 80px rgba(255, 0, 128, 0.5),
+        inset 0 0 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Modo claro - Avatar hover */
+:host-context(.light-mode) .avatar-main:hover {
+    box-shadow:
+        0 0 80px rgba(231, 76, 60, 0.5),
+        inset 0 0 50px rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .glitch-text {
+        font-size: 2.5rem;
+    }
+
+    .avatar-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .avatar-main {
+        width: 150px;
+        height: 150px;
+        font-size: 3rem;
+    }
+
+    .coding-stats {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats-content {
+        text-align: center;
+    }
+
+    .cv-terminal {
+        margin-bottom: 1rem;
+    }
+}

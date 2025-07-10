@@ -1,0 +1,36 @@
+<app-menusociales></app-menusociales>
+<app-menu></app-menu>
+
+<div class="conocimientos-container">
+  <h2 class="section-title">{{ 'SKILLS.TITLE' | translate }}</h2>
+  
+  <div class="technologies-grid">
+    <div class="flip-card" *ngFor="let tech of technologies">
+      <div class="flip-card-inner">
+        <!-- Lado frontal -->
+        <div class="flip-card-front">
+          <div class="tech-logo" [style.color]="tech.color">
+            <i [class]="tech.logo"></i>
+          </div>
+          <h3 class="tech-name">{{ tech.name }}</h3>
+        </div>
+        
+        <!-- Lado trasero -->
+        <div class="flip-card-back">
+          <div class="tech-info">
+            <h4 class="tech-name-back">{{ tech.name }}</h4>
+            <div class="level-badge" [style.background-color]="getLevelColor(tech.level)">
+              {{ tech.level }}
+            </div>
+            <div class="projects-section">
+              <h5>{{ 'SKILLS.PROJECTS' | translate }}</h5>
+              <ul class="projects-list">
+                <li *ngFor="let project of tech.projects">{{ project }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
