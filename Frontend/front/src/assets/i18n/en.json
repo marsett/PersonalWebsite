@@ -27,6 +27,13 @@
   },
   "SKILLS": {
     "TITLE": "My Skills",
-    "PROJECTS": "Projects:"
+    "PROJECTS": "Projects:",
+    "CLICK_MORE": "Click to see more",
+    "OVERVIEW": "Overview",
+    "STRENGTHS": "Strengths",
+    "DETAILED_PROJECTS": "Detailed Projects",
+    "ROLE": "Role",
+    "DURATION": "Duration",
+    "CERTIFICATIONS": "Certifications"
   }
 }

@@ -27,6 +27,13 @@
   },
   "SKILLS": {
     "TITLE": "Mis Conocimientos",
-    "PROJECTS": "Proyectos:"
+    "PROJECTS": "Proyectos:",
+    "CLICK_MORE": "Haz clic para ver más",
+    "OVERVIEW": "Resumen",
+    "STRENGTHS": "Fortalezas",
+    "DETAILED_PROJECTS": "Proyectos Detallados",
+    "ROLE": "Rol",
+    "DURATION": "Duración",
+    "CERTIFICATIONS": "Certificaciones"
   }
 }

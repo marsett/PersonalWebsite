@@ -5,7 +5,7 @@
   <h2 class="section-title">{{ 'SKILLS.TITLE' | translate }}</h2>
   
   <div class="technologies-grid">
-    <div class="flip-card" *ngFor="let tech of technologies">
+    <div class="flip-card" *ngFor="let tech of technologies" (click)="openModal(tech)">
       <div class="flip-card-inner">
         <!-- Lado frontal -->
         <div class="flip-card-front">
@@ -22,11 +22,87 @@
             <div class="level-badge" [style.background-color]="getLevelColor(tech.level)">
               {{ tech.level }}
             </div>
-            <div class="projects-section">
-              <h5>{{ 'SKILLS.PROJECTS' | translate }}</h5>
-              <ul class="projects-list">
-                <li *ngFor="let project of tech.projects">{{ project }}</li>
-              </ul>
+            <p class="tech-description">{{ tech.description }}</p>
+            <div class="click-hint">
+              <i class="fas fa-click"></i>
+              <span>{{ 'SKILLS.CLICK_MORE' | translate }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal detallado -->
+  <div class="modal-overlay" [class.active]="isModalOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()" *ngIf="selectedTechnology">
+      <div class="modal-header">
+        <div class="modal-tech-info">
+          <div class="modal-logo" [style.color]="selectedTechnology.color">
+            <i [class]="selectedTechnology.logo"></i>
+          </div>
+          <div class="modal-title-section">
+            <h2>{{ selectedTechnology.name }}</h2>
+            <div class="modal-level-badge" [style.background-color]="getLevelColor(selectedTechnology.level)">
+              {{ selectedTechnology.level }}
+            </div>
+          </div>
+        </div>
+        <button class="close-btn" (click)="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3>{{ 'SKILLS.OVERVIEW' | translate }}</h3>
+          <p class="description">{{ selectedTechnology.description }}</p>
+          <div class="experience-badge">
+            <i class="fas fa-clock"></i>
+            <span>{{ selectedTechnology.experience }}</span>
+          </div>
+        </div>
+
+        <div class="modal-section" *ngIf="selectedTechnology.strengths">
+          <h3>{{ 'SKILLS.STRENGTHS' | translate }}</h3>
+          <div class="strengths-grid">
+            <span class="strength-badge" *ngFor="let strength of selectedTechnology.strengths">
+              {{ strength }}
+            </span>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3>{{ 'SKILLS.DETAILED_PROJECTS' | translate }}</h3>
+          <div class="projects-detailed">
+            <div class="project-card" *ngFor="let project of selectedTechnology.detailedProjects">
+              <h4>{{ project.name }}</h4>
+              <p class="project-description">{{ project.description }}</p>
+              <div class="project-meta">
+                <div class="meta-item">
+                  <strong>{{ 'SKILLS.ROLE' | translate }}:</strong>
+                  <span>{{ project.role }}</span>
+                </div>
+                <div class="meta-item">
+                  <strong>{{ 'SKILLS.DURATION' | translate }}:</strong>
+                  <span>{{ project.duration }}</span>
+                </div>
+              </div>
+              <div class="project-technologies">
+                <span class="tech-tag" *ngFor="let tech of project.technologies">
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section" *ngIf="selectedTechnology.certifications">
+          <h3>{{ 'SKILLS.CERTIFICATIONS' | translate }}</h3>
+          <div class="certifications-list">
+            <div class="certification-item" *ngFor="let cert of selectedTechnology.certifications">
+              <i class="fas fa-certificate"></i>
+              <span>{{ cert }}</span>
             </div>
           </div>
         </div>
