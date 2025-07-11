@@ -1,2 +1,78 @@
 <app-menusociales></app-menusociales>
 <app-menu></app-menu>
+
+<div class="proyectos-container">
+  <div class="hero-section">
+    <div class="floating-elements">
+      <div class="float-element" *ngFor="let i of [1,2,3,4,5]"></div>
+    </div>
+    <h1 class="main-title">
+      <span class="title-word">MIS</span>
+      <span class="title-word">PROYECTOS</span>
+    </h1>
+    <p class="subtitle">Explorando el futuro del desarrollo web</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card" 
+         *ngFor="let proyecto of proyectos; let i = index"
+         [attr.data-index]="i"
+         (mouseenter)="onCardHover(i)"
+         (mouseleave)="onCardLeave(i)">
+      
+      <div class="card-glow"></div>
+      <div class="card-content">
+        <div class="project-image">
+          <img [src]="proyecto.imagen" [alt]="proyecto.titulo">
+          <div class="image-overlay">
+            <div class="tech-stack">
+              <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias">
+                {{tech}}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-info">
+          <h3 class="project-title">{{proyecto.titulo}}</h3>
+          <p class="project-description">{{proyecto.descripcion}}</p>
+          
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-icon">⭐</span>
+              <span class="stat-value">{{proyecto.rating}}</span>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">📅</span>
+              <span class="stat-value">{{proyecto.fecha}}</span>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">🚀</span>
+              <span class="stat-value">{{proyecto.estado}}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-actions">
+          <button class="action-btn primary" (click)="verProyecto(proyecto)">
+            <span class="btn-text">Ver Proyecto</span>
+            <span class="btn-icon">→</span>
+          </button>
+          <button class="action-btn secondary" (click)="verCodigo(proyecto)">
+            <span class="btn-text">Ver Código</span>
+            <span class="btn-icon">💻</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="card-border"></div>
+    </div>
+  </div>
+
+  <div class="floating-cta">
+    <button class="cta-button" (click)="scrollToContact()">
+      <span class="cta-text">¿Trabajamos juntos?</span>
+      <div class="cta-ripple"></div>
+    </button>
+  </div>
+</div>

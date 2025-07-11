@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
-import { BlogComponent } from './components/blog/blog.component';
 import { ConocimientosComponent } from './components/conocimientos/conocimientos.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MenusocialesComponent } from './components/menusociales/menusociales.component';
@@ -22,7 +21,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     InicioComponent,
     ProyectosComponent,
-    BlogComponent,
     ConocimientosComponent,
     MenuComponent,
     MenusocialesComponent

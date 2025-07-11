@@ -1,4 +1,4 @@
-/* Host styling - hace que el componente ocupe toda la pantalla */
+/* inicio.component.css */
 :host {
     display: block;
     width: 100%;
