@@ -21,9 +21,31 @@
             <p class="description">
                 {{ 'HOME.DESCRIPTION' | translate }}
             </p>
+
+            <!-- Status Indicator -->
+            <div class="status-card">
+                <div class="status-indicator" [class.available]="isAvailable" [class.busy]="!isAvailable">
+                    <div class="status-dot"></div>
+                    <span class="status-text">
+                        {{ isAvailable ? ('HOME.STATUS.AVAILABLE' | translate) : ('HOME.STATUS.BUSY' | translate) }}
+                    </span>
+                </div>
+                <div class="status-info">
+                    <span class="timezone">{{ currentTimezone }}</span>
+                    <span class="local-time">{{ currentTime }}</span>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn primary" (click)="downloadCV()">
+                    <i class="icon-download"></i>
+                    {{ 'HOME.DOWNLOAD_CV' | translate }}
+                </button>
+            </div>
         </div>
 
-        <!-- Right Side - Interactive Avatar -->
+        <!-- Right Side - Interactive Avatar with Info -->
         <div class="avatar-side">
             <div class="avatar-container">
                 <div class="avatar-ring"></div>
@@ -31,6 +53,18 @@
                 <div class="avatar-ring"></div>
                 <div class="avatar-main" (click)="triggerAvatarEffect()">
                     <img src="assets/images/mario.jpg" alt="Mario Jiménez Marset" class="avatar-image">
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <div class="stat-number">{{ yearsOfExperience }}</div>
+                    <div class="stat-label">{{ 'HOME.YEARS_EXP' | translate }}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ totalProjects }}</div>
+                    <div class="stat-label">{{ 'HOME.PROJECTS' | translate }}</div>
                 </div>
             </div>
         </div>
