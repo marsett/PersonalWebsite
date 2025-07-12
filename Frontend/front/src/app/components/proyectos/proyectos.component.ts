@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Proyecto {
   id: number;
@@ -20,6 +21,8 @@ interface Proyecto {
   styleUrl: './proyectos.component.css'
 })
 export class ProyectosComponent implements OnInit {
+  
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
   
   proyectos: Proyecto[] = [
     {
@@ -101,48 +104,22 @@ export class ProyectosComponent implements OnInit {
   }
 
   initializeAnimations() {
-    // Animaciones de entrada escalonadas
-    setTimeout(() => {
-      const cards = document.querySelectorAll('.project-card');
-      cards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('animate-in');
-        }, index * 150);
-      });
-    }, 500);
-  }
-
-  onCardHover(index: number) {
-    const card = document.querySelector(`[data-index="${index}"]`);
-    if (card) {
-      card.classList.add('hovered');
-      
-      // Efecto de las tarjetas adyacentes
-      const allCards = document.querySelectorAll('.project-card');
-      allCards.forEach((c, i) => {
-        if (i !== index) {
-          c.classList.add('dimmed');
-        }
-      });
+    // Solo ejecutar en el navegador
+    if (isPlatformBrowser(this.platformId)) {
+      // Animaciones de entrada escalonadas
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('animate-in');
+          }, index * 150);
+        });
+      }, 500);
     }
   }
 
-  onCardLeave(index: number) {
-    const card = document.querySelector(`[data-index="${index}"]`);
-    if (card) {
-      card.classList.remove('hovered');
-      
-      // Remover efecto de las tarjetas adyacentes
-      const allCards = document.querySelectorAll('.project-card');
-      allCards.forEach((c) => {
-        c.classList.remove('dimmed');
-      });
-    }
-  }
-
-  verProyecto(proyecto: Proyecto) {
-    // Animación de salida
-    const button = event?.target as HTMLElement;
+  verProyecto(proyecto: Proyecto, event: Event) {
+    const button = event.target as HTMLElement;
     button.classList.add('clicked');
     
     setTimeout(() => {
@@ -150,9 +127,8 @@ export class ProyectosComponent implements OnInit {
     }, 300);
   }
 
-  verCodigo(proyecto: Proyecto) {
-    // Animación de salida
-    const button = event?.target as HTMLElement;
+  verCodigo(proyecto: Proyecto, event: Event) {
+    const button = event.target as HTMLElement;
     button.classList.add('clicked');
     
     setTimeout(() => {
@@ -161,10 +137,13 @@ export class ProyectosComponent implements OnInit {
   }
 
   scrollToContact() {
-    // Implementar scroll suave a la sección de contacto
-    const contactSection = document.querySelector('#contacto');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    // Solo ejecutar en el navegador
+    if (isPlatformBrowser(this.platformId)) {
+      // Implementar scroll suave a la sección de contacto
+      const contactSection = document.querySelector('#contacto');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 }

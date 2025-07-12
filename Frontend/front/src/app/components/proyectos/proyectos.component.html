@@ -1,26 +1,16 @@
 <app-menusociales></app-menusociales>
-<app-menu></app-menu>
 
 <div class="proyectos-container">
   <div class="hero-section">
     <div class="floating-elements">
       <div class="float-element" *ngFor="let i of [1,2,3,4,5]"></div>
     </div>
-    <h1 class="main-title">
-      <span class="title-word">MIS</span>
-      <span class="title-word">PROYECTOS</span>
-    </h1>
+    <h1 class="main-title">MIS PROYECTOS</h1>
     <p class="subtitle">Explorando el futuro del desarrollo web</p>
   </div>
-
+  
   <div class="projects-grid">
-    <div class="project-card" 
-         *ngFor="let proyecto of proyectos; let i = index"
-         [attr.data-index]="i"
-         (mouseenter)="onCardHover(i)"
-         (mouseleave)="onCardLeave(i)">
-      
-      <div class="card-glow"></div>
+    <div class="project-card" *ngFor="let proyecto of proyectos; let i = index" [attr.data-index]="i">
       <div class="card-content">
         <div class="project-image">
           <img [src]="proyecto.imagen" [alt]="proyecto.titulo">
@@ -54,21 +44,19 @@
         </div>
         
         <div class="project-actions">
-          <button class="action-btn primary" (click)="verProyecto(proyecto)">
+          <button class="action-btn primary" (click)="verProyecto(proyecto, $event)">
             <span class="btn-text">Ver Proyecto</span>
             <span class="btn-icon">→</span>
           </button>
-          <button class="action-btn secondary" (click)="verCodigo(proyecto)">
+          <button class="action-btn secondary" (click)="verCodigo(proyecto, $event)">
             <span class="btn-text">Ver Código</span>
             <span class="btn-icon">💻</span>
           </button>
         </div>
       </div>
-      
-      <div class="card-border"></div>
     </div>
   </div>
-
+  
   <div class="floating-cta">
     <button class="cta-button" (click)="scrollToContact()">
       <span class="cta-text">¿Trabajamos juntos?</span>
