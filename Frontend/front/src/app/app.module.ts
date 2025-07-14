@@ -11,6 +11,7 @@ import { MenusocialesComponent } from './components/menusociales/menusociales.co
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -23,7 +24,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProyectosComponent,
     ConocimientosComponent,
     MenuComponent,
-    MenusocialesComponent
+    MenusocialesComponent,
+    ExperienciaComponent
   ],
   imports: [
     BrowserModule,

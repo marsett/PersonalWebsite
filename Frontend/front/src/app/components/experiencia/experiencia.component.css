@@ -1,0 +1,799 @@
+/* experiencia.component.css */
+:host {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background: transparent;
+}
+
+/* Main Container */
+.experiencia-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    z-index: 3;
+}
+
+
+/* Responsive para timeline containers */
+@media (max-width: 768px) {
+    .timeline-container {
+        margin-bottom: 4rem;
+    }
+    
+    .timeline-header {
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-title {
+        font-size: 1.8rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .timeline-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .timeline-badge-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .company-logo,
+    .institution-logo {
+        width: 50px;
+        height: 50px;
+        align-self: flex-start;
+    }
+
+    .timeline-info {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-title {
+        font-size: 1.5rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .technologies-title {
+        font-size: 0.9rem;
+    }
+}
+
+/* Timeline Container - DESPUÉS */
+.timeline {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Modo claro - Timeline */
+:host-context(.light-mode) .timeline::before {
+    background: linear-gradient(180deg, #3498db 0%, #2c3e50 50%, #e74c3c 100%);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.2);
+}
+
+/* Timeline Items */
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.timeline-item:nth-child(odd) {
+    justify-content: flex-end;
+    padding-right: calc(50% + 30px);
+}
+
+.timeline-item:nth-child(even) {
+    justify-content: flex-start;
+    padding-left: calc(50% + 30px);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    text-align: left;
+}
+
+/* Timeline Dot */
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.timeline-dot.professional {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+}
+
+.timeline-dot.academic {
+    background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%);
+    box-shadow: 0 0 20px rgba(254, 202, 87, 0.5);
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: translateX(-50%) scale(1.3);
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+}
+
+/* Modo claro - Timeline dots */
+:host-context(.light-mode) .timeline-dot {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:host-context(.light-mode) .timeline-dot.professional {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+}
+
+:host-context(.light-mode) .timeline-dot.academic {
+    background: linear-gradient(135deg, #f39c12 0%, #9b59b6 100%);
+    box-shadow: 0 0 20px rgba(243, 156, 18, 0.3);
+}
+
+/* Timeline Content */
+.timeline-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -20px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -20px;
+    border-color: transparent rgba(255, 255, 255, 0.1) transparent transparent;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Modo claro - Timeline content */
+:host-context(.light-mode) .timeline-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:host-context(.light-mode) .timeline-content:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+:host-context(.light-mode) .timeline-item:nth-child(odd) .timeline-content::before {
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.1);
+}
+
+:host-context(.light-mode) .timeline-item:nth-child(even) .timeline-content::before {
+    border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent;
+}
+
+/* Timeline Date */
+.timeline-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00ff80;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.timeline-date i {
+    font-size: 1rem;
+}
+
+/* Modo claro - Timeline date */
+:host-context(.light-mode) .timeline-date {
+    color: #27ae60;
+}
+
+/* Timeline Container */
+.timeline-container {
+    position: relative;
+    margin-bottom: 6rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timeline-container:last-child {
+    margin-bottom: 2rem;
+}
+
+/* Timeline Header */
+.timeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 1rem 2rem;
+}
+
+.professional-timeline .timeline-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.academic-timeline .timeline-title {
+    background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border: 2px solid rgba(254, 202, 87, 0.3);
+}
+
+.timeline-divider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    z-index: 1;
+}
+
+/* Modo claro - Timeline titles */
+:host-context(.light-mode) .timeline-title {
+    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+:host-context(.light-mode) .professional-timeline .timeline-title {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-color: rgba(52, 152, 219, 0.3);
+}
+
+:host-context(.light-mode) .academic-timeline .timeline-title {
+    background: linear-gradient(135deg, #f39c12 0%, #9b59b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-color: rgba(243, 156, 18, 0.3);
+}
+
+/* Timeline Header Content */
+.timeline-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.timeline-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.timeline-badge-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Company/Institution Logo Styles - NUEVO */
+.company-logo,
+.institution-logo {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.company-logo img,
+.institution-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+    filter: brightness(1.1);
+    transition: all 0.3s ease;
+}
+
+.company-logo:hover,
+.institution-logo:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.company-logo:hover img,
+.institution-logo:hover img {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+/* Diferentes estilos para logos profesionales y académicos */
+.professional-timeline .company-logo {
+    border-color: rgba(102, 126, 234, 0.4);
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.academic-timeline .institution-logo {
+    border-color: rgba(254, 202, 87, 0.4);
+    background: rgba(254, 202, 87, 0.1);
+}
+
+.professional-timeline .company-logo:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.academic-timeline .institution-logo:hover {
+    border-color: rgba(254, 202, 87, 0.6);
+    box-shadow: 0 6px 20px rgba(254, 202, 87, 0.3);
+}
+
+/* Modo claro - Logos */
+:host-context(.light-mode) .company-logo,
+:host-context(.light-mode) .institution-logo {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+:host-context(.light-mode) .company-logo img,
+:host-context(.light-mode) .institution-logo img {
+    filter: brightness(0.9);
+}
+
+:host-context(.light-mode) .company-logo:hover,
+:host-context(.light-mode) .institution-logo:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+:host-context(.light-mode) .professional-timeline .company-logo {
+    border-color: rgba(52, 152, 219, 0.3);
+    background: rgba(52, 152, 219, 0.05);
+}
+
+:host-context(.light-mode) .academic-timeline .institution-logo {
+    border-color: rgba(243, 156, 18, 0.3);
+    background: rgba(243, 156, 18, 0.05);
+}
+
+:host-context(.light-mode) .professional-timeline .company-logo:hover {
+    border-color: rgba(52, 152, 219, 0.5);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.2);
+}
+
+:host-context(.light-mode) .academic-timeline .institution-logo:hover {
+    border-color: rgba(243, 156, 18, 0.5);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.2);
+}
+
+/* Fallback para logos que no cargan - NUEVO */
+.company-logo::before,
+.institution-logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.company-logo img[src=""],
+.institution-logo img[src=""] {
+    opacity: 0;
+}
+
+.company-logo:has(img[src=""]) .company-logo::before,
+.institution-logo:has(img[src=""]) .institution-logo::before {
+    opacity: 1;
+}
+
+/* Timeline Main Content */
+.timeline-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Technologies Section */
+.technologies-section,
+.grade-section {
+    margin-top: 1.5rem;
+}
+
+.technologies-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+:host-context(.light-mode) .technologies-title {
+    color: #2c3e50;
+}
+
+/* Grade Section */
+.grade-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.company-name,
+.degree-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Company/Degree names */
+:host-context(.light-mode) .company-name,
+:host-context(.light-mode) .degree-name {
+    color: #2c3e50;
+}
+
+/* Position and Institution Badges */
+.position-badge,
+.institution-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.position-badge {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-color: transparent;
+}
+
+/* Fix para mejorar la legibilidad del institution badge manteniendo colores originales */
+.institution-badge {
+    background: linear-gradient(45deg, #feca57, #ff9ff3);
+    color: #2c3e50;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    border-color: transparent;
+}
+
+/* Modo claro - Badges */
+:host-context(.light-mode) .position-badge {
+    background: linear-gradient(45deg, #3498db, #2c3e50);
+}
+
+/* Modo claro - Institution badge */
+:host-context(.light-mode) .institution-badge {
+    background: linear-gradient(45deg, #f39c12, #9b59b6);
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Timeline Description */
+.timeline-description {
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Modo claro - Description */
+:host-context(.light-mode) .timeline-description {
+    color: #7f8c8d;
+}
+
+/* Technologies Used */
+.technologies-used {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-badge {
+    background: rgba(0, 255, 128, 0.2);
+    color: #00ff80;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 255, 128, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tech-badge:hover {
+    background: rgba(0, 255, 128, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Modo claro - Tech badges */
+:host-context(.light-mode) .tech-badge {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27ae60;
+    border-color: rgba(39, 174, 96, 0.3);
+}
+
+:host-context(.light-mode) .tech-badge:hover {
+    background: rgba(39, 174, 96, 0.3);
+}
+
+/* Grade Highlight */
+.grade-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(45deg, #ffff80, #ff6b6b);
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(255, 255, 128, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Modo claro - Grade highlight */
+:host-context(.light-mode) .grade-highlight {
+    background: linear-gradient(45deg, #f1c40f, #e67e22);
+    color: #fff;
+}
+
+/* Animations */
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(255, 107, 107, 0.8), 0 0 40px rgba(78, 205, 196, 0.3);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay for animation */
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+.timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .experiencia-container {
+        padding: 1rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        padding-left: 60px !important;
+        padding-right: 0 !important;
+        justify-content: flex-start !important;
+    }
+
+    .timeline-item .timeline-content {
+        text-align: left !important;
+        max-width: 100%;
+    }
+
+    .timeline-dot {
+        left: 20px !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .timeline-content::before {
+        left: -20px !important;
+        border-color: transparent rgba(255, 255, 255, 0.1) transparent transparent !important;
+    }
+
+    :host-context(.light-mode) .timeline-content::before {
+        border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent !important;
+    }
+
+    .timeline-section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .company-name,
+    .degree-name {
+        font-size: 1.3rem;
+    }
+
+    .technologies-used {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .timeline-section-title {
+        font-size: 1.8rem;
+    }
+
+    .timeline-content {
+        padding: 1rem;
+    }
+
+    .company-name,
+    .degree-name {
+        font-size: 1.2rem;
+    }
+
+    .timeline-date {
+        font-size: 0.8rem;
+    }
+
+    .position-badge,
+    .institution-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .tech-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .timeline-header-content {
+        gap: 0.8rem;
+    }
+    
+    .timeline-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .company-logo,
+    .institution-logo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .company-logo img,
+    .institution-logo img {
+        padding: 6px;
+    }
+}
+
+/* Modo claro - Fondo más grisáceo para mejor contraste */
+:host-context(.light-mode) {
+    background-color: #f5f5f5;
+}

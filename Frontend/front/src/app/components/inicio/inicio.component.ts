@@ -27,8 +27,8 @@ export class InicioComponent implements OnInit, OnDestroy {
   private languageSubscription?: Subscription;
   private timeSubscription?: Subscription;
 
-  // Status & Time
-  isAvailable = true;
+  // Status & Time - CAMBIO: Ahora siempre está ocupado
+  isAvailable = false; // Cambiado de true a false
   currentTime = '';
   currentTimezone = 'Madrid, Spain';
   
@@ -62,7 +62,6 @@ export class InicioComponent implements OnInit, OnDestroy {
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
       lang => {
         this.currentLanguage = lang;
-        this.updateActivityFeed();
       }
     );
 
@@ -73,9 +72,8 @@ export class InicioComponent implements OnInit, OnDestroy {
       this.initParticleInterval();
       this.initGlitchEffect();
       this.initTimeUpdate();
-      this.initWeatherData();
-      this.initActivityFeed();
-      this.checkAvailabilityStatus();
+      // CAMBIO: Comentamos o eliminamos la verificación automática
+      // this.checkAvailabilityStatus();
     }
   }
 
@@ -107,65 +105,13 @@ export class InicioComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Inicializar datos del clima (simulado)
-  private initWeatherData(): void {
-    // En un caso real, harías una llamada a una API de clima
-    this.weatherData = {
-      temperature: Math.floor(Math.random() * 15) + 10, // 10-25°C
-      description: this.getWeatherDescription(),
-      icon: this.getWeatherIcon()
-    };
-  }
-
-  private getWeatherDescription(): string {
-    const descriptions = ['Soleado', 'Parcialmente nublado', 'Nublado', 'Lluvioso'];
-    return descriptions[Math.floor(Math.random() * descriptions.length)];
-  }
-
-  private getWeatherIcon(): string {
-    const icons = ['☀️', '🌤️', '☁️', '🌧️'];
-    return icons[Math.floor(Math.random() * icons.length)];
-  }
-
-  // Verificar estado de disponibilidad
-  private checkAvailabilityStatus(): void {
-    const now = new Date();
-    const hour = now.getHours();
-    // Disponible entre las 9:00 y 18:00
-    this.isAvailable = hour >= 9 && hour <= 18;
-  }
-
-  // Inicializar feed de actividades
-  private initActivityFeed(): void {
-    this.updateActivityFeed();
-  }
-
-  private updateActivityFeed(): void {
-    const activities: Activity[] = [
-      {
-        icon: 'icon-code',
-        text: this.currentLanguage === 'es' ? 'Actualizó el repositorio principal' : 'Updated main repository',
-        time: '2h ago'
-      },
-      {
-        icon: 'icon-coffee',
-        text: this.currentLanguage === 'es' ? 'Tomando un café ☕' : 'Having a coffee ☕',
-        time: '4h ago'
-      },
-      {
-        icon: 'icon-rocket',
-        text: this.currentLanguage === 'es' ? 'Desplegó nueva función' : 'Deployed new feature',
-        time: '1d ago'
-      },
-      {
-        icon: 'icon-book',
-        text: this.currentLanguage === 'es' ? 'Publicó nuevo artículo' : 'Published new article',
-        time: '2d ago'
-      }
-    ];
-    
-    this.recentActivities = activities.slice(0, 3);
-  }
+  // CAMBIO: Método comentado ya que queremos que siempre esté ocupado
+  // private checkAvailabilityStatus(): void {
+  //   const now = new Date();
+  //   const hour = now.getHours();
+  //   // Disponible entre las 9:00 y 18:00
+  //   this.isAvailable = hour >= 9 && hour <= 18;
+  // }
 
   // Descargar CV
   downloadCV(): void {
@@ -174,37 +120,7 @@ export class InicioComponent implements OnInit, OnDestroy {
       link.href = 'assets/cv/CV_Mario_Jimenez_Marset_Desarrollo.pdf';
       link.download = 'CV_Mario_Jimenez_Marset.pdf';
       link.click();
-      
-      this.showToast('success', 'CV descargado correctamente', 'icon-check');
     }
-  }
-
-  // Scroll a contacto
-  scrollToContact(): void {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  // Scroll a siguiente sección
-  scrollToNext(): void {
-    const nextSection = document.getElementById('about') || document.getElementById('skills');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  // Mostrar notificación toast
-  private showToast(type: 'success' | 'error', message: string, icon: string): void {
-    this.notificationType = type;
-    this.notificationMessage = message;
-    this.notificationIcon = icon;
-    this.showNotification = true;
-    
-    setTimeout(() => {
-      this.showNotification = false;
-    }, 3000);
   }
 
   // Generación de partículas
@@ -237,8 +153,6 @@ export class InicioComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       avatar.style.transform = 'translate(-50%, -50%) scale(1)';
     }, 500);
-    
-    this.showToast('success', '¡Hola! 👋', 'icon-wave');
   }
 
   // Seguimiento del mouse para blobs

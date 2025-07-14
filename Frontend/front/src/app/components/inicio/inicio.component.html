@@ -4,69 +4,99 @@
 
 <!-- Organic Blobs -->
 <div class="blob-container">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 </div>
 
 <!-- Main Container -->
 <div class="inicio-container">
-    <div class="hero-section">
-        <!-- Left Side - Content -->
-        <div class="content-side">
-            <h1 class="glitch-text" [attr.data-text]="'HOME.TITLE' | translate">
-                {{ 'HOME.TITLE' | translate }}
-            </h1>
-            <p class="subtitle">{{ 'HOME.SUBTITLE' | translate }}</p>
-            <p class="description">
-                {{ 'HOME.DESCRIPTION' | translate }}
-            </p>
+  <div class="hero-section">
+    <!-- Left Side - Content -->
+    <div class="content-side">
+      <h1 class="glitch-text" [attr.data-text]="'HOME.TITLE' | translate">
+        {{ 'HOME.TITLE' | translate }}
+      </h1>
+      <p class="subtitle">{{ 'HOME.SUBTITLE' | translate }}</p>
 
-            <!-- Status Indicator -->
-            <div class="status-card">
-                <div class="status-indicator" [class.available]="isAvailable" [class.busy]="!isAvailable">
-                    <div class="status-dot"></div>
-                    <span class="status-text">
-                        {{ isAvailable ? ('HOME.STATUS.AVAILABLE' | translate) : ('HOME.STATUS.BUSY' | translate) }}
-                    </span>
-                </div>
-                <div class="status-info">
-                    <span class="timezone">{{ currentTimezone }}</span>
-                    <span class="local-time">{{ currentTime }}</span>
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <button class="action-btn primary" (click)="downloadCV()">
-                    <i class="icon-download"></i>
-                    {{ 'HOME.DOWNLOAD_CV' | translate }}
-                </button>
-            </div>
+      <!-- Status Indicator Reorganizado -->
+      <div class="status-card">
+        <div class="status-header">
+          <div class="status-indicator" [class.available]="isAvailable" [class.busy]="!isAvailable">
+            <div class="status-dot"></div>
+            <span class="status-text">
+              {{ isAvailable ? ('HOME.STATUS.AVAILABLE' | translate) : ('HOME.STATUS.BUSY' | translate) }}
+            </span>
+          </div>
+          <div class="status-info">
+            <span class="timezone">{{ currentTimezone }}</span>
+            <span class="local-time">{{ currentTime }}</span>
+          </div>
         </div>
 
-        <!-- Right Side - Interactive Avatar with Info -->
-        <div class="avatar-side">
-            <div class="avatar-container">
-                <div class="avatar-ring"></div>
-                <div class="avatar-ring"></div>
-                <div class="avatar-ring"></div>
-                <div class="avatar-main" (click)="triggerAvatarEffect()">
-                    <img src="assets/images/mario.jpg" alt="Mario Jiménez Marset" class="avatar-image">
-                </div>
-            </div>
-
-            <!-- Quick Stats -->
-            <div class="quick-stats">
-                <div class="stat-item">
-                    <div class="stat-number">{{ yearsOfExperience }}</div>
-                    <div class="stat-label">{{ 'HOME.YEARS_EXP' | translate }}</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">{{ totalProjects }}</div>
-                    <div class="stat-label">{{ 'HOME.PROJECTS' | translate }}</div>
-                </div>
-            </div>
+        <!-- Descripción profesional dentro del card -->
+        <div class="professional-description">
+          <p class="description-text">
+            {{ 'HOME.DESCRIPTION' | translate }}
+          </p>
         </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <button class="action-btn primary" (click)="downloadCV()">
+          <i class="icon-download"></i>
+          {{ 'HOME.DOWNLOAD_CV' | translate }}
+        </button>
+      </div>
+
+      <!-- Avatar y Stats - Solo visible en móvil -->
+      <div class="mobile-avatar-section">
+        <div class="avatar-container">
+          <div class="avatar-ring"></div>
+          <div class="avatar-ring"></div>
+          <div class="avatar-ring"></div>
+          <div class="avatar-main" (click)="triggerAvatarEffect()">
+            <img src="assets/images/mario.jpg" alt="Mario Jiménez Marset" class="avatar-image">
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="stat-item">
+            <div class="stat-number">{{ yearsOfExperience }}</div>
+            <div class="stat-label">{{ 'HOME.YEARS_EXP' | translate }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ totalProjects }}</div>
+            <div class="stat-label">{{ 'HOME.PROJECTS' | translate }}</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Right Side - Interactive Avatar with Info - Solo visible en desktop -->
+    <div class="avatar-side desktop-avatar">
+      <div class="avatar-container">
+        <div class="avatar-ring"></div>
+        <div class="avatar-ring"></div>
+        <div class="avatar-ring"></div>
+        <div class="avatar-main" (click)="triggerAvatarEffect()">
+          <img src="assets/images/mario.jpg" alt="Mario Jiménez Marset" class="avatar-image">
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="quick-stats">
+        <div class="stat-item">
+          <div class="stat-number">{{ yearsOfExperience }}</div>
+          <div class="stat-label">{{ 'HOME.YEARS_EXP' | translate }}</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">{{ totalProjects }}</div>
+          <div class="stat-label">{{ 'HOME.PROJECTS' | translate }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

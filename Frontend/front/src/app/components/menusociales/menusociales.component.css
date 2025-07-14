@@ -1,82 +1,116 @@
+/* Contenedor principal del menú social */
+.social-cluster {
+  position: fixed;
+  top: 30%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Enlaces sociales */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Colores específicos para cada red social */
+.social-link:nth-child(1):hover {
+  background: rgba(10, 102, 194, 0.3);
+  border-color: #0a66c2;
+}
+
+.social-link:nth-child(2):hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
+  color: #fff;
+}
+
+.social-link:nth-child(3):hover {
+  background: rgba(234, 67, 53, 0.3);
+  border-color: #ea4335;
+}
+
 /* Estilos para el botón de tema */
 .theme-toggle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .theme-toggle:hover::before {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
-    border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .theme-toggle i {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 /* Estilos para el icono del sol en modo oscuro */
 .theme-toggle .fa-sun {
-    color: #ffeaa7;
+  color: #ffeaa7;
 }
 
 /* Estilos para el icono de la luna en modo claro */
 .theme-toggle .fa-moon {
-    color: #74b9ff;
+  color: #74b9ff;
 }
 
-/* Estilos específicos para modo claro */
-:host-context(.light-mode) .theme-toggle {
-    background: rgba(0, 0, 0, 0.1) !important;
-    border-color: rgba(0, 0, 0, 0.2) !important;
-    color: #333 !important;
-}
-
-:host-context(.light-mode) .theme-toggle::before {
-    background: linear-gradient(45deg, #2d3436, #636e72) !important;
-}
-
-:host-context(.light-mode) .theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.15) !important;
-    border-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-:host-context(.light-mode) .theme-toggle:hover::before {
-    opacity: 0.3 !important;
-}
-
-/* Asegurar que el icono de la luna tenga buen contraste en modo claro */
-:host-context(.light-mode) .theme-toggle .fa-moon {
-    color: #2d3436 !important;
-}
 /* Selector de idiomas */
 .language-selector {
   position: relative;
@@ -86,43 +120,39 @@
 .language-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  border-radius: 50%;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  padding: 0;
 }
 
 .language-toggle:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  transform: scale(1.1);
 }
 
 .arrow {
-  font-size: 12px;
-  transition: transform 0.3s ease;
-}
-
-.arrow.rotated {
-  transform: rotate(180deg);
+  display: none;
 }
 
 .language-menu {
   position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 8px;
+  top: 0;
+  right: 60px;
   background: rgba(30, 30, 30, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateX(10px);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   min-width: 140px;
@@ -131,7 +161,7 @@
 .language-menu.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .language-option {
@@ -160,11 +190,12 @@
 .flag-icon {
   width: 20px;
   height: 15px;
-  border-radius: 2px;
+  border-radius: 3px;
   display: inline-block;
   background-size: cover;
   background-position: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
 }
 
 .flag-es {
@@ -186,43 +217,147 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
+  .social-cluster {
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    transform: none;
+    flex-direction: row;
+    padding: 15px;
+    gap: 10px;
+    border-radius: 25px;
+  }
+  
+  .social-link,
+  .theme-toggle,
+  .language-toggle {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+  
   .language-menu {
-    right: -20px;
+    bottom: 60px;
+    right: 0;
+    top: auto;
+    transform: translateY(10px);
     min-width: 120px;
+  }
+  
+  .language-menu.show {
+    transform: translateY(0);
   }
   
   .language-option {
     padding: 10px 12px;
     font-size: 14px;
   }
+  
+  .flag-icon {
+    width: 14px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-cluster {
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .social-link,
+  .theme-toggle,
+  .language-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .language-menu {
+    min-width: 100px;
+  }
+  
+  .language-option {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
 }
 
 /* Modo claro */
-body.light-mode .language-toggle {
+:host-context(.light-mode) .social-cluster {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Modo claro - Enlaces sociales */
+:host-context(.light-mode) .social-link {
   background: rgba(0, 0, 0, 0.1);
   border-color: rgba(0, 0, 0, 0.2);
   color: #333;
 }
 
-body.light-mode .language-toggle:hover {
+:host-context(.light-mode) .social-link:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+:host-context(.light-mode) .social-link:nth-child(2):hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #fff;
+}
+
+:host-context(.light-mode) .theme-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+:host-context(.light-mode) .theme-toggle::before {
+  background: linear-gradient(45deg, #2d3436, #636e72);
+}
+
+:host-context(.light-mode) .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+:host-context(.light-mode) .theme-toggle:hover::before {
+  opacity: 0.3;
+}
+
+:host-context(.light-mode) .theme-toggle .fa-moon {
+  color: #2d3436;
+}
+
+:host-context(.light-mode) .language-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+:host-context(.light-mode) .language-toggle:hover {
   background: rgba(0, 0, 0, 0.2);
 }
 
-body.light-mode .language-menu {
+:host-context(.light-mode) .language-menu {
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-body.light-mode .language-option {
+:host-context(.light-mode) .language-option {
   color: #333;
 }
 
-body.light-mode .language-option:hover {
+:host-context(.light-mode) .language-option:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
-body.light-mode .language-option.active {
+:host-context(.light-mode) .language-option.active {
   background: rgba(74, 144, 226, 0.2);
 }
