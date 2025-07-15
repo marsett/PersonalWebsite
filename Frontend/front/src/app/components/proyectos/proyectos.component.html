@@ -1,66 +1,207 @@
-<app-menusociales></app-menusociales>
+<!-- Animated Grid Background -->
+<div class="grid-background"></div>
+
+<!-- Organic Blob Animations -->
+<div class="blob-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
 
 <div class="proyectos-container">
+  <!-- Hero Section -->
   <div class="hero-section">
     <div class="floating-elements">
       <div class="float-element" *ngFor="let i of [1,2,3,4,5]"></div>
     </div>
     <h1 class="main-title">MIS PROYECTOS</h1>
-    <p class="subtitle">Explorando el futuro del desarrollo web</p>
   </div>
-  
-  <div class="projects-grid">
-    <div class="project-card" *ngFor="let proyecto of proyectos; let i = index" [attr.data-index]="i">
-      <div class="card-content">
-        <div class="project-image">
+
+  <!-- Projects Mosaic -->
+  <div class="projects-mosaic">
+    <div class="mosaic-grid">
+      <div class="mosaic-tile" *ngFor="let proyecto of proyectos; let i = index"
+        [class.expanded]="expandedProject === proyecto.id"
+        [class.dimmed]="expandedProject !== null && expandedProject !== proyecto.id"
+        (click)="toggleProject(proyecto.id, $event)" [style.--delay]="i * 0.1 + 's'">
+        <!-- Background Image -->
+        <div class="tile-background">
           <img [src]="proyecto.imagen" [alt]="proyecto.titulo">
-          <div class="image-overlay">
-            <div class="tech-stack">
-              <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias">
+          <div class="overlay"></div>
+        </div>
+
+        <!-- Tile Content -->
+        <div class="tile-content">
+          <!-- Collapsed State -->
+          <div class="tile-preview" [class.hidden]="expandedProject === proyecto.id">
+            <div class="preview-header">
+              <h3 class="project-title">{{proyecto.titulo}}</h3>
+              <div class="project-status" [style.color]="getStatusColor(proyecto.estado)">
+                {{proyecto.estado}}
+              </div>
+            </div>
+
+            <div class="preview-tech">
+              <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias.slice(0, 3)">
                 {{tech}}
               </span>
+              <span class="tech-more" *ngIf="proyecto.tecnologias.length > 3">
+                +{{proyecto.tecnologias.length - 3}}
+              </span>
+            </div>
+
+            <div class="preview-rating">
+              <span class="rating-value">Nota: {{proyecto.rating}}/10</span>
+              <span class="rating-stars">
+                <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]" [class.filled]="star <= proyecto.rating">★</span>
+              </span>
+            </div>
+
+            <div class="expand-hint">
+              <span class="hint-text">Click para expandir</span>
+            </div>
+          </div>
+
+          <!-- Expanded State -->
+          <div class="tile-expanded" [class.visible]="expandedProject === proyecto.id">
+            <div class="expanded-header">
+              <h2 class="expanded-title">{{proyecto.titulo}}</h2>
+              <button class="close-btn" (click)="collapseProject()" aria-label="Cerrar">
+                <span>×</span>
+              </button>
+            </div>
+
+            <div class="expanded-content">
+              <div class="content-section">
+                <h4>Descripción</h4>
+                <p class="project-description">{{proyecto.descripcion}}</p>
+              </div>
+
+              <div class="content-section">
+                <h4>Tecnologías</h4>
+                <div class="expanded-tech">
+                  <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias">
+                    {{tech}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="content-section">
+                <h4>Cronología</h4>
+                <div class="project-timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-label">Inicio:</span>
+                    <span class="timeline-value">{{formatDate(proyecto.fechaInicio)}}</span>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-label">Fin:</span>
+                    <span class="timeline-value">{{formatDate(proyecto.fechaFin)}}</span>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-label">Duración:</span>
+                    <span class="timeline-value">{{proyecto.duracion}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="content-section">
+                <h4>Evaluación</h4>
+                <div class="project-stats">
+                  <div class="stat-item">
+                    <span class="stat-label">Rating:</span>
+                    <div class="stat-rating">
+                      <span class="rating-stars">
+                        <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]"
+                          [class.filled]="star <= proyecto.rating">★</span>
+                      </span>
+                      <span class="rating-value">{{proyecto.rating}}/10</span>
+                    </div>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label">Estado:</span>
+                    <span class="stat-value" [style.color]="getStatusColor(proyecto.estado)">
+                      {{proyecto.estado}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Galería de Imágenes -->
+              <div class="content-section">
+                <h4>Galería de Imágenes</h4>
+                <div class="project-gallery">
+                  <div class="gallery-grid">
+                    <div class="gallery-item" *ngFor="let imagen of getCurrentProject()?.galeria; let i = index"
+                      (click)="openGallery(i, $event)">
+                      <img [src]="imagen" [alt]="'Imagen ' + (i + 1) + ' de ' + getCurrentProject()?.titulo">
+                      <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visor de Galería (integrado en el contenido) -->
+              <div class="gallery-viewer-section" *ngIf="isGalleryOpen">
+                <div class="gallery-viewer-container" (click)="$event.stopPropagation()">
+                  <div class="gallery-viewer-header">
+                    <h4>Vista detallada</h4>
+                    <button class="gallery-close-btn" (click)="closeGallery($event)">×</button>
+                  </div>
+
+                  <div class="gallery-main-viewer">
+                    <button class="gallery-nav prev" (click)="prevImage($event)"
+                      *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
+                      <span>‹</span>
+                    </button>
+
+                    <div class="gallery-image-display">
+                      <img [src]="getCurrentImageSrc()" [alt]="getCurrentImageAlt()">
+                    </div>
+
+                    <button class="gallery-nav next" (click)="nextImage($event)"
+                      *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
+                      <span>›</span>
+                    </button>
+                  </div>
+
+                  <div class="gallery-controls">
+                    <div class="gallery-indicators"
+                      *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
+                      <span class="indicator" *ngFor="let img of getCurrentProject()?.galeria; let i = index"
+                        [class.active]="i === selectedImageIndex" (click)="selectImage(i, $event)">
+                      </span>
+                    </div>
+
+                    <div class="gallery-counter">
+                      {{selectedImageIndex + 1}} / {{getCurrentProject()?.galeria?.length}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botones de acción -->
+              <div class="expanded-actions">
+                <button class="action-btn primary" (click)="verProyecto(proyecto, $event)">
+                  <span class="btn-icon">🚀</span>
+                  <span class="btn-text">Ver Proyecto</span>
+                </button>
+                <button class="action-btn secondary" (click)="verCodigo(proyecto, $event)">
+                  <span class="btn-icon">💻</span>
+                  <span class="btn-text">Ver Código</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div class="project-info">
-          <h3 class="project-title">{{proyecto.titulo}}</h3>
-          <p class="project-description">{{proyecto.descripcion}}</p>
-          
-          <div class="project-stats">
-            <div class="stat">
-              <span class="stat-icon">⭐</span>
-              <span class="stat-value">{{proyecto.rating}}</span>
-            </div>
-            <div class="stat">
-              <span class="stat-icon">📅</span>
-              <span class="stat-value">{{proyecto.fecha}}</span>
-            </div>
-            <div class="stat">
-              <span class="stat-icon">🚀</span>
-              <span class="stat-value">{{proyecto.estado}}</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-actions">
-          <button class="action-btn primary" (click)="verProyecto(proyecto, $event)">
-            <span class="btn-text">Ver Proyecto</span>
-            <span class="btn-icon">→</span>
-          </button>
-          <button class="action-btn secondary" (click)="verCodigo(proyecto, $event)">
-            <span class="btn-text">Ver Código</span>
-            <span class="btn-icon">💻</span>
-          </button>
+
+        <!-- Hover Effects -->
+        <div class="tile-effects">
+          <div class="ripple-effect"></div>
+          <div class="glow-effect"></div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <div class="floating-cta">
-    <button class="cta-button" (click)="scrollToContact()">
-      <span class="cta-text">¿Trabajamos juntos?</span>
-      <div class="cta-ripple"></div>
-    </button>
   </div>
 </div>
