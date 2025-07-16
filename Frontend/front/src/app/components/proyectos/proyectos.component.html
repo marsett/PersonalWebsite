@@ -53,7 +53,8 @@
             <div class="preview-rating">
               <span class="rating-value">Nota: {{proyecto.rating}}/10</span>
               <span class="rating-stars">
-                <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]" [class.filled]="star <= proyecto.rating">★</span>
+                <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]"
+                  [class.filled]="star <= proyecto.rating">★</span>
               </span>
             </div>
 
@@ -74,7 +75,7 @@
             <div class="expanded-content">
               <div class="content-section">
                 <h4>Descripción</h4>
-                <p class="project-description">{{proyecto.descripcion}}</p>
+                <p class="project-description" [innerHTML]="formatDescription(proyecto.descripcion)"></p>
               </div>
 
               <div class="content-section">
@@ -150,12 +151,14 @@
                     <button class="gallery-close-btn" (click)="closeGallery($event)">×</button>
                   </div>
 
+                  <!-- En el visor de galería, reemplaza esta sección: -->
                   <div class="gallery-main-viewer">
                     <button class="gallery-nav prev" (click)="prevImage($event)"
                       *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
                       <span>‹</span>
                     </button>
 
+                    <!-- CAMBIO: Usar gallery-image-display en lugar de gallery-image-container -->
                     <div class="gallery-image-display">
                       <img [src]="getCurrentImageSrc()" [alt]="getCurrentImageAlt()">
                     </div>
@@ -167,11 +170,13 @@
                   </div>
 
                   <div class="gallery-controls">
-                    <div class="gallery-indicators"
-                      *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
-                      <span class="indicator" *ngFor="let img of getCurrentProject()?.galeria; let i = index"
-                        [class.active]="i === selectedImageIndex" (click)="selectImage(i, $event)">
-                      </span>
+                    <div class="gallery-indicators-wrapper">
+                      <div class="gallery-indicators"
+                        *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
+                        <span class="indicator" *ngFor="let img of getCurrentProject()?.galeria; let i = index"
+                          [class.active]="i === selectedImageIndex" (click)="selectImage(i, $event)">
+                        </span>
+                      </div>
                     </div>
 
                     <div class="gallery-counter">
@@ -181,9 +186,11 @@
                 </div>
               </div>
 
-              <!-- Botones de acción -->
+              <!-- Botones de acción con validación para el botón de ver proyecto -->
               <div class="expanded-actions">
-                <button class="action-btn primary" (click)="verProyecto(proyecto, $event)">
+                <button class="action-btn primary" [class.disabled]="!proyecto.tieneDespliegue"
+                  [title]="!proyecto.tieneDespliegue ? 'Proyecto sin despliegue disponible' : 'Ver proyecto en vivo'"
+                  (click)="verProyecto(proyecto, $event)">
                   <span class="btn-icon">🚀</span>
                   <span class="btn-text">Ver Proyecto</span>
                 </button>
