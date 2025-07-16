@@ -150,6 +150,25 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+/* Animación sutil para el fondo */
+.flip-card:hover .flip-card-back::before {
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateX(100%);
+        opacity: 0.1;
+    }
+}
+
 :host-context(.light-mode) .flip-card-back {
     background: rgba(255, 255, 255, 0.95);
 }
@@ -185,58 +204,31 @@
     -webkit-box-orient: vertical;
 }
 
-.tech-name-back {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: color 0.3s ease;
-    text-align: center;
-    line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-}
-
-.tech-name,
-.tech-name-back {
+.tech-name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     /* Fallback para navegadores sin soporte */
-    max-height: 3.2em; /* 2 líneas aproximadamente */
+    max-height: 3.2em;
+    /* 2 líneas aproximadamente */
     line-height: 1.6;
 }
 
 /* Modo claro - Nombres */
-:host-context(.light-mode) .tech-name,
-:host-context(.light-mode) .tech-name-back {
+:host-context(.light-mode) .tech-name {
     color: #2c3e50;
 }
 
-/* Back Card Content */
 .tech-info {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100%;
-    justify-content: space-between;
-}
-
-.level-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    color: white;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
 }
 
 /* Espaciado mejorado entre secciones */
@@ -263,402 +255,97 @@
     0% {
         text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
     }
+
     100% {
         text-shadow: 0 0 30px rgba(255, 107, 107, 0.8), 0 0 40px rgba(78, 205, 196, 0.3);
     }
 }
 
+/* MODIFICAR la descripción */
 .tech-description {
-    font-size: 0.9rem;
-    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
     text-align: center;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-    transition: color 0.3s ease;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    flex-grow: 1;
+    margin: 0;
+    padding: 1rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cursor parpadeante para la animación de escritura */
+.tech-description::after {
+    content: '';
+    animation: blink 1s infinite;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 100;
+    margin-left: 2px;
+}
+
+/* AÑADIR - Cursor solo cuando está animando */
+.tech-description.typing::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 100;
+}
+
+/* AÑADIR - Cursor para modo claro cuando está animando */
+:host-context(.light-mode) .tech-description.typing::after {
+    color: rgba(44, 62, 80, 0.8);
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Modo claro - Descripción */
 :host-context(.light-mode) .tech-description {
-    color: #7f8c8d;
-}
-
-.click-hint {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #00ff80;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-/* Modo claro - Hint */
-:host-context(.light-mode) .click-hint {
-    color: #27ae60;
-}
-
-/* Modal Overlay */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Modal Content */
-.modal-content {
-    background: rgba(26, 26, 26, 0.95);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    max-width: 800px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    animation: modalSlideIn 0.3s ease;
-}
-
-/* Modo claro - Modal */
-:host-context(.light-mode) .modal-content {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Modal Header */
-.modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Modo claro - Header modal */
-:host-context(.light-mode) .modal-header {
-    border-bottom-color: rgba(0, 0, 0, 0.1);
-}
-
-.modal-tech-info {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.modal-logo {
-    font-size: 3rem;
-    filter: drop-shadow(0 0 20px currentColor);
-}
-
-.modal-title-section h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0 0 0.5rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
-}
-
-/* Modo claro - Título modal */
-:host-context(.light-mode) .modal-title-section h2 {
-    color: #2c3e50;
-}
-
-.modal-level-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #fff;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
-}
-
-/* Modo claro - Botón cerrar */
-:host-context(.light-mode) .close-btn {
-    color: #2c3e50;
-}
-
-:host-context(.light-mode) .close-btn:hover {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-/* Modal Body */
-.modal-body {
-    padding: 2rem;
-}
-
-.modal-section {
-    margin-bottom: 2rem;
-}
-
-:host-context(.light-mode) {
-    background-color: #f5f5f5;
-}
-
-.modal-section h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #00ff80;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
-}
-
-/* Modo claro - Títulos sección */
-:host-context(.light-mode) .modal-section h3 {
-    color: #27ae60;
-}
-
-.description {
-    font-size: 1.1rem;
-    color: #aaa;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    font-style: italic;
-    transition: color 0.3s ease;
-}
-
-/* Modo claro - Descripción modal */
-:host-context(.light-mode) .description {
-    color: #7f8c8d;
-}
-
-.experience-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-}
-
-/* Modo claro - Badge experiencia */
-:host-context(.light-mode) .experience-badge {
-    background: rgba(0, 0, 0, 0.1);
-    border-color: rgba(0, 0, 0, 0.2);
-    color: #2c3e50;
-}
-
-/* Strengths Grid */
-.strengths-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.strength-badge {
-    background: linear-gradient(45deg, #ff0080, #00ff80);
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Modo claro - Badges fortalezas */
-:host-context(.light-mode) .strength-badge {
-    background: linear-gradient(45deg, #e74c3c, #27ae60);
-}
-
-/* Projects Detailed */
-.projects-detailed {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.project-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Modo claro - Tarjetas proyecto */
-:host-context(.light-mode) .project-card {
+    color: rgba(44, 62, 80, 0.9);
     background: rgba(255, 255, 255, 0.8);
     border-color: rgba(0, 0, 0, 0.1);
 }
 
-.project-card h4 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    transition: color 0.3s ease;
+:host-context(.light-mode) .tech-description::after {
+    color: rgba(44, 62, 80, 0.8);
 }
 
-/* Modo claro - Título proyecto */
-:host-context(.light-mode) .project-card h4 {
-    color: #2c3e50;
+/* Efectos de hover mejorados */
+.flip-card:hover .tech-description {
+    transform: scale(1.02);
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-.project-description {
-    color: #aaa;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    transition: color 0.3s ease;
+:host-context(.light-mode) .flip-card:hover .tech-description {
+    color: rgba(44, 62, 80, 1);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Modo claro - Descripción proyecto */
-:host-context(.light-mode) .project-description {
-    color: #7f8c8d;
-}
-
-.project-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ccc;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-.meta-item strong {
-    color: #00ff80;
-    transition: color 0.3s ease;
-}
-
-/* Modo claro - Meta items */
-:host-context(.light-mode) .meta-item {
-    color: #34495e;
-}
-
-:host-context(.light-mode) .meta-item strong {
-    color: #27ae60;
-}
-
-.project-technologies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.tech-tag {
-    background: rgba(0, 255, 128, 0.2);
-    color: #00ff80;
-    padding: 0.2rem 0.6rem;
-    border-radius: 10px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: 1px solid rgba(0, 255, 128, 0.3);
-    transition: all 0.3s ease;
-}
-
-/* Modo claro - Tags tecnología */
-:host-context(.light-mode) .tech-tag {
-    background: rgba(39, 174, 96, 0.2);
-    color: #27ae60;
-    border-color: rgba(39, 174, 96, 0.3);
-}
-
-/* Certifications List */
-.certifications-list {
-    display: grid;
-    gap: 0.5rem;
-}
-
-.certification-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #fff;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.certification-item i {
-    color: #ffff80;
-    transition: color 0.3s ease;
-}
-
-/* Modo claro - Certificaciones */
-:host-context(.light-mode) .certification-item {
-    color: #2c3e50;
-}
-
-:host-context(.light-mode) .certification-item i {
-    color: #f39c12;
-}
-
-/* Animations */
-@keyframes glitch-bg {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+:host-context(.light-mode) {
+    background-color: #f5f5f5;
 }
 
 /* Responsive Design */
@@ -667,12 +354,12 @@
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-    
+
     .category-title::before {
         width: 150px;
         height: 50px;
     }
-    
+
     .category-title::after {
         width: 60px;
     }
@@ -725,48 +412,15 @@
         font-size: 1.4rem;
     }
 
-    .tech-name-back {
-        font-size: 1.1rem;
-    }
-
     .tech-description {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        min-height: 100px;
     }
 
-    .modal-content {
-        width: 95%;
-        max-height: 95vh;
-    }
-
-    .modal-header {
-        padding: 1.5rem;
-    }
-
-    .modal-tech-info {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    .modal-logo {
-        font-size: 2.5rem;
-    }
-
-    .modal-title-section h2 {
+    .tech-description::before,
+    .tech-description::after {
         font-size: 2rem;
-    }
-
-    .modal-body {
-        padding: 1.5rem;
-    }
-
-    .project-meta {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .strengths-grid {
-        justify-content: center;
     }
 }
 
@@ -775,12 +429,12 @@
         font-size: 1.8rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .category-title::before {
         width: 120px;
         height: 40px;
     }
-    
+
     .category-title::after {
         width: 50px;
     }
@@ -827,24 +481,20 @@
         font-size: 1.2rem;
     }
 
-    .tech-name-back {
-        font-size: 1rem;
-    }
-
     .tech-description {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding: 0.7rem;
+        min-height: 90px;
     }
 
-    .modal-header {
-        padding: 1rem;
+    .tech-description::before,
+    .tech-description::after {
+        font-size: 1.8rem;
     }
 
     .modal-body {
         padding: 1rem;
-    }
-
-    .modal-title-section h2 {
-        font-size: 1.5rem;
     }
 }
 
@@ -1068,11 +718,28 @@
     animation: titleGlowLight 3s ease-in-out infinite alternate;
 }
 
+/* AÑADIR - Estilos específicos para la nueva sección HERRAMIENTAS */
+:host-context(.light-mode) .category-section:nth-child(5) .category-title {
+  background: linear-gradient(135deg, #8e44ad 0%, #6c3483 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:host-context(.light-mode) .category-section:nth-child(5) .category-title::before {
+  background: linear-gradient(45deg, #8e44ad20, #6c348320);
+}
+
+:host-context(.light-mode) .category-section:nth-child(5) .category-title::after {
+  background: linear-gradient(90deg, #8e44ad, #6c3483);
+  box-shadow: 0 0 15px rgba(142, 68, 173, 0.4);
+}
+
 :host-context(.light-mode) .category-section:nth-child(2) .category-title {
-    background: linear-gradient(135deg, #2980b9 0%, #1a252f 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  background: linear-gradient(135deg, #2980b9 0%, #1a252f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 :host-context(.light-mode) .category-section:nth-child(2) .category-title::before {
@@ -1085,10 +752,10 @@
 }
 
 :host-context(.light-mode) .category-section:nth-child(3) .category-title {
-    background: linear-gradient(135deg, #c0392b 0%, #922b21 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  background: linear-gradient(135deg, #c0392b 0%, #922b21 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 :host-context(.light-mode) .category-section:nth-child(3) .category-title::before {
@@ -1101,10 +768,10 @@
 }
 
 :host-context(.light-mode) .category-section:nth-child(4) .category-title {
-    background: linear-gradient(135deg, #2471a3 0%, #1b4f72 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  background: linear-gradient(135deg, #2471a3 0%, #1b4f72 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 :host-context(.light-mode) .category-section:nth-child(4) .category-title::before {
@@ -1139,6 +806,7 @@
     0% {
         text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
     }
+
     100% {
         text-shadow: 0 0 30px rgba(255, 107, 107, 0.8), 0 0 40px rgba(254, 202, 87, 0.3);
     }
@@ -1149,6 +817,7 @@
     0% {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     100% {
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 20px rgba(52, 152, 219, 0.3);
     }
@@ -1180,60 +849,20 @@
     background-clip: text;
 }
 
-/* Iconos específicos para tecnologías */
-.tech-logo i.fa-microsoft:before {
-    content: "\f3ca"; /* Icono de Microsoft */
-}
-
-.tech-logo i.fab.fa-microsoft:before {
-    content: "\f3ca"; /* Icono de Microsoft para C# y .NET */
-}
-
-/* Icono específico para Ionic */
-.tech-logo i.ionic-icon:before {
-    content: "\f3c9"; /* Usando el icono de Ionic de Font Awesome */
-}
-
-/* Icono específico para Power Platform */
-.tech-logo i.power-platform-icon:before {
-    content: "\f1e6"; /* Usando el icono de Microsoft para Power Platform */
-}
-
-/* Fallback para iconos personalizados */
-.tech-logo i[class*="csharp"]:before {
-    content: "\f3ca";
-    font-family: "Font Awesome 5 Brands";
-}
-
-.tech-logo i[class*="dotnet"]:before {
-    content: "\f3ca";
-    font-family: "Font Awesome 5 Brands";
-}
-
-.tech-logo i[class*="ionic"]:before {
-    content: "\f3c9";
-    font-family: "Font Awesome 5 Brands";
-}
-
-.tech-logo i[class*="power-platform"]:before {
-    content: "\f1e6";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-}
-
 /* AÑADIR - Media queries para títulos en pantallas pequeñas */
 @media (max-width: 768px) {
+
     .category-title,
     .certifications-title {
         font-size: 2.5rem;
     }
-    
+
     .category-title::before,
     .certifications-title::before {
         width: 150px;
         height: 50px;
     }
-    
+
     .category-title::after,
     .certifications-title::after {
         width: 60px;
@@ -1241,18 +870,19 @@
 }
 
 @media (max-width: 480px) {
+
     .category-title,
     .certifications-title {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-    
+
     .category-title::before,
     .certifications-title::before {
         width: 120px;
         height: 40px;
     }
-    
+
     .category-title::after,
     .certifications-title::after {
         width: 50px;

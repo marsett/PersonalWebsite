@@ -9,7 +9,14 @@
   "HOME": {
     "TITLE": "Mario Jiménez Marset",
     "SUBTITLE": "Desarrollador Web Full Stack",
-    "DESCRIPTION": "Técnico en Desarrollo de Aplicaciones Web y Multiplataforma, con formación especializada en tecnologías Full Stack y despliegue Multicloud. Apasionado por crear soluciones eficientes, usables y bien estructuradas."
+    "DESCRIPTION": "Técnico en Desarrollo de Aplicaciones Web y Multiplataforma, con formación especializada en tecnologías Full Stack y despliegue Multicloud. Apasionado por crear soluciones eficientes, usables y bien estructuradas.",
+    "STATUS": {
+      "AVAILABLE": "Disponible",
+      "BUSY": "Ocupado"
+    },
+    "DOWNLOAD_CV": "Descargar CV",
+    "CODING_YEARS": "Años programando",
+    "PROJECTS": "Proyectos"
   },
   "THEME": {
     "DARK": "Cambiar a modo claro",
@@ -34,6 +41,34 @@
     "DETAILED_PROJECTS": "Proyectos Detallados",
     "ROLE": "Rol",
     "DURATION": "Duración",
-    "CERTIFICATIONS": "Certificaciones"
+    "CERTIFICATIONS": "Certificaciones",
+    "VIEW_CERTIFICATE": "Ver Certificado",
+    "CATEGORIES": {
+      "FRONTEND": "Frontend",
+      "BACKEND": "Backend",
+      "CLOUD": "Cloud",
+      "HERRAMIENTAS": "Herramientas"
+    },
+    "TECH_NAMES": {
+      "AI": "IA"
+    },
+    "TECH_DESCRIPTIONS": {
+      "ANGULAR": "Angular es más que una herramienta, es una plataforma. — Misko Hevery",
+      "REACT": "Piensa en React como un conjunto de componentes reutilizables. — Dan Abramov",
+      "VUE": "Vue.js es progresivo por diseño. — Evan You",
+      "JQUERY": "jQuery: Escribe menos, haz más. — John Resig",
+      "JAVASCRIPT": "JavaScript es el único lenguaje que la gente cree que no necesita aprender antes de usarlo. — Douglas Crockford",
+      "IONIC": "Construye aplicaciones móviles con tecnologías web. — Max Lynch (CEO de Ionic)",
+      "CSHARP": "C# combina la potencia de C++ con la simplicidad de Visual Basic. — Anders Hejlsberg",
+      "JAVA": "Escribe una vez, ejecuta en cualquier lugar. — Sun Microsystems",
+      "PYTHON": "Python es un lenguaje de programación que te permite trabajar rápidamente. — Python.org",
+      "DOTNET": ".NET es una plataforma para desarrolladores gratuita y de código abierto. — Microsoft",
+      "SQL": "Sin datos, solo eres otra persona con una opinión. — W. Edwards Deming",
+      "DJANGO": "Django hace que sea más fácil crear mejores aplicaciones web más rápido. — Django Team",
+      "AZURE": "La nube es el futuro de la computación. — Satya Nadella",
+      "POWER_PLATFORM": "El poder de crear soluciones está en manos de todos. — Charles Lamanna (Microsoft)",
+      "AWS": "No tienes que reinventar la rueda para escalar en la nube. — Werner Vogels (CTO de Amazon)",
+      "AI": "La IA es la nueva electricidad. — Andrew Ng"
+    }
   }
 }

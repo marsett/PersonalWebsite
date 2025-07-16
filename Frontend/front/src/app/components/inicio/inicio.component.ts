@@ -27,23 +27,22 @@ export class InicioComponent implements OnInit, OnDestroy {
   private languageSubscription?: Subscription;
   private timeSubscription?: Subscription;
 
-  // Status & Time - CAMBIO: Ahora siempre está ocupado
   isAvailable = false; // Cambiado de true a false
   currentTime = '';
   currentTimezone = 'Madrid, Spain';
-  
+
   // Location & Weather
   currentLocation = 'Madrid, España';
   weatherData?: WeatherData;
-  
+
   // Quick Stats
   yearsOfExperience = this.calculateYearsOfExperience();
-  totalProjects = 25;
+  totalProjects = 4;
   responseTime = '< 24h';
-  
+
   // Activity Feed
   recentActivities: Activity[] = [];
-  
+
   // Notifications
   showNotification = false;
   notificationType: 'success' | 'error' = 'success';
@@ -72,8 +71,6 @@ export class InicioComponent implements OnInit, OnDestroy {
       this.initParticleInterval();
       this.initGlitchEffect();
       this.initTimeUpdate();
-      // CAMBIO: Comentamos o eliminamos la verificación automática
-      // this.checkAvailabilityStatus();
     }
   }
 
@@ -87,10 +84,16 @@ export class InicioComponent implements OnInit, OnDestroy {
   }
 
   // Calcular años de experiencia
+  // Calcular años de experiencia desde que empezaste a aprender a programar
   private calculateYearsOfExperience(): number {
-    const startYear = 2020; // Ajusta según tu fecha de inicio
-    const currentYear = new Date().getFullYear();
-    return currentYear - startYear;
+    const startDate = new Date('2021-09-15'); // Fecha cuando empezaste a aprender
+    const currentDate = new Date();
+
+    // Calcular la diferencia en años con decimales
+    const yearsDifference = (currentDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+
+    // Redondear a 1 decimal para mayor precisión
+    return Math.round(yearsDifference * 10) / 10;
   }
 
   // Actualizar tiempo cada segundo
@@ -104,14 +107,6 @@ export class InicioComponent implements OnInit, OnDestroy {
       });
     });
   }
-
-  // CAMBIO: Método comentado ya que queremos que siempre esté ocupado
-  // private checkAvailabilityStatus(): void {
-  //   const now = new Date();
-  //   const hour = now.getHours();
-  //   // Disponible entre las 9:00 y 18:00
-  //   this.isAvailable = hour >= 9 && hour <= 18;
-  // }
 
   // Descargar CV
   downloadCV(): void {

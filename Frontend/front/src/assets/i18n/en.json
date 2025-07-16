@@ -9,7 +9,14 @@
   "HOME": {
     "TITLE": "Mario Jiménez Marset",
     "SUBTITLE": "Full Stack Web Developer",
-    "DESCRIPTION": "Web and Multiplatform Application Development Technician, with specialized training in Full Stack technologies and Multicloud deployment. Passionate about creating efficient, usable and well-structured solutions."
+    "DESCRIPTION": "Web and Multiplatform Application Development Technician, with specialized training in Full Stack technologies and Multicloud deployment. Passionate about creating efficient, usable and well-structured solutions.",
+    "STATUS": {
+      "AVAILABLE": "Available",
+      "BUSY": "Busy"
+    },
+    "DOWNLOAD_CV": "Download CV",
+    "CODING_YEARS": "Years coding",
+    "PROJECTS": "Projects"
   },
   "THEME": {
     "DARK": "Switch to light mode",
@@ -34,6 +41,34 @@
     "DETAILED_PROJECTS": "Detailed Projects",
     "ROLE": "Role",
     "DURATION": "Duration",
-    "CERTIFICATIONS": "Certifications"
+    "CERTIFICATIONS": "Certifications",
+    "VIEW_CERTIFICATE": "View Certificate",
+    "CATEGORIES": {
+      "FRONTEND": "Frontend",
+      "BACKEND": "Backend",
+      "CLOUD": "Cloud",
+      "HERRAMIENTAS": "Tools"
+    },
+    "TECH_NAMES": {
+      "AI": "AI"
+    },
+    "TECH_DESCRIPTIONS": {
+      "ANGULAR": "Angular is more than a tool, it's a platform. — Misko Hevery",
+      "REACT": "Think of React as a set of reusable components. — Dan Abramov",
+      "VUE": "Vue.js is progressive by design. — Evan You",
+      "JQUERY": "jQuery: Write less, do more. — John Resig",
+      "JAVASCRIPT": "JavaScript is the only language people think they don't need to learn before using. — Douglas Crockford",
+      "IONIC": "Build mobile apps with web technologies. — Max Lynch (CEO of Ionic)",
+      "CSHARP": "C# combines the power of C++ with the simplicity of Visual Basic. — Anders Hejlsberg",
+      "JAVA": "Write once, run anywhere. — Sun Microsystems",
+      "PYTHON": "Python is a programming language that lets you work quickly. — Python.org",
+      "DOTNET": ".NET is a free, open-source developer platform. — Microsoft",
+      "SQL": "Without data, you're just another person with an opinion. — W. Edwards Deming",
+      "DJANGO": "Django makes it easier to build better web apps more quickly. — Django Team",
+      "AZURE": "The cloud is the future of computing. — Satya Nadella",
+      "POWER_PLATFORM": "The power to create solutions is in everyone's hands. — Charles Lamanna (Microsoft)",
+      "AWS": "You don't have to reinvent the wheel to scale in the cloud. — Werner Vogels (CTO of Amazon)",
+      "AI": "AI is the new electricity. — Andrew Ng"
+    }
   }
 }
