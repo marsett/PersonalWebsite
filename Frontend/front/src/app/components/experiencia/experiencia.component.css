@@ -11,7 +11,7 @@
 /* Main Container */
 .experiencia-container {
     position: relative;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 1rem;
     padding-top: 120px;

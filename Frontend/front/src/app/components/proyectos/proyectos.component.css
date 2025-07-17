@@ -100,7 +100,7 @@
     min-height: 100vh;
     padding: 2rem;
     z-index: 3;
-    max-width: 1200px;
+    max-width: 100%;
     /* Añadido límite máximo como en conocimientos */
     margin: 0 auto;
     /* Centrado como en conocimientos */
