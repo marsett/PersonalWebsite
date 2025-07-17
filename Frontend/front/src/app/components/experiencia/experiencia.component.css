@@ -13,7 +13,8 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
+    padding-top: 120px;
     z-index: 3;
 }
 
@@ -684,6 +685,7 @@
 @media (max-width: 768px) {
     .experiencia-container {
         padding: 1rem;
+        padding-top: 100px;
     }
 
     .section-title {
@@ -790,6 +792,11 @@
     .company-logo img,
     .institution-logo img {
         padding: 6px;
+    }
+
+    .experiencia-container {
+        padding: 1rem;
+        padding-top: 90px; /* Ajustado para móvil pequeño */
     }
 }
 

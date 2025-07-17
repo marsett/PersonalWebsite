@@ -1749,4 +1749,51 @@
     .indicator.active {
         transform: scale(1.1);
     }
+
+    .preview-rating {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: flex-start;
+    }
+    
+    .rating-stars {
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+        flex-wrap: wrap;
+    }
+    
+    .rating-stars .star {
+        font-size: 1rem;
+        line-height: 1;
+    }
+    
+    .rating-value {
+        font-size: 1rem;
+        white-space: nowrap;
+        margin-left: 0.3rem;
+    }
+    
+    .stat-rating {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3rem;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        align-items: flex-start;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
 }

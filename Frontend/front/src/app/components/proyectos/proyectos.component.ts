@@ -59,7 +59,6 @@ Posteriormente, se llevó a cabo una migración completa a Amazon Web Services (
 
 Este proyecto supuso una experiencia integral, abarcando desde el diseño y desarrollo hasta el despliegue real en producción sobre Azure y AWS, y consolidando competencias en desarrollo backend, arquitectura escalable y soluciones cloud multiplataforma.
 
-🔗 URL del proyecto (Azure): https://zuvopetmvcazure.azurewebsites.net
 🔗 URL del proyecto (AWS – ya inactivo): https://zuvopet.duckdns.org`,
       imagen: 'assets/images/zuvo0.jpg',
       galeria: [
@@ -97,7 +96,7 @@ Este proyecto supuso una experiencia integral, abarcando desde el diseño y desa
     {
       id: 2,
       titulo: 'Gestión de Charlas Tajamar',
-      descripcion: `Este proyecto de desarrollo web frontend fue creado colaborativamente por tres compañeras de mi máster y yo, siendo reconocido como el mejor trabajo y seleccionado para su implementación en producción. La aplicación está actualmente desplegada en Azure y accesible en: https://charlasalumnostajamar.azurewebsites.net
+      descripcion: `Este proyecto de desarrollo web frontend fue creado colaborativamente por tres compañeras de mi máster y yo, siendo reconocido como el mejor trabajo y seleccionado para su implementación en producción. La aplicación está actualmente desplegada en Azure y accesible.
 
 Desarrollamos la solución utilizando VS Code y aplicando metodologías de trabajo en equipo mediante gestión de ramas en GitHub, lo que nos permitió coordinar eficazmente el desarrollo. Implementamos tecnologías frontend modernas como Vue.js, HTML5 y Bootstrap, complementadas con librerías especializadas como ChartJS para visualización de datos y FullCalendar para la gestión de eventos temporales.
 

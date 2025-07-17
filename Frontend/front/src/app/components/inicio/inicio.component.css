@@ -119,6 +119,7 @@
 /* Hero Section */
 .hero-section {
     position: relative;
+    padding-top: 100px;
     max-width: 1200px;
     width: 100%;
     display: grid;
@@ -235,11 +236,32 @@
     .status-card {
         padding: 1.5rem;
     }
+    .blob-container,
+    .blob,
+    .blob-1,
+    .blob-2,
+    .blob-3 {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
 }
 
 @media (max-width: 480px) {
     .status-card {
         padding: 1.2rem;
+    }
+    .blob-container {
+        display: none !important;
+    }
+    
+    .blob-1,
+    .blob-2,
+    .blob-3 {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
     }
 }
 
@@ -926,7 +948,6 @@
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
-        padding: 0;
         max-width: 100%;
     }
 
@@ -1298,6 +1319,7 @@
 /* Avatar desktop - Visible por defecto */
 .desktop-avatar {
     display: flex;
+    top: -11%;
 }
 
 /* Media queries para mostrar/ocultar avatares según el tamaño de pantalla */

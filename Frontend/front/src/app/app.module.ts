@@ -12,6 +12,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
+import { MenuNavegacionComponent } from './components/menu-navegacion/menu-navegacion.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,7 +26,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConocimientosComponent,
     MenuComponent,
     MenusocialesComponent,
-    ExperienciaComponent
+    ExperienciaComponent,
+    MenuNavegacionComponent
   ],
   imports: [
     BrowserModule,
