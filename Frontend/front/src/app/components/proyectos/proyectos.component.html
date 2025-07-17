@@ -14,7 +14,7 @@
     <div class="floating-elements">
       <div class="float-element" *ngFor="let i of [1,2,3,4,5]"></div>
     </div>
-    <h1 class="main-title">MIS PROYECTOS</h1>
+    <h1 class="main-title">{{ 'PROJECTS.TITLE' | translate }}</h1>
   </div>
 
   <!-- Projects Mosaic -->
@@ -35,15 +35,15 @@
           <!-- Collapsed State -->
           <div class="tile-preview" [class.hidden]="expandedProject === proyecto.id">
             <div class="preview-header">
-              <h3 class="project-title">{{proyecto.titulo}}</h3>
+              <h3 class="project-title">{{getTranslatedTitle(proyecto.id)}}</h3>
               <div class="project-status" [style.color]="getStatusColor(proyecto.estado)">
-                {{proyecto.estado}}
+                {{getTranslatedStatus(proyecto.estado)}}
               </div>
             </div>
 
             <div class="preview-tech">
               <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias.slice(0, 3)">
-                {{tech}}
+                {{getTranslatedTechnology(tech)}}
               </span>
               <span class="tech-more" *ngIf="proyecto.tecnologias.length > 3">
                 +{{proyecto.tecnologias.length - 3}}
@@ -51,7 +51,7 @@
             </div>
 
             <div class="preview-rating">
-              <span class="rating-value">Nota: {{proyecto.rating}}/10</span>
+              <span class="rating-value">{{ 'PROJECTS.NOTE' | translate }}: {{proyecto.rating}}/10</span>
               <span class="rating-stars">
                 <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]"
                   [class.filled]="star <= proyecto.rating">★</span>
@@ -59,57 +59,58 @@
             </div>
 
             <div class="expand-hint">
-              <span class="hint-text">Click para expandir</span>
+              <span class="hint-text">{{ 'PROJECTS.CLICK_TO_EXPAND' | translate }}</span>
             </div>
           </div>
 
           <!-- Expanded State -->
           <div class="tile-expanded" [class.visible]="expandedProject === proyecto.id">
             <div class="expanded-header">
-              <h2 class="expanded-title">{{proyecto.titulo}}</h2>
-              <button class="close-btn" (click)="collapseProject()" aria-label="Cerrar">
+              <h2 class="expanded-title">{{getTranslatedTitle(proyecto.id)}}</h2>
+              <button class="close-btn" (click)="collapseProject()" [attr.aria-label]="'PROJECTS.CLOSE' | translate">
                 <span>×</span>
               </button>
             </div>
 
             <div class="expanded-content">
               <div class="content-section">
-                <h4>Descripción</h4>
-                <p class="project-description" [innerHTML]="formatDescription(proyecto.descripcion)"></p>
+                <h4>{{ 'PROJECTS.DESCRIPTION' | translate }}</h4>
+                <p class="project-description" [innerHTML]="formatDescription(getTranslatedDescription(proyecto.id))">
+                </p>
               </div>
 
               <div class="content-section">
-                <h4>Tecnologías</h4>
+                <h4>{{ 'PROJECTS.TECHNOLOGIES' | translate }}</h4>
                 <div class="expanded-tech">
                   <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias">
-                    {{tech}}
+                    {{getTranslatedTechnology(tech)}}
                   </span>
                 </div>
               </div>
 
               <div class="content-section">
-                <h4>Cronología</h4>
+                <h4>{{ 'PROJECTS.CHRONOLOGY' | translate }}</h4>
                 <div class="project-timeline">
                   <div class="timeline-item">
-                    <span class="timeline-label">Inicio:</span>
+                    <span class="timeline-label">{{ 'PROJECTS.START' | translate }}:</span>
                     <span class="timeline-value">{{formatDate(proyecto.fechaInicio)}}</span>
                   </div>
                   <div class="timeline-item">
-                    <span class="timeline-label">Fin:</span>
+                    <span class="timeline-label">{{ 'PROJECTS.END' | translate }}:</span>
                     <span class="timeline-value">{{formatDate(proyecto.fechaFin)}}</span>
                   </div>
                   <div class="timeline-item">
-                    <span class="timeline-label">Duración:</span>
-                    <span class="timeline-value">{{proyecto.duracion}}</span>
+                    <span class="timeline-label">{{ 'PROJECTS.DURATION' | translate }}:</span>
+                    <span class="timeline-value">{{getTranslatedDuration(proyecto.duracion)}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="content-section">
-                <h4>Evaluación</h4>
+                <h4>{{ 'PROJECTS.EVALUATION' | translate }}</h4>
                 <div class="project-stats">
                   <div class="stat-item">
-                    <span class="stat-label">Rating:</span>
+                    <span class="stat-label">{{ 'PROJECTS.RATING' | translate }}:</span>
                     <div class="stat-rating">
                       <span class="rating-stars">
                         <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]"
@@ -119,9 +120,9 @@
                     </div>
                   </div>
                   <div class="stat-item">
-                    <span class="stat-label">Estado:</span>
+                    <span class="stat-label">{{ 'PROJECTS.STATUS' | translate }}:</span>
                     <span class="stat-value" [style.color]="getStatusColor(proyecto.estado)">
-                      {{proyecto.estado}}
+                      {{getTranslatedStatus(proyecto.estado)}}
                     </span>
                   </div>
                 </div>
@@ -129,12 +130,13 @@
 
               <!-- Galería de Imágenes -->
               <div class="content-section">
-                <h4>Galería de Imágenes</h4>
+                <h4>{{ 'PROJECTS.GALLERY' | translate }}</h4>
                 <div class="project-gallery">
                   <div class="gallery-grid">
                     <div class="gallery-item" *ngFor="let imagen of getCurrentProject()?.galeria; let i = index"
                       (click)="openGallery(i, $event)">
-                      <img [src]="imagen" [alt]="'Imagen ' + (i + 1) + ' de ' + getCurrentProject()?.titulo">
+                      <img [src]="imagen"
+                        [alt]="('PROJECTS.IMAGE_OF' | translate) + ' ' + (i + 1) + ' ' + getTranslatedTitle(getCurrentProject()?.id || 0)">
                       <div class="gallery-overlay">
                         <span class="gallery-icon">🔍</span>
                       </div>
@@ -147,7 +149,7 @@
               <div class="gallery-viewer-section" *ngIf="isGalleryOpen">
                 <div class="gallery-viewer-container" (click)="$event.stopPropagation()">
                   <div class="gallery-viewer-header">
-                    <h4>Vista detallada</h4>
+                    <h4>{{ 'PROJECTS.DETAILED_VIEW' | translate }}</h4>
                     <button class="gallery-close-btn" (click)="closeGallery($event)">×</button>
                   </div>
 
@@ -189,14 +191,14 @@
               <!-- Botones de acción con validación para el botón de ver proyecto -->
               <div class="expanded-actions">
                 <button class="action-btn primary" [class.disabled]="!proyecto.tieneDespliegue"
-                  [title]="!proyecto.tieneDespliegue ? 'Proyecto sin despliegue disponible' : 'Ver proyecto en vivo'"
+                  [title]="!proyecto.tieneDespliegue ? ('PROJECTS.PROJECT_WITHOUT_DEPLOYMENT' | translate) : ('PROJECTS.VIEW_LIVE_PROJECT' | translate)"
                   (click)="verProyecto(proyecto, $event)">
                   <span class="btn-icon">🚀</span>
-                  <span class="btn-text">Ver Proyecto</span>
+                  <span class="btn-text">{{ 'PROJECTS.VIEW_PROJECT' | translate }}</span>
                 </button>
                 <button class="action-btn secondary" (click)="verCodigo(proyecto, $event)">
                   <span class="btn-icon">💻</span>
-                  <span class="btn-text">Ver Código</span>
+                  <span class="btn-text">{{ 'PROJECTS.VIEW_CODE' | translate }}</span>
                 </button>
               </div>
             </div>

@@ -3,7 +3,7 @@
   <!-- Sección Frontend -->
   <div class="category-section">
     <h3 class="category-title">{{ 'SKILLS.CATEGORIES.FRONTEND' | translate }}</h3>
-    <div class="technologies-grid">
+    <div [class]="getGridClasses('FRONTEND')">
       <div class="flip-card" *ngFor="let tech of getTechnologiesByCategory('FRONTEND')">
         <div class="flip-card-inner">
           <!-- Lado frontal -->
@@ -28,7 +28,7 @@
   <!-- Sección Backend -->
   <div class="category-section">
     <h3 class="category-title">{{ 'SKILLS.CATEGORIES.BACKEND' | translate }}</h3>
-    <div class="technologies-grid">
+    <div [class]="getGridClasses('BACKEND')">
       <div class="flip-card" *ngFor="let tech of getTechnologiesByCategory('BACKEND')">
         <div class="flip-card-inner">
           <!-- Lado frontal -->
@@ -53,7 +53,7 @@
   <!-- Sección Cloud -->
   <div class="category-section">
     <h3 class="category-title">{{ 'SKILLS.CATEGORIES.CLOUD' | translate }}</h3>
-    <div class="technologies-grid">
+    <div [class]="getGridClasses('CLOUD')">
       <div class="flip-card" *ngFor="let tech of getTechnologiesByCategory('CLOUD')">
         <div class="flip-card-inner">
           <!-- Lado frontal -->
@@ -78,7 +78,7 @@
   <!-- NUEVA SECCIÓN - Herramientas -->
   <div class="category-section">
     <h3 class="category-title">{{ 'SKILLS.CATEGORIES.HERRAMIENTAS' | translate }}</h3>
-    <div class="technologies-grid">
+    <div [class]="getGridClasses('HERRAMIENTAS')">
       <div class="flip-card" *ngFor="let tech of getTechnologiesByCategory('HERRAMIENTAS')">
         <div class="flip-card-inner">
           <!-- Lado frontal -->

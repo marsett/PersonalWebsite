@@ -169,57 +169,77 @@
 }
 
 .main-title {
-    font-size: 4rem;
-    /* Igual que .section-title en conocimientos */
-    font-weight: 900;
-    margin-bottom: 1rem;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
-    transition: all 0.3s ease;
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
     position: relative;
     color: #fff;
-    text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    text-shadow: 0 0 30px rgba(30, 58, 138, 0.5);
 }
 
-/* Efectos del título - Copiados de conocimientos */
-
+.main-title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #1e3a8a20, #3b82f620);
+    z-index: -1;
+    filter: blur(20px);
+    transition: all 0.3s ease;
+}
 
 .main-title::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
     border-radius: 2px;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 15px rgba(30, 58, 138, 0.5);
 }
 
 /* Modo claro - Título principal */
 :host-context(.light-mode) .main-title {
     color: #2c3e50;
-    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: titleGlowLight 3s ease-in-out infinite alternate;
 }
 
 :host-context(.light-mode) .main-title::before {
-    background: linear-gradient(90deg, transparent, #3498db, #2c3e50, transparent);
+    background: linear-gradient(45deg, #1e3a8a20, #3b82f620);
 }
 
 :host-context(.light-mode) .main-title::after {
-    background: linear-gradient(90deg, #3498db, #2c3e50);
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+    box-shadow: 0 0 15px rgba(30, 58, 138, 0.4);
+}
+
+@keyframes titleGlowLight {
+    0% {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 20px rgba(52, 152, 219, 0.3);
+    }
 }
 
 /* Animación para el título */
@@ -1029,6 +1049,16 @@
 @media (max-width: 768px) {
     .main-title {
         font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .main-title::before {
+        width: 150px;
+        height: 50px;
+    }
+    
+    .main-title::after {
+        width: 60px;
     }
 
     .mosaic-grid {
@@ -1076,6 +1106,20 @@
 }
 
 @media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .main-title::before {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .main-title::after {
+        width: 50px;
+    }
+
     .proyectos-container {
         padding: 1rem;
     }
@@ -1083,10 +1127,6 @@
     .hero-section {
         padding: 2rem 0;
         margin-bottom: 2rem;
-    }
-
-    .main-title {
-        font-size: 2rem;
     }
 
     .mosaic-tile {

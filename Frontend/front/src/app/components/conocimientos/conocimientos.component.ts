@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 interface Technology {
   name: string;
@@ -24,17 +25,34 @@ interface Certification {
   templateUrl: './conocimientos.component.html',
   styleUrl: './conocimientos.component.css'
 })
-export class ConocimientosComponent implements AfterViewInit {
+export class ConocimientosComponent implements AfterViewInit, OnDestroy {
   @ViewChildren('description') descriptions!: QueryList<ElementRef>;
 
   selectedTechnology: Technology | null = null;
   isModalOpen = false;
 
+  // AÑADIR - Suscripción para cambios de idioma
+  private langChangeSubscription: Subscription;
+  // AÑADIR - Mapa para trackear elementos animados
+  private animatedElements: Map<HTMLElement, string> = new Map();
+
   // Añadir al constructor
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private translate: TranslateService
-  ) { }
+  ) {
+    // AÑADIR - Suscribirse a cambios de idioma
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(() => {
+      this.resetAnimatedElements();
+    });
+  }
+
+  // AÑADIR - Implementar OnDestroy
+  ngOnDestroy() {
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
+  }
 
   ngAfterViewInit() {
     // Solo ejecutar en el navegador
@@ -200,6 +218,22 @@ export class ConocimientosComponent implements AfterViewInit {
     return this.technologies.filter(tech => tech.category === category);
   }
 
+  // AÑADIR - Método para resetear elementos animados
+  private resetAnimatedElements() {
+    this.animatedElements.forEach((translationKey, element) => {
+      // Limpiar el elemento
+      element.textContent = '';
+      element.classList.remove('animated', 'typing');
+
+      // Obtener la traducción actual
+      const translatedText = this.translate.instant(translationKey);
+      element.textContent = translatedText;
+    });
+
+    // Limpiar el mapa
+    this.animatedElements.clear();
+  }
+
   private setupFlipCardObserver() {
     const flipCards = document.querySelectorAll('.flip-card');
 
@@ -207,15 +241,41 @@ export class ConocimientosComponent implements AfterViewInit {
       card.addEventListener('mouseenter', () => {
         const description = card.querySelector('.tech-description') as HTMLElement;
         if (description && !description.classList.contains('animated')) {
-          this.animateText(description);
+          // MODIFICAR - Obtener la clave de traducción del elemento
+          const translationKey = this.getTranslationKeyFromElement(description);
+          if (translationKey) {
+            this.animateText(description, translationKey);
+          }
         }
       });
     });
   }
 
-  // MODIFICAR - Actualizar el método animateText
-  private animateText(element: HTMLElement) {
-    const text = element.textContent || '';
+  // AÑADIR - Método para obtener la clave de traducción
+  private getTranslationKeyFromElement(element: HTMLElement): string | null {
+    // Buscar la tarjeta padre y obtener la tecnología correspondiente
+    const flipCard = element.closest('.flip-card');
+    if (!flipCard) return null;
+
+    const techName = flipCard.querySelector('.tech-name')?.textContent?.trim();
+    if (!techName) return null;
+
+    // Buscar la tecnología en el array
+    const tech = this.technologies.find(t =>
+      t.name === techName ||
+      (t.name === 'IA' && techName === this.translate.instant('SKILLS.TECH_NAMES.AI'))
+    );
+
+    return tech?.description || null;
+  }
+
+  // MODIFICAR - Actualizar el método animateText para recibir la clave de traducción
+  private animateText(element: HTMLElement, translationKey: string) {
+    // Guardar la referencia en el mapa
+    this.animatedElements.set(element, translationKey);
+
+    // Obtener el texto traducido actual
+    const text = this.translate.instant(translationKey);
     element.textContent = '';
     element.classList.add('animated');
     element.classList.add('typing'); // Añadir clase para mostrar cursor
@@ -229,12 +289,28 @@ export class ConocimientosComponent implements AfterViewInit {
         index++;
         setTimeout(typeWriter, speed);
       } else {
-        // AÑADIR - Cuando termine la animación, quitar el cursor
+        // Cuando termine la animación, quitar el cursor
         element.classList.remove('typing');
       }
     };
 
     // Pequeño retraso antes de empezar la animación
     setTimeout(typeWriter, 200);
+  }
+
+  // MODIFICAR - Actualizar el método getGridClasses para incluir verificación de plataforma
+  getGridClasses(category: string): string {
+    const techCount = this.getTechnologiesByCategory(category).length;
+
+    // Solo aplicar clases especiales en pantallas grandes Y en el navegador
+    if (isPlatformBrowser(this.platformId) && window.innerWidth > 1200) {
+      if (techCount === 1) {
+        return 'technologies-grid one-item';
+      } else if (techCount === 2) {
+        return 'technologies-grid two-items';
+      }
+    }
+
+    return 'technologies-grid';
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 // 1. Modificar la interfaz Proyecto para incluir galería de imágenes Y propiedad de despliegue
 interface Proyecto {
@@ -34,7 +35,11 @@ export class ProyectosComponent implements OnInit {
   selectedImageIndex: number = 0;
   isGalleryOpen: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  // Añadir TranslateService al constructor
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private translateService: TranslateService
+  ) { }
 
   // 2. Actualizar el array de proyectos con la propiedad tieneDespliegue
   proyectos: Proyecto[] = [
@@ -361,16 +366,95 @@ Funcionalidades principales:
     return currentProject.galeria[this.selectedImageIndex];
   }
 
+  // Actualizar el método getCurrentImageAlt para usar traducción
   getCurrentImageAlt(): string {
     const currentProject = this.getCurrentProject();
     if (!currentProject) {
       return '';
     }
-    return `Imagen ${this.selectedImageIndex + 1} de ${currentProject.titulo}`;
+    const imageOf = this.translateService.instant('PROJECTS.IMAGE_OF');
+    return `${imageOf} ${this.selectedImageIndex + 1} ${currentProject.titulo}`;
   }
 
   selectImage(index: number, event: Event) {
     event.stopPropagation();
     this.selectedImageIndex = index;
+  }
+
+  // Método para traducir estados
+  getTranslatedStatus(estado: string): string {
+    switch (estado.toLowerCase()) {
+      case 'completado':
+        return this.translateService.instant('PROJECTS.COMPLETED');
+      case 'en desarrollo':
+        return this.translateService.instant('PROJECTS.IN_DEVELOPMENT');
+      case 'pausado':
+        return this.translateService.instant('PROJECTS.PAUSED');
+      default:
+        return estado;
+    }
+  }
+
+  // Método para traducir duraciones
+  getTranslatedDuration(duracion: string): string {
+    // Extraer número y unidad
+    const match = duracion.match(/(\d+)\s*(mes|meses|año|años)/i);
+    if (match) {
+      const number = match[1];
+      const unit = match[2].toLowerCase();
+
+      let translatedUnit = '';
+      if (unit.includes('mes')) {
+        translatedUnit = this.translateService.instant('PROJECTS.MONTHS');
+      } else if (unit.includes('año')) {
+        translatedUnit = this.translateService.instant('PROJECTS.YEARS');
+      }
+
+      return `${number} ${translatedUnit}`;
+    }
+
+    return duracion;
+  }
+
+  // Método para obtener título traducido
+  getTranslatedTitle(projectId: number): string {
+    switch (projectId) {
+      case 1:
+        return this.translateService.instant('PROJECTS.TITLES.ZUVO_PET');
+      case 2:
+        return this.translateService.instant('PROJECTS.TITLES.CHARLAS_TAJAMAR');
+      case 3:
+        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
+      case 4:
+        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
+      default:
+        return '';
+    }
+  }
+
+  // Método para obtener descripción traducida
+  getTranslatedDescription(projectId: number): string {
+    switch (projectId) {
+      case 1:
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.ZUVO_PET');
+      case 2:
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CHARLAS_TAJAMAR');
+      case 3:
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
+      case 4:
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
+      default:
+        return '';
+    }
+  }
+
+  // Método para obtener tecnología traducida
+  getTranslatedTechnology(technology: string): string {
+    switch (technology) {
+      case 'Programación orientada a objetos (POO)':
+        return this.translateService.instant('PROJECTS.POO.OBJECT_ORIENTED_PROGRAMMING');
+      default:
+        return technology;
+    }
   }
 }

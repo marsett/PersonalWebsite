@@ -16,7 +16,9 @@
     },
     "DOWNLOAD_CV": "Descargar CV",
     "CODING_YEARS": "Años programando",
-    "PROJECTS": "Proyectos"
+    "PROJECTS": "Proyectos",
+    "TIMEZONE": "Madrid, España",
+    "LOCATION": "Madrid, España"
   },
   "THEME": {
     "DARK": "Cambiar a modo claro",
@@ -30,7 +32,7 @@
   "SOCIAL": {
     "LINKEDIN": "LinkedIn",
     "GITHUB": "GitHub",
-    "EMAIL": "Email"
+    "EMAIL": "Correo"
   },
   "SKILLS": {
     "TITLE": "Mis Conocimientos",
@@ -69,6 +71,91 @@
       "POWER_PLATFORM": "El poder de crear soluciones está en manos de todos. — Charles Lamanna (Microsoft)",
       "AWS": "No tienes que reinventar la rueda para escalar en la nube. — Werner Vogels (CTO de Amazon)",
       "AI": "La IA es la nueva electricidad. — Andrew Ng"
+    }
+  },
+  "EXPERIENCE": {
+    "TITLE": "Experiencia",
+    "STUDIES": "Estudios",
+    "TECHNOLOGIES": "Tecnologías",
+    "INTERNSHIP": "Prácticas",
+    "FINAL_GRADE": "Nota TFG",
+    "POSITIONS": {
+      "INTERNSHIP": "Prácticas",
+      "DEVELOPER": "Desarrollador",
+      "SPECIALIST": "Especialista"
+    },
+    "COMPANIES": {
+      "AVANADE": "Avanade",
+      "SMARTBITS": "SmartBits IT Business Solutions",
+      "VOLTEO": "Volteo Digital"
+    },
+    "DESCRIPTIONS": {
+      "AVANADE": "Próximas prácticas a partir de septiembre, participando en proyectos Full Stack con tareas de desarrollo y mantenimiento de aplicaciones web en .NET Core, frontend con Angular, HTML y CSS, automatización con Blueprism y Uipath, testeo de aplicaciones y trabajo en entornos cloud con herramientas de Microsoft Azure.",
+      "SMARTBITS": "Desarrollo y gestión de sitios web en WordPress, trabajando en la personalización de temas y funcionalidades mediante HTML, CSS, PHP, JavaScript, jQuery y AJAX. Contribuí a la optimización de la experiencia de usuario y a la mejora del rendimiento de las páginas web, aplicando buenas prácticas de desarrollo frontend.",
+      "VOLTEO": "Formación y práctica en la plataforma de gestión de servicios en la nube ServiceNow, adquiriendo conocimientos en la configuración de flujos de trabajo, automatización de procesos y gestión de incidencias."
+    },
+    "ACADEMIC": {
+      "MASTER": "MÁSTER DESARROLLO WEB FULL STACK + MULTICLOUD",
+      "MASTER_DESC": "Máster presencial intensivo de 814 horas en Desarrollo Web Full Stack, con aprendizaje en C#, .NET Core, SQL Server, Angular, React, Vue y soluciones cloud con Azure y AWS, completando proyectos prácticos y obteniendo certificaciones oficiales en Power Platform, Azure y AWS.",
+      "DAW": "CFGS Desarrollo de Aplicaciones Web",
+      "DAW_DESC": "Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web, con aprendizaje en el diseño de interfaces, despliegue de aplicaciones, desarrollo para dispositivos móviles, programación en entornos cliente y servidor, y gestión de bases de datos.",
+      "DAM": "CFGS Desarrollo de Aplicaciones Multiplataforma",
+      "DAM_DESC": "Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Multiplataforma, con aprendizaje en programación, acceso a datos, desarrollo de interfaces, dispositivos móviles, servicios y procesos, así como en bases de datos, sistemas informáticos, lenguajes de marcas, entornos de desarrollo y sistemas de gestión empresarial."
+    },
+    "INSTITUTIONS": {
+      "TAJAMAR": "Tajamar",
+      "SALESIANAS": "Salesianas Plaza Castilla",
+      "SANTA_ANA": "Santa Ana y San Rafael"
+    },
+    "DATES": {
+      "SEP_2025_DEC_2025": "Septiembre 2025 - Diciembre 2025",
+      "MAR_2024_JUN_2024": "Marzo 2024 - Junio 2024",
+      "MAR_2023_JUN_2023": "Marzo 2023 - Junio 2023",
+      "OCT_2024_JUN_2025": "Octubre 2024 - Junio 2025",
+      "SEP_2023_JUN_2024": "Septiembre 2023 - Junio 2024",
+      "SEP_2021_JUN_2023": "Septiembre 2021 - Junio 2023"
+    }
+  },
+  "PROJECTS": {
+    "TITLE": "MIS PROYECTOS",
+    "CLICK_TO_EXPAND": "Click para expandir",
+    "CLOSE": "Cerrar",
+    "DESCRIPTION": "Descripción",
+    "TECHNOLOGIES": "Tecnologías",
+    "CHRONOLOGY": "Cronología",
+    "START": "Inicio",
+    "END": "Fin",
+    "DURATION": "Duración",
+    "EVALUATION": "Evaluación",
+    "RATING": "Rating",
+    "STATUS": "Estado",
+    "GALLERY": "Galería de Imágenes",
+    "DETAILED_VIEW": "Vista detallada",
+    "VIEW_PROJECT": "Ver Proyecto",
+    "VIEW_CODE": "Ver Código",
+    "PROJECT_WITHOUT_DEPLOYMENT": "Proyecto sin despliegue disponible",
+    "VIEW_LIVE_PROJECT": "Ver proyecto en vivo",
+    "NOTE": "Nota",
+    "COMPLETED": "Completado",
+    "IN_DEVELOPMENT": "En desarrollo",
+    "PAUSED": "Pausado",
+    "MONTHS": "meses",
+    "YEARS": "años",
+    "IMAGE_OF": "Imagen de",
+    "TITLES": {
+      "ZUVO_PET": "Zuvo Pet - Plataforma de Adopción de Mascotas",
+      "CHARLAS_TAJAMAR": "Gestión de Charlas Tajamar",
+      "SERVICIOS_INFORMATICOS_2": "Servicios Informáticos 2.0",
+      "SERVICIOS_INFORMATICOS_1": "Servicios Informáticos 1.0"
+    },
+    "DESCRIPTIONS": {
+      "ZUVO_PET": "ZuvoPet es una plataforma desarrollada como Trabajo Final del MÁSTER DESARROLLO WEB FULL STACK + MULTICLOUD de Tajamar Tech. Su propósito es conectar refugios de animales con personas interesadas en adoptar, facilitando el proceso mediante una experiencia intuitiva y funcionalidades adaptadas a cada tipo de usuario (refugios y adoptantes).\n\nLa aplicación fue desarrollada individualmente con .NET Core MVC y C#, siguiendo el patrón de diseño MVC y empleando una arquitectura basada en servicios. Incluye una API propia, un paquete NuGet personalizado para modelos y DTOs, y fue complementada con tecnologías frontend como HTML, CSS, Bootstrap, JavaScript y Razor. El despliegue original se realizó en Microsoft Azure, incluyendo la migración de base de datos local a la nube.\n\nPosteriormente, se llevó a cabo una migración completa a Amazon Web Services (AWS) en colaboración con dos compañeros del máster, adaptando la arquitectura al entorno cloud de AWS. Este proceso incluyó:\n\n• Rediseño de la API como aplicación serverless usando AWS Lambda y API Gateway.\n• Sustitución de SQL Server por MySQL y ajustes en la capa de datos.\n• Despliegue sobre una instancia EC2 con Portainer, uso de Amazon S3 para archivos estáticos y configuración de dominio con DuckDNS y Nginx como proxy inverso.\n• Coordinación en infraestructura, seguridad, contenedores y servicios cloud.\n\nEste proyecto supuso una experiencia integral, abarcando desde el diseño y desarrollo hasta el despliegue real en producción sobre Azure y AWS, y consolidando competencias en desarrollo backend, arquitectura escalable y soluciones cloud multiplataforma.\n\n🔗 URL del proyecto (Azure): https://zuvopetmvcazure.azurewebsites.net\n🔗 URL del proyecto (AWS – ya inactivo): https://zuvopet.duckdns.org",
+      "CHARLAS_TAJAMAR": "Este proyecto de desarrollo web frontend fue creado colaborativamente por tres compañeras de mi máster y yo, siendo reconocido como el mejor trabajo y seleccionado para su implementación en producción. La aplicación está actualmente desplegada en Azure y accesible en: https://charlasalumnostajamar.azurewebsites.net\n\nDesarrollamos la solución utilizando VS Code y aplicando metodologías de trabajo en equipo mediante gestión de ramas en GitHub, lo que nos permitió coordinar eficazmente el desarrollo. Implementamos tecnologías frontend modernas como Vue.js, HTML5 y Bootstrap, complementadas con librerías especializadas como ChartJS para visualización de datos y FullCalendar para la gestión de eventos temporales.\n\nEl objetivo principal del proyecto fue optimizar la gestión de charlas impartidas por alumnos, proporcionando una plataforma intuitiva que mejora significativamente el proceso de programación, organización y seguimiento de estas actividades formativas. La implementación exitosa demuestra nuestra capacidad para entregar soluciones funcionales que resuelven necesidades reales del entorno educativo.\n\nEsta experiencia no solo reforzó mis conocimientos técnicos, sino también mis habilidades de colaboración en proyectos de desarrollo ágil y orientados a resultados tangibles.",
+      "SERVICIOS_INFORMATICOS_2": "Esta es la segunda versión de mi idea de proyecto, realizado en 2024 como TFG para mi CFGS DAW. La aplicación está desarrollada con ASP .NET Core utilizando C#, implementando el patrón de diseño MVC y Entity Framework. Complementariamente, se han aplicado tecnologías frontend como HTML, CSS, Bootstrap, JavaScript, jQuery y AJAX para crear una experiencia de usuario dinámica y responsive.\n\nLa aplicación, denominada \"Servicios Informáticos\", proporciona una plataforma integral donde los usuarios pueden localizar y contratar servicios informáticos de manera eficiente. El sistema está estructurado para dos tipos de usuarios: clientes que buscan soluciones informáticas y profesionales que ofrecen sus servicios, cada uno con funcionalidades específicas adaptadas a sus necesidades particulares.\n\nEste proyecto representa una significativa evolución respecto a mi trabajo anterior, demostrando una notable progresión en mis habilidades de desarrollo. La comparación entre ambas versiones evidencia mejoras sustanciales tanto en diseño como en arquitectura y funcionalidades.\n\nFuncionalidades principales:\n• Autenticación y registro seguro de usuarios\n• Gestión completa de perfiles profesionales y personales\n• Sistema avanzado de búsqueda de profesionales por especialidad\n• Visualización detallada de perfiles con información relevante\n• Gestión integral del ciclo de solicitudes de servicio\n• Mensajería instantánea entre clientes y profesionales\n• Sistema de valoración para profesionales\n• Trabajos valorados para profesionales\n\nEl desarrollo de \"Servicios Informáticos\" ha consolidado mis conocimientos en desarrollo web empresarial con C# y el ecosistema ASP.NET, resultando en una plataforma robusta que facilita efectivamente la interacción entre clientes y profesionales del sector informático.",
+      "SERVICIOS_INFORMATICOS_1": "Esta es la primera versión de mi idea de proyecto, realizado en 2023 como TFG para mi CFGS DAM. La aplicación está desarrollada con Android Studio (con Java), implementando consultas SQL para interactuar con la base de datos SQLite, la cual se genera de manera independiente en cada dispositivo.\n\nTambién se establece comunicación con Firebase para realizar operaciones en tiempo real. El objetivo principal de este proyecto es establecer una relación de beneficio mutuo entre los clientes y los profesionales, donde los clientes obtengan resultados satisfactorios al recibir los servicios de los profesionales, y estos últimos puedan promocionarse y establecerse para futuros trabajos o emprendimientos.\n\nFuncionalidades principales:\n• Inicio de sesión y creación de cuentas\n• Edición de perfiles personalizados\n• Creación y gestión de anuncios de servicios\n• Búsqueda avanzada de profesionales\n• Sistema de notificaciones\n• Mensajería instantánea entre usuarios"
+    },
+    "POO": {
+      "OBJECT_ORIENTED_PROGRAMMING": "Programación orientada a objetos (POO)"
     }
   }
 }

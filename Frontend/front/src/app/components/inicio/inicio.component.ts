@@ -29,11 +29,6 @@ export class InicioComponent implements OnInit, OnDestroy {
 
   isAvailable = false; // Cambiado de true a false
   currentTime = '';
-  currentTimezone = 'Madrid, Spain';
-
-  // Location & Weather
-  currentLocation = 'Madrid, España';
-  weatherData?: WeatherData;
 
   // Quick Stats
   yearsOfExperience = this.calculateYearsOfExperience();
@@ -108,12 +103,21 @@ export class InicioComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Descargar CV
+  // Descargar CV según idioma
   downloadCV(): void {
     if (this.isBrowser) {
       const link = document.createElement('a');
-      link.href = 'assets/cv/CV_Mario_Jimenez_Marset_Desarrollo.pdf';
-      link.download = 'CV_Mario_Jimenez_Marset.pdf';
+
+      // Determinar el archivo y nombre según el idioma
+      if (this.currentLanguage === 'en') {
+        link.href = 'assets/cv/CV_Mario_Jimenez_Marset_EN.pdf';
+        link.download = 'CV_Mario_Jimenez_Marset_EN.pdf';
+      } else {
+        // Por defecto español
+        link.href = 'assets/cv/CV_Mario_Jimenez_Marset_ES.pdf';
+        link.download = 'CV_Mario_Jimenez_Marset_ES.pdf';
+      }
+
       link.click();
     }
   }
