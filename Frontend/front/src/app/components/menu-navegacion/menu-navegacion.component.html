@@ -1,9 +1,8 @@
 <!-- Navigation Menu Cluster -->
 <div class="navigation-cluster">
   <button 
-    *ngFor="let item of navigationItems" 
+    *ngFor="let item of navigationItems"
     class="nav-item"
-    [class.active]="activeSection === item.id"
     (click)="scrollToSection(item.id)"
     [title]="item.labelKey | translate">
     <i [class]="item.icon"></i>

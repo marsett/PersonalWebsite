@@ -49,9 +49,9 @@
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 8px 12px;
+  padding: 6px 10px; /* Cambiado de 8px 12px a 6px 10px */
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px; /* Cambiado de 14px a 13px */
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -59,8 +59,8 @@
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1005; /* Z-index más alto para asegurar visibilidad */
-  pointer-events: none; /* Evita interferencias con el hover */
+  z-index: 1005;
+  pointer-events: none;
 }
 
 .social-link:hover .social-tooltip {
@@ -113,9 +113,9 @@
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 8px 12px;
+  padding: 6px 10px; /* Cambiado de 8px 12px a 6px 10px */
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px; /* Cambiado de 14px a 13px */
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -123,8 +123,8 @@
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1005; /* Z-index más alto para asegurar visibilidad */
-  pointer-events: none; /* Evita interferencias con el hover */
+  z-index: 1005;
+  pointer-events: none;
 }
 
 .theme-toggle:hover .theme-tooltip {
@@ -207,9 +207,9 @@
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 8px 12px;
+  padding: 6px 10px; /* Cambiado de 8px 12px a 6px 10px */
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px; /* Cambiado de 14px a 13px */
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -217,8 +217,8 @@
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1005; /* Z-index más alto para asegurar visibilidad */
-  pointer-events: none; /* Evita interferencias con el hover */
+  z-index: 1005;
+  pointer-events: none;
 }
 
 .language-toggle:hover .language-tooltip {
@@ -399,8 +399,8 @@
   .social-tooltip,
   .theme-tooltip,
   .language-tooltip {
-    font-size: 12px;
-    padding: 6px 8px;
+    font-size: 11px; /* Cambiado de 12px a 11px */
+    padding: 4px 6px; /* Cambiado de 6px 8px a 4px 6px */
   }
 }
 
