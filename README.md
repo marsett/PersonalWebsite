@@ -166,5 +166,3 @@ El portfolio está desplegado automáticamente en **Azure Static Web Apps** medi
   - Optimización SEO
 
 ---
-
-*Desarrollado con ❤️ y Angular*
