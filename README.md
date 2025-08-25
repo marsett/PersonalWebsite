@@ -1,4 +1,4 @@
-# PersonalWebsite - Portfolio profesional de Mario Jiménez Marset
+# PersonalWebsite - Mario Jiménez Marset
 
 ## 🚀 Descripción
 
