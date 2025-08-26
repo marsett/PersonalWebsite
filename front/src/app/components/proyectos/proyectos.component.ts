@@ -141,8 +141,8 @@ Este proyecto supuso una experiencia integral, abarcando desde el diseño y desa
       tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
     },
     {
-      id: 2,
-      titulo: 'Zuvo Pet - Plataforma de Adopción de Mascotas',
+      id: 3,
+      titulo: 'Gestión de Charlas Tajamar',
       descripcion: `Este proyecto de desarrollo web frontend fue creado colaborativamente por tres compañeras de mi máster y yo, siendo reconocido como el mejor trabajo y seleccionado para su implementación en producción. La aplicación está actualmente desplegada en Azure y accesible.
 
 Desarrollamos la solución utilizando VS Code y aplicando metodologías de trabajo en equipo mediante gestión de ramas en GitHub, lo que nos permitió coordinar eficazmente el desarrollo. Implementamos tecnologías frontend modernas como Vue.js, HTML5 y Bootstrap, complementadas con librerías especializadas como ChartJS para visualización de datos y FullCalendar para la gestión de eventos temporales.
@@ -170,8 +170,8 @@ Esta experiencia no solo reforzó mis conocimientos técnicos, sino también mis
       tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
     },
     {
-      id: 3,
-      titulo: 'Gestión de Charlas Tajamar',
+      id: 4,
+      titulo: 'Servicios Informáticos 2.0',
       descripcion: `Esta es la segunda versión de mi idea de proyecto, realizado en 2024 como TFG para mi CFGS DAW. La aplicación está desarrollada con ASP .NET Core utilizando C#, implementando el patrón de diseño MVC y Entity Framework. Complementariamente, se han aplicado tecnologías frontend como HTML, CSS, Bootstrap, JavaScript, jQuery y AJAX para crear una experiencia de usuario dinámica y responsive.
 
 La aplicación, denominada "Servicios Informáticos", proporciona una plataforma integral donde los usuarios pueden localizar y contratar servicios informáticos de manera eficiente. El sistema está estructurado para dos tipos de usuarios: clientes que buscan soluciones informáticas y profesionales que ofrecen sus servicios, cada uno con funcionalidades específicas adaptadas a sus necesidades particulares.
@@ -217,8 +217,8 @@ El desarrollo de "Servicios Informáticos" ha consolidado mis conocimientos en d
       tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
     },
     {
-      id: 4,
-      titulo: 'Servicios Informáticos 2.0',
+      id: 5,
+      titulo: 'Servicios Informáticos 1.0',
       descripcion: `Esta es la primera versión de mi idea de proyecto, realizado en 2023 como TFG para mi CFGS DAM. La aplicación está desarrollada con Android Studio (con Java), implementando consultas SQL para interactuar con la base de datos SQLite, la cual se genera de manera independiente en cada dispositivo.
 
 También se establece comunicación con Firebase para realizar operaciones en tiempo real. El objetivo principal de este proyecto es establecer una relación de beneficio mutuo entre los clientes y los profesionales, donde los clientes obtengan resultados satisfactorios al recibir los servicios de los profesionales, y estos últimos puedan promocionarse y establecerse para futuros trabajos o emprendimientos.
@@ -250,7 +250,51 @@ Funcionalidades principales:
       urlCodigo: 'https://github.com/tu-usuario/gestion',
       duracion: '4 meses',
       tieneDespliegue: false, // ← AÑADIDO: No tiene despliegue (es una app móvil)
-      tieneCodigoDisponible: false // Código no disponible públicamente
+      tieneCodigoDisponible: false // ← CAMBIADO: Como ejemplo, este proyecto no tiene código disponible
+    },
+    {
+      id: 5,
+      titulo: 'Causality360 - Análisis Inteligente de Noticias',
+      descripcion: `Aplicación web desarrollada con Angular que proporciona análisis automatizado de noticias españolas mediante inteligencia artificial. Procesa diariamente 5 noticias seleccionadas, generando análisis de origen, impacto y predicciones fundamentadas.
+
+Desarrollada con Angular y TypeScript, utiliza SCSS para estilos avanzados y consume una API .NET backend (ApiCausality360). Implementa Server-Side Rendering con Angular Universal y Express para optimización SEO, además de CI/CD con GitHub Actions.
+
+Características principales:
+• 5 noticias diarias procesadas automáticamente
+• Análisis IA generado por Groq con origen, impacto y predicciones
+• Eventos similares históricos para contexto adicional
+• Diseño completamente responsivo (Desktop, Tablet, Mobile)
+• Panel lateral deslizable para análisis detallado
+• Carruseles interactivos con controles adaptativos
+• Estados de carga y error manejados elegantemente
+• Workflow explicativo del procesamiento de noticias
+• Server-Side Rendering para mejor SEO
+
+Funcionalidades principales incluyen análisis automático diario a las 12:00 AM, carruseles interactivos con workflow de 4 pasos, panel lateral deslizable con análisis completo y diseño totalmente adaptativo para todos los dispositivos.
+
+🔗 Ver Proyecto en Vivo: https://ashy-bay-0e29e4a03.1.azurestaticapps.net`,
+      imagen: 'assets/images/causa1.png',
+      galeria: [
+        'assets/images/causa2.png',
+        'assets/images/causa3.png',
+        'assets/images/causa4.png',
+        'assets/images/causa5.png',
+        'assets/images/causa6.png',
+        'assets/images/causa7.png',
+        'assets/images/causa8.png',
+        'assets/images/causa9.png',
+        'assets/images/causa10.png'
+      ],
+      tecnologias: ['Angular', 'TypeScript', 'SCSS', 'HTML5', '.NET API', 'Angular Universal', 'Express', 'GitHub Actions', 'Groq IA', 'UptimeRobot'],
+      rating: 9,
+      fechaInicio: '2025-08-01',
+      fechaFin: '2025-08-31',
+      estado: 'Completado',
+      urlProyecto: 'https://ashy-bay-0e29e4a03.1.azurestaticapps.net',
+      urlCodigo: 'https://github.com/marsett/Causality360',
+      duracion: '1 mes',
+      tieneDespliegue: true,
+      tieneCodigoDisponible: true
     }
   ];
 
@@ -475,15 +519,15 @@ Funcionalidades principales:
   getTranslatedTitle(projectId: number): string {
     switch (projectId) {
       case 1:
-        return this.translateService.instant('PROJECTS.TITLES.CAUSALITY360');
-      case 2:
         return this.translateService.instant('PROJECTS.TITLES.ZUVO_PET');
-      case 3:
+      case 2:
         return this.translateService.instant('PROJECTS.TITLES.CHARLAS_TAJAMAR');
-      case 4:
+      case 3:
         return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
-      case 5:
+      case 4:
         return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
+      case 5:
+        return this.translateService.instant('PROJECTS.TITLES.CAUSALITY360');
       default:
         return '';
     }
@@ -493,15 +537,15 @@ Funcionalidades principales:
   getTranslatedDescription(projectId: number): string {
     switch (projectId) {
       case 1:
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CAUSALITY360');
-      case 2:
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.ZUVO_PET');
-      case 3:
+      case 2:
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.CHARLAS_TAJAMAR');
-      case 4:
+      case 3:
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
-      case 5:
+      case 4:
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
+      case 5:
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CAUSALITY360');
       default:
         return '';
     }
