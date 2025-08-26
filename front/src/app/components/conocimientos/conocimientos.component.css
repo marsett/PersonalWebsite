@@ -374,26 +374,35 @@
     }
 
     .technologies-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
     .flip-card {
-        height: 200px;
+        height: 160px;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        padding: 0.8rem;
     }
 
     .tech-logo {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
     }
 
     .tech-name {
-        font-size: 1.4rem;
+        font-size: 1.1rem;
+        line-height: 1.2;
+        margin-bottom: 0;
     }
 
     .tech-description {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-        min-height: 100px;
+        font-size: 0.8rem;
+        padding: 0.6rem;
+        min-height: 80px;
+        line-height: 1.4;
     }
 }
 
@@ -402,6 +411,7 @@
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+    
     .category-title {
         font-size: 1.8rem;
         margin-bottom: 1.5rem;
@@ -442,31 +452,71 @@
     }
 
     .flip-card {
-        height: 180px;
+        height: 140px;
     }
 
     .flip-card-front,
     .flip-card-back {
-        padding: 1rem;
+        padding: 0.7rem;
     }
 
     .tech-logo {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
     }
 
     .tech-name {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        line-height: 1.1;
+        margin-bottom: 0;
+        word-break: break-word;
+        hyphens: auto;
     }
 
     .tech-description {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        padding: 0.7rem;
-        min-height: 90px;
+        font-size: 0.75rem;
+        line-height: 1.3;
+        padding: 0.5rem;
+        min-height: 70px;
+        overflow-y: auto;
     }
 
     .modal-body {
         padding: 1rem;
+    }
+}
+
+/* Media query adicional para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .flip-card {
+        height: 130px;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        padding: 0.5rem;
+    }
+
+    .tech-logo {
+        font-size: 1.8rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .tech-name {
+        font-size: 0.9rem;
+        line-height: 1;
+    }
+
+    .tech-description {
+        font-size: 0.7rem;
+        line-height: 1.2;
+        padding: 0.4rem;
+        min-height: 60px;
+    }
+
+    .category-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -632,9 +682,11 @@
     width: 80px;
     height: 80px;
     object-fit: contain;
+    object-position: center;
     margin-bottom: 1rem;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
     transition: all 0.3s ease;
+    background: transparent;
 }
 
 .certification-card:hover .certification-image {

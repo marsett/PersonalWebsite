@@ -188,7 +188,7 @@
                 </div>
               </div>
 
-              <!-- Botones de acción con validación para el botón de ver proyecto -->
+              <!-- Botones de acción con validación para ambos botones -->
               <div class="expanded-actions">
                 <button class="action-btn primary" [class.disabled]="!proyecto.tieneDespliegue"
                   [title]="!proyecto.tieneDespliegue ? ('PROJECTS.PROJECT_WITHOUT_DEPLOYMENT' | translate) : ('PROJECTS.VIEW_LIVE_PROJECT' | translate)"
@@ -196,7 +196,9 @@
                   <span class="btn-icon">🚀</span>
                   <span class="btn-text">{{ 'PROJECTS.VIEW_PROJECT' | translate }}</span>
                 </button>
-                <button class="action-btn secondary" (click)="verCodigo(proyecto, $event)">
+                <button class="action-btn secondary" [class.disabled]="!proyecto.tieneCodigoDisponible"
+                  [title]="!proyecto.tieneCodigoDisponible ? ('PROJECTS.CODE_NOT_AVAILABLE' | translate) : ('PROJECTS.VIEW_SOURCE_CODE' | translate)"
+                  (click)="verCodigo(proyecto, $event)">
                   <span class="btn-icon">💻</span>
                   <span class="btn-text">{{ 'PROJECTS.VIEW_CODE' | translate }}</span>
                 </button>

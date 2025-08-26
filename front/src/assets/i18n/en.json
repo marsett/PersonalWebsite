@@ -49,10 +49,8 @@
       "FRONTEND": "Frontend",
       "BACKEND": "Backend",
       "CLOUD": "Cloud",
+      "BASES_DE_DATOS": "Databases",
       "HERRAMIENTAS": "Tools"
-    },
-    "TECH_NAMES": {
-      "AI": "AI"
     },
     "TECH_DESCRIPTIONS": {
       "ANGULAR": "Angular is more than a tool, it's a platform. — Misko Hevery",
@@ -70,7 +68,7 @@
       "AZURE": "The cloud is the future of computing. — Satya Nadella",
       "POWER_PLATFORM": "The power to create solutions is in everyone's hands. — Charles Lamanna (Microsoft)",
       "AWS": "You don't have to reinvent the wheel to scale in the cloud. — Werner Vogels (CTO of Amazon)",
-      "AI": "AI is the new electricity. — Andrew Ng"
+      "GIT": "Version control is not just a tool, it's a development philosophy. — Linus Torvalds"
     }
   },
   "EXPERIENCE": {
@@ -135,6 +133,8 @@
     "VIEW_CODE": "View Code",
     "PROJECT_WITHOUT_DEPLOYMENT": "Project without available deployment",
     "VIEW_LIVE_PROJECT": "View live project",
+    "CODE_NOT_AVAILABLE": "Code not available",
+    "VIEW_SOURCE_CODE": "View source code",
     "NOTE": "Note",
     "COMPLETED": "Completed",
     "IN_DEVELOPMENT": "In development",
@@ -146,13 +146,15 @@
       "ZUVO_PET": "Zuvo Pet - Pet Adoption Platform",
       "CHARLAS_TAJAMAR": "Tajamar Talks Management",
       "SERVICIOS_INFORMATICOS_2": "IT Services 2.0",
-      "SERVICIOS_INFORMATICOS_1": "IT Services 1.0"
+      "SERVICIOS_INFORMATICOS_1": "IT Services 1.0",
+      "CAUSALITY360": "Causality360 - Intelligent News Analysis"
     },
     "DESCRIPTIONS": {
       "ZUVO_PET": "ZuvoPet is a platform developed as Final Project for the FULL STACK WEB DEVELOPMENT + MULTICLOUD MASTER'S DEGREE at Tajamar Tech. Its purpose is to connect animal shelters with people interested in adoption, facilitating the process through an intuitive experience and functionalities adapted to each type of user (shelters and adopters).\n\nThe application was developed individually with .NET Core MVC and C#, following the MVC design pattern and employing a service-based architecture. It includes a custom API, a personalized NuGet package for models and DTOs, and was complemented with frontend technologies like HTML, CSS, Bootstrap, JavaScript and Razor. The original deployment was performed on Microsoft Azure, including the migration from local database to the cloud.\n\nSubsequently, a complete migration to Amazon Web Services (AWS) was carried out in collaboration with two master's classmates, adapting the architecture to the AWS cloud environment. This process included:\n\n• API redesign as serverless application using AWS Lambda and API Gateway.\n• Replacement of SQL Server with MySQL and adjustments in the data layer.\n• Deployment on an EC2 instance with Portainer, use of Amazon S3 for static files and domain configuration with DuckDNS and Nginx as reverse proxy.\n• Coordination in infrastructure, security, containers and cloud services.\n\nThis project represented a comprehensive experience, covering from design and development to real production deployment on Azure and AWS, and consolidating skills in backend development, scalable architecture and multiplatform cloud solutions.\n\n🔗 Project URL (AWS – now inactive): https://zuvopet.duckdns.org",
       "CHARLAS_TAJAMAR": "This frontend web development project was created collaboratively by three classmates from my master's degree and me, being recognized as the best work and selected for production implementation. The application is currently deployed on Azure and accessible.\n\nWe developed the solution using VS Code and applying team work methodologies through GitHub branch management, which allowed us to effectively coordinate development. We implemented modern frontend technologies like Vue.js, HTML5 and Bootstrap, complemented with specialized libraries like ChartJS for data visualization and FullCalendar for temporal event management.\n\nThe main objective of the project was to optimize the management of talks given by students, providing an intuitive platform that significantly improves the process of programming, organization and tracking of these training activities. The successful implementation demonstrates our ability to deliver functional solutions that solve real needs in the educational environment.\n\nThis experience not only reinforced my technical knowledge, but also my collaboration skills in agile development projects oriented to tangible results.",
       "SERVICIOS_INFORMATICOS_2": "This is the second version of my project idea, developed in 2024 as Final Project for my Higher Degree in Web Application Development. The application is developed with ASP .NET Core using C#, implementing the MVC design pattern and Entity Framework. Additionally, frontend technologies such as HTML, CSS, Bootstrap, JavaScript, jQuery and AJAX have been applied to create a dynamic and responsive user experience.\n\nThe application, called \"IT Services\", provides a comprehensive platform where users can locate and contract IT services efficiently. The system is structured for two types of users: clients looking for IT solutions and professionals offering their services, each with specific functionalities adapted to their particular needs.\n\nThis project represents a significant evolution compared to my previous work, demonstrating notable progression in my development skills. The comparison between both versions shows substantial improvements in both design and architecture and functionalities.\n\nMain functionalities:\n• Authentication and secure user registration\n• Complete management of professional and personal profiles\n• Advanced search system for professionals by specialty\n• Detailed profile visualization with relevant information\n• Comprehensive management of service request cycle\n• Instant messaging between clients and professionals\n• Rating system for professionals\n• Valued works for professionals\n\nThe development of \"IT Services\" has consolidated my knowledge in enterprise web development with C# and the ASP.NET ecosystem, resulting in a robust platform that effectively facilitates interaction between clients and IT sector professionals.",
-      "SERVICIOS_INFORMATICOS_1": "This is the first version of my project idea, developed in 2023 as Final Project for my Higher Degree in Multiplatform Application Development. The application is developed with Android Studio (with Java), implementing SQL queries to interact with the SQLite database, which is generated independently on each device.\n\nCommunication with Firebase is also established to perform real-time operations. The main objective of this project is to establish a mutually beneficial relationship between clients and professionals, where clients obtain satisfactory results by receiving services from professionals, and the latter can promote themselves and establish themselves for future jobs or ventures.\n\nMain functionalities:\n• Login and account creation\n• Personalized profile editing\n• Service advertisement creation and management\n• Advanced professional search\n• Notification system\n• Instant messaging between users"
+      "SERVICIOS_INFORMATICOS_1": "This is the first version of my project idea, developed in 2023 as Final Project for my Higher Degree in Multiplatform Application Development. The application is developed with Android Studio (with Java), implementing SQL queries to interact with the SQLite database, which is generated independently on each device.\n\nCommunication with Firebase is also established to perform real-time operations. The main objective of this project is to establish a mutually beneficial relationship between clients and professionals, where clients obtain satisfactory results by receiving services from professionals, and the latter can promote themselves and establish themselves for future jobs or ventures.\n\nMain functionalities:\n• Login and account creation\n• Personalized profile editing\n• Service advertisement creation and management\n• Advanced professional search\n• Notification system\n• Instant messaging between users",
+      "CAUSALITY360": "Web application developed with Angular that provides automated analysis of Spanish news through artificial intelligence. Daily processes 5 selected news, generating analysis of origin, impact and well-founded predictions.\n\nDeveloped with Angular and TypeScript, uses SCSS for advanced styling and consumes a .NET backend API (ApiCausality360). Implements Server-Side Rendering with Angular Universal and Express for SEO optimization, plus CI/CD with GitHub Actions.\n\nMain features:\n• 5 daily news processed automatically\n• AI analysis generated by Groq with origin, impact and predictions\n• Historical similar events for additional context\n• Fully responsive design (Desktop, Tablet, Mobile)\n• Sliding side panel for detailed analysis\n• Interactive carousels with adaptive controls\n• Loading and error states handled elegantly\n• Explanatory workflow of news processing\n• Server-Side Rendering for better SEO\n\nMain functionalities include automatic daily analysis at 12:00 AM, interactive carousels with 4-step workflow, sliding side panel with complete analysis and fully adaptive design for all devices."
     },
     "POO": {
       "OBJECT_ORIENTED_PROGRAMMING": "Object-Oriented Programming (OOP)"

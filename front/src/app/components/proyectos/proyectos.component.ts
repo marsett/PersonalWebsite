@@ -18,6 +18,7 @@ interface Proyecto {
   urlCodigo: string;
   duracion: string;
   tieneDespliegue: boolean; // ← AÑADIDO: Para controlar si mostrar el botón de ver proyecto
+  tieneCodigoDisponible: boolean; // ← AÑADIDO: Para controlar si mostrar el botón de ver código
 }
 
 @Component({
@@ -91,7 +92,8 @@ Este proyecto supuso una experiencia integral, abarcando desde el diseño y desa
       urlProyecto: 'https://zuvopetmvcazure.azurewebsites.net',
       urlCodigo: 'https://github.com/marsett/ZuvoPetMvcAzure',
       duracion: '4 meses',
-      tieneDespliegue: true // ← AÑADIDO: Tiene despliegue activo
+      tieneDespliegue: true, // ← AÑADIDO: Tiene despliegue activo
+      tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
     },
     {
       id: 2,
@@ -119,7 +121,8 @@ Esta experiencia no solo reforzó mis conocimientos técnicos, sino también mis
       urlProyecto: 'https://charlasalumnostajamar.azurewebsites.net',
       urlCodigo: 'https://github.com/marsett/GestionCharlas',
       duracion: '4 meses',
-      tieneDespliegue: true // ← AÑADIDO: Tiene despliegue activo
+      tieneDespliegue: true, // ← AÑADIDO: Tiene despliegue activo
+      tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
     },
     {
       id: 3,
@@ -165,7 +168,8 @@ El desarrollo de "Servicios Informáticos" ha consolidado mis conocimientos en d
       urlProyecto: '',
       urlCodigo: 'https://github.com/tu-usuario/fitness',
       duracion: '4 meses',
-      tieneDespliegue: false // ← AÑADIDO: No tiene despliegue activo
+      tieneDespliegue: false, // ← AÑADIDO: No tiene despliegue activo
+      tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
     },
     {
       id: 4,
@@ -200,7 +204,52 @@ Funcionalidades principales:
       urlProyecto: '',
       urlCodigo: 'https://github.com/tu-usuario/gestion',
       duracion: '4 meses',
-      tieneDespliegue: false // ← AÑADIDO: No tiene despliegue (es una app móvil)
+      tieneDespliegue: false, // ← AÑADIDO: No tiene despliegue (es una app móvil)
+      tieneCodigoDisponible: false // ← CAMBIADO: Como ejemplo, este proyecto no tiene código disponible
+    },
+    {
+      id: 5,
+      titulo: 'Causality360 - Análisis Inteligente de Noticias',
+      descripcion: `Aplicación web desarrollada con Angular que proporciona análisis automatizado de noticias españolas mediante inteligencia artificial. Procesa diariamente 5 noticias seleccionadas, generando análisis de origen, impacto y predicciones fundamentadas.
+
+Desarrollada con Angular y TypeScript, utiliza SCSS para estilos avanzados y consume una API .NET backend (ApiCausality360). Implementa Server-Side Rendering con Angular Universal y Express para optimización SEO, además de CI/CD con GitHub Actions.
+
+Características principales:
+• 5 noticias diarias procesadas automáticamente
+• Análisis IA generado por Groq con origen, impacto y predicciones
+• Eventos similares históricos para contexto adicional
+• Diseño completamente responsivo (Desktop, Tablet, Mobile)
+• Panel lateral deslizable para análisis detallado
+• Carruseles interactivos con controles adaptativos
+• Estados de carga y error manejados elegantemente
+• Workflow explicativo del procesamiento de noticias
+• Server-Side Rendering para mejor SEO
+
+Funcionalidades principales incluyen análisis automático diario a las 12:00 AM, carruseles interactivos con workflow de 4 pasos, panel lateral deslizable con análisis completo y diseño totalmente adaptativo para todos los dispositivos.
+
+🔗 Ver Proyecto en Vivo: https://ashy-bay-0e29e4a03.1.azurestaticapps.net`,
+      imagen: 'assets/images/causa1.png',
+      galeria: [
+        'assets/images/causa2.png',
+        'assets/images/causa3.png',
+        'assets/images/causa4.png',
+        'assets/images/causa5.png',
+        'assets/images/causa6.png',
+        'assets/images/causa7.png',
+        'assets/images/causa8.png',
+        'assets/images/causa9.png',
+        'assets/images/causa10.png'
+      ],
+      tecnologias: ['Angular', 'TypeScript', 'SCSS', 'HTML5', '.NET API', 'Angular Universal', 'Express', 'GitHub Actions', 'Groq IA', 'UptimeRobot'],
+      rating: 9,
+      fechaInicio: '2025-08-01',
+      fechaFin: '2025-08-31',
+      estado: 'Completado',
+      urlProyecto: 'https://ashy-bay-0e29e4a03.1.azurestaticapps.net',
+      urlCodigo: 'https://github.com/marsett/Causality360',
+      duracion: '1 mes',
+      tieneDespliegue: true,
+      tieneCodigoDisponible: true
     }
   ];
 
@@ -288,6 +337,12 @@ Funcionalidades principales:
 
   verCodigo(proyecto: Proyecto, event: Event) {
     event.stopPropagation();
+
+    // Validar que el proyecto tenga código disponible
+    if (!proyecto.tieneCodigoDisponible) {
+      return;
+    }
+
     const button = event.target as HTMLElement;
     button.classList.add('clicked');
 
@@ -426,6 +481,8 @@ Funcionalidades principales:
         return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
       case 4:
         return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
+      case 5:
+        return this.translateService.instant('PROJECTS.TITLES.CAUSALITY360');
       default:
         return '';
     }
@@ -442,6 +499,8 @@ Funcionalidades principales:
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
       case 4:
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
+      case 5:
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CAUSALITY360');
       default:
         return '';
     }

@@ -61,7 +61,32 @@
             <div class="tech-logo" [style.color]="tech.color">
               <i [class]="tech.logo"></i>
             </div>
-            <h3 class="tech-name">{{ tech.name === 'IA' ? ('SKILLS.TECH_NAMES.AI' | translate) : tech.name }}</h3>
+            <h3 class="tech-name">{{ tech.name }}</h3>
+          </div>
+
+          <!-- Lado trasero -->
+          <div class="flip-card-back">
+            <div class="tech-info">
+              <p class="tech-description" #description>{{ tech.description | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUEVA SECCIÓN - Bases de Datos -->
+  <div class="category-section">
+    <h3 class="category-title">{{ 'SKILLS.CATEGORIES.BASES_DE_DATOS' | translate }}</h3>
+    <div [class]="getGridClasses('BASES_DE_DATOS')">
+      <div class="flip-card" *ngFor="let tech of getTechnologiesByCategory('BASES_DE_DATOS')">
+        <div class="flip-card-inner">
+          <!-- Lado frontal -->
+          <div class="flip-card-front">
+            <div class="tech-logo" [style.color]="tech.color">
+              <i [class]="tech.logo"></i>
+            </div>
+            <h3 class="tech-name">{{ tech.name }}</h3>
           </div>
 
           <!-- Lado trasero -->
@@ -86,7 +111,7 @@
             <div class="tech-logo" [style.color]="tech.color">
               <i [class]="tech.logo"></i>
             </div>
-            <h3 class="tech-name">{{ tech.name === 'IA' ? ('SKILLS.TECH_NAMES.AI' | translate) : tech.name }}</h3>
+            <h3 class="tech-name">{{ tech.name }}</h3>
           </div>
 
           <!-- Lado trasero -->

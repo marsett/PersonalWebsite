@@ -141,7 +141,7 @@ export class ConocimientosComponent implements AfterViewInit, OnDestroy {
       logo: 'fas fa-database',
       color: '#CC2927',
       description: 'SKILLS.TECH_DESCRIPTIONS.SQL',
-      category: 'BACKEND'
+      category: 'BASES_DE_DATOS'
     },
     {
       name: 'Django',
@@ -174,10 +174,10 @@ export class ConocimientosComponent implements AfterViewInit, OnDestroy {
       category: 'CLOUD'
     },
     {
-      name: 'IA',
-      logo: 'fas fa-brain',
-      color: '#00BCF2',
-      description: 'SKILLS.TECH_DESCRIPTIONS.AI',
+      name: 'Git',
+      logo: 'fab fa-git-alt',
+      color: '#F05032',
+      description: 'SKILLS.TECH_DESCRIPTIONS.GIT',
       category: 'HERRAMIENTAS'
     }
   ];
