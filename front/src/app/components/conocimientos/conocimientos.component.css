@@ -645,6 +645,39 @@
     box-shadow: 0 0 15px rgba(142, 68, 173, 0.4);
 }
 
+/* Estilo específico para la sección de Herramientas (5ta sección) */
+.category-section:nth-child(5) .category-title {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.category-section:nth-child(5) .category-title::before {
+    background: linear-gradient(45deg, #ff6b3520, #f7931e20);
+}
+
+.category-section:nth-child(5) .category-title::after {
+    background: linear-gradient(90deg, #ff6b35, #f7931e);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+}
+
+:host-context(.light-mode) .category-section:nth-child(5) .category-title {
+    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+:host-context(.light-mode) .category-section:nth-child(5) .category-title::before {
+    background: linear-gradient(45deg, #e67e2220, #d3540020);
+}
+
+:host-context(.light-mode) .category-section:nth-child(5) .category-title::after {
+    background: linear-gradient(90deg, #e67e22, #d35400);
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.4);
+}
+
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
