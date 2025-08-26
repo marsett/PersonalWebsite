@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject, PLATFORM_ID, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, HostListener, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 // 1. Modificar la interfaz Proyecto para incluir galería de imágenes Y propiedad de despliegue
 interface Proyecto {
@@ -25,9 +26,10 @@ interface Proyecto {
   selector: 'app-proyectos',
   standalone: false,
   templateUrl: './proyectos.component.html',
-  styleUrl: './proyectos.component.css'
+  styleUrl: './proyectos.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProyectosComponent implements OnInit {
+export class ProyectosComponent implements OnInit, OnDestroy {
 
   expandedProject: number | null = null;
   isAnimating = false;
@@ -36,11 +38,22 @@ export class ProyectosComponent implements OnInit {
   selectedImageIndex: number = 0;
   isGalleryOpen: boolean = false;
 
+  // Cache para traducciones
+  private translationCache: Map<string, string> = new Map();
+  private langChangeSubscription: Subscription = new Subscription();
+
   // Añadir TranslateService al constructor
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private translateService: TranslateService
-  ) { }
+    private translateService: TranslateService,
+    private cdr: ChangeDetectorRef
+  ) { 
+    // Suscribirse a cambios de idioma para limpiar caché
+    this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
+      this.translationCache.clear();
+      this.cdr.markForCheck();
+    });
+  }
 
   // 2. Array de proyectos actualizado con el nuevo proyecto al inicio y IDs corregidos
   proyectos: Proyecto[] = [
@@ -258,6 +271,18 @@ Funcionalidades principales:
     this.initializeAnimations();
   }
 
+  ngOnDestroy() {
+    this.langChangeSubscription.unsubscribe();
+  }
+
+  // Método optimizado para traducciones con caché
+  private getCachedTranslation(key: string): string {
+    if (!this.translationCache.has(key)) {
+      this.translationCache.set(key, this.translateService.instant(key));
+    }
+    return this.translationCache.get(key) || '';
+  }
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
@@ -427,7 +452,7 @@ Funcionalidades principales:
     if (!currentProject) {
       return '';
     }
-    const imageOf = this.translateService.instant('PROJECTS.IMAGE_OF');
+    const imageOf = this.getCachedTranslation('PROJECTS.IMAGE_OF');
     return `${imageOf} ${this.selectedImageIndex + 1} ${currentProject.titulo}`;
   }
 
@@ -436,84 +461,144 @@ Funcionalidades principales:
     this.selectedImageIndex = index;
   }
 
-  // Método para traducir estados
+  // Método para traducir estados (optimizado con caché)
   getTranslatedStatus(estado: string): string {
+    const cacheKey = `status_${estado.toLowerCase()}`;
+    if (this.translationCache.has(cacheKey)) {
+      return this.translationCache.get(cacheKey) || estado;
+    }
+
+    let translation: string;
     switch (estado.toLowerCase()) {
       case 'completado':
-        return this.translateService.instant('PROJECTS.COMPLETED');
+        translation = this.getCachedTranslation('PROJECTS.COMPLETED');
+        break;
       case 'en desarrollo':
-        return this.translateService.instant('PROJECTS.IN_DEVELOPMENT');
+        translation = this.getCachedTranslation('PROJECTS.IN_DEVELOPMENT');
+        break;
       case 'pausado':
-        return this.translateService.instant('PROJECTS.PAUSED');
+        translation = this.getCachedTranslation('PROJECTS.PAUSED');
+        break;
       default:
-        return estado;
+        translation = estado;
     }
+    
+    this.translationCache.set(cacheKey, translation);
+    return translation;
   }
 
-  // Método para traducir duraciones
+  // Método para traducir duraciones (optimizado con caché)
   getTranslatedDuration(duracion: string): string {
+    const cacheKey = `duration_${duracion}`;
+    if (this.translationCache.has(cacheKey)) {
+      return this.translationCache.get(cacheKey) || duracion;
+    }
+
     // Extraer número y unidad
     const match = duracion.match(/(\d+)\s*(mes|meses|año|años)/i);
+    let result: string;
+    
     if (match) {
       const number = match[1];
       const unit = match[2].toLowerCase();
 
       let translatedUnit = '';
       if (unit.includes('mes')) {
-        translatedUnit = this.translateService.instant('PROJECTS.MONTHS');
+        translatedUnit = this.getCachedTranslation('PROJECTS.MONTHS');
       } else if (unit.includes('año')) {
-        translatedUnit = this.translateService.instant('PROJECTS.YEARS');
+        translatedUnit = this.getCachedTranslation('PROJECTS.YEARS');
       }
 
-      return `${number} ${translatedUnit}`;
+      result = `${number} ${translatedUnit}`;
+    } else {
+      result = duracion;
     }
 
-    return duracion;
+    this.translationCache.set(cacheKey, result);
+    return result;
   }
 
-  // 4. ACTUALIZAR: Métodos de traducción con IDs corregidos
+  // Métodos de traducción optimizados con caché
   getTranslatedTitle(projectId: number): string {
-    switch (projectId) {
-      case 1: // Nuevo proyecto Causality360
-        return this.translateService.instant('PROJECTS.TITLES.CAUSALITY360');
-      case 2: // Era ID 1, ahora ID 2
-        return this.translateService.instant('PROJECTS.TITLES.ZUVO_PET');
-      case 3: // Era ID 2, ahora ID 3
-        return this.translateService.instant('PROJECTS.TITLES.CHARLAS_TAJAMAR');
-      case 4: // Era ID 3, ahora ID 4
-        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
-      case 5: // Era ID 4, ahora ID 5
-        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
-      default:
-        return '';
+    const cacheKey = `title_${projectId}`;
+    if (this.translationCache.has(cacheKey)) {
+      return this.translationCache.get(cacheKey) || '';
     }
+
+    let translation: string;
+    switch (projectId) {
+      case 1:
+        translation = this.getCachedTranslation('PROJECTS.TITLES.CAUSALITY360');
+        break;
+      case 2:
+        translation = this.getCachedTranslation('PROJECTS.TITLES.ZUVO_PET');
+        break;
+      case 3:
+        translation = this.getCachedTranslation('PROJECTS.TITLES.CHARLAS_TAJAMAR');
+        break;
+      case 4:
+        translation = this.getCachedTranslation('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
+        break;
+      case 5:
+        translation = this.getCachedTranslation('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
+        break;
+      default:
+        translation = '';
+    }
+    
+    this.translationCache.set(cacheKey, translation);
+    return translation;
   }
 
-  // Método para obtener descripción traducida
+  // Método para obtener descripción traducida (optimizado con caché)
   getTranslatedDescription(projectId: number): string {
-    switch (projectId) {
-      case 1: // Nuevo proyecto Causality360
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CAUSALITY360');
-      case 2: // Era ID 1, ahora ID 2
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.ZUVO_PET');
-      case 3: // Era ID 2, ahora ID 3
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CHARLAS_TAJAMAR');
-      case 4: // Era ID 3, ahora ID 4
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
-      case 5: // Era ID 4, ahora ID 5
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
-      default:
-        return '';
+    const cacheKey = `description_${projectId}`;
+    if (this.translationCache.has(cacheKey)) {
+      return this.translationCache.get(cacheKey) || '';
     }
+
+    let translation: string;
+    switch (projectId) {
+      case 1:
+        translation = this.getCachedTranslation('PROJECTS.DESCRIPTIONS.CAUSALITY360');
+        break;
+      case 2:
+        translation = this.getCachedTranslation('PROJECTS.DESCRIPTIONS.ZUVO_PET');
+        break;
+      case 3:
+        translation = this.getCachedTranslation('PROJECTS.DESCRIPTIONS.CHARLAS_TAJAMAR');
+        break;
+      case 4:
+        translation = this.getCachedTranslation('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
+        break;
+      case 5:
+        translation = this.getCachedTranslation('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
+        break;
+      default:
+        translation = '';
+    }
+    
+    this.translationCache.set(cacheKey, translation);
+    return translation;
   }
 
-  // Método para obtener tecnología traducida
+  // Método para obtener tecnología traducida (optimizado con caché)
   getTranslatedTechnology(technology: string): string {
+    const cacheKey = `tech_${technology}`;
+    if (this.translationCache.has(cacheKey)) {
+      return this.translationCache.get(cacheKey) || technology;
+    }
+
+    let translation: string;
     switch (technology) {
       case 'Programación orientada a objetos (POO)':
-        return this.translateService.instant('PROJECTS.POO.OBJECT_ORIENTED_PROGRAMMING');
+        translation = this.getCachedTranslation('PROJECTS.POO.OBJECT_ORIENTED_PROGRAMMING');
+        break;
       default:
-        return technology;
+        translation = technology;
     }
+    
+    this.translationCache.set(cacheKey, translation);
+    return translation;
   }
 }
