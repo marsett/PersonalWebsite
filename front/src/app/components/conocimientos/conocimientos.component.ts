@@ -137,10 +137,24 @@ export class ConocimientosComponent implements AfterViewInit, OnDestroy {
       category: 'BACKEND'
     },
     {
-      name: 'SQL - MySQL - Oracle',
+      name: 'SQL',
       logo: 'fas fa-database',
-      color: '#CC2927',
+      color: '#28a745',
       description: 'SKILLS.TECH_DESCRIPTIONS.SQL',
+      category: 'BASES_DE_DATOS'
+    },
+    {
+      name: 'MySQL',
+      logo: 'fas fa-database',
+      color: '#4479A1',
+      description: 'SKILLS.TECH_DESCRIPTIONS.MYSQL',
+      category: 'BASES_DE_DATOS'
+    },
+    {
+      name: 'Oracle',
+      logo: 'fas fa-database',
+      color: '#F80000',
+      description: 'SKILLS.TECH_DESCRIPTIONS.ORACLE',
       category: 'BASES_DE_DATOS'
     },
     {

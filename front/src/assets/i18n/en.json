@@ -64,6 +64,8 @@
       "PYTHON": "Python is a programming language that lets you work quickly. — Python.org",
       "DOTNET": ".NET is a free, open-source developer platform. — Microsoft",
       "SQL": "Without data, you're just another person with an opinion. — W. Edwards Deming",
+      "MYSQL": "MySQL is the world's most popular open source database. — MySQL Team",
+      "ORACLE": "Oracle Database: The world's most complete data platform. — Oracle Corporation",
       "DJANGO": "Django makes it easier to build better web apps more quickly. — Django Team",
       "AZURE": "The cloud is the future of computing. — Satya Nadella",
       "POWER_PLATFORM": "The power to create solutions is in everyone's hands. — Charles Lamanna (Microsoft)",

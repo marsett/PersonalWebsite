@@ -65,7 +65,7 @@ Características principales:
 Funcionalidades principales incluyen análisis automático diario a las 12:00 AM, carruseles interactivos con workflow de 4 pasos, panel lateral deslizable con análisis completo y diseño totalmente adaptativo para todos los dispositivos.
 
 🔗 Ver Proyecto en Vivo: https://ashy-bay-0e29e4a03.1.azurestaticapps.net`,
-      imagen: 'assets/images/causa11.jpg',
+      imagen: 'assets/images/causa11.png',
       galeria: [
         'assets/images/causa1.png',
         'assets/images/causa2.png',
@@ -214,7 +214,7 @@ El desarrollo de "Servicios Informáticos" ha consolidado mis conocimientos en d
       urlCodigo: 'https://github.com/tu-usuario/fitness',
       duracion: '4 meses',
       tieneDespliegue: false,
-      tieneCodigoDisponible: true
+      tieneCodigoDisponible: false
     },
     {
       id: 5, // ID incrementado de 4 a 5
