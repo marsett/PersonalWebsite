@@ -42,7 +42,7 @@ export class ProyectosComponent implements OnInit {
     private translateService: TranslateService
   ) { }
 
-  // 2. Actualizar el array de proyectos con la propiedad tieneDespliegue
+  // 2. Array de proyectos actualizado con el nuevo proyecto al inicio y IDs corregidos
   proyectos: Proyecto[] = [
     {
       id: 1,
@@ -90,7 +90,7 @@ Funcionalidades principales incluyen análisis automático diario a las 12:00 AM
       tieneCodigoDisponible: true
     },
     {
-      id: 2,
+      id: 2, // ID incrementado de 1 a 2
       titulo: 'Zuvo Pet - Plataforma de Adopción de Mascotas',
       descripcion: `ZuvoPet es una plataforma desarrollada como Trabajo Final del MÁSTER DESARROLLO WEB FULL STACK + MULTICLOUD de Tajamar Tech. Su propósito es conectar refugios de animales con personas interesadas en adoptar, facilitando el proceso mediante una experiencia intuitiva y funcionalidades adaptadas a cada tipo de usuario (refugios y adoptantes).
 
@@ -131,17 +131,17 @@ Este proyecto supuso una experiencia integral, abarcando desde el diseño y desa
       ],
       tecnologias: ['.NET', 'ASP.NET MVC', 'Azure', 'ASP.NET Web Api', 'SQL Server', 'C#', 'AWS', 'AWS Serverless Application', 'MySql'],
       rating: 8.5,
-      fechaInicio: '2024-02-01',
-      fechaFin: '2024-06-01',
+      fechaInicio: '2025-02-01',
+      fechaFin: '2025-06-01',
       estado: 'Completado',
       urlProyecto: 'https://zuvopetmvcazure.azurewebsites.net',
       urlCodigo: 'https://github.com/marsett/ZuvoPetMvcAzure',
       duracion: '4 meses',
-      tieneDespliegue: true, // ← AÑADIDO: Tiene despliegue activo
-      tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
+      tieneDespliegue: true,
+      tieneCodigoDisponible: true
     },
     {
-      id: 3,
+      id: 3, // ID incrementado de 2 a 3
       titulo: 'Gestión de Charlas Tajamar',
       descripcion: `Este proyecto de desarrollo web frontend fue creado colaborativamente por tres compañeras de mi máster y yo, siendo reconocido como el mejor trabajo y seleccionado para su implementación en producción. La aplicación está actualmente desplegada en Azure y accesible.
 
@@ -166,11 +166,11 @@ Esta experiencia no solo reforzó mis conocimientos técnicos, sino también mis
       urlProyecto: 'https://charlasalumnostajamar.azurewebsites.net',
       urlCodigo: 'https://github.com/marsett/GestionCharlas',
       duracion: '4 meses',
-      tieneDespliegue: true, // ← AÑADIDO: Tiene despliegue activo
-      tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
+      tieneDespliegue: true,
+      tieneCodigoDisponible: true
     },
     {
-      id: 4,
+      id: 4, // ID incrementado de 3 a 4
       titulo: 'Servicios Informáticos 2.0',
       descripcion: `Esta es la segunda versión de mi idea de proyecto, realizado en 2024 como TFG para mi CFGS DAW. La aplicación está desarrollada con ASP .NET Core utilizando C#, implementando el patrón de diseño MVC y Entity Framework. Complementariamente, se han aplicado tecnologías frontend como HTML, CSS, Bootstrap, JavaScript, jQuery y AJAX para crear una experiencia de usuario dinámica y responsive.
 
@@ -213,11 +213,11 @@ El desarrollo de "Servicios Informáticos" ha consolidado mis conocimientos en d
       urlProyecto: '',
       urlCodigo: 'https://github.com/tu-usuario/fitness',
       duracion: '4 meses',
-      tieneDespliegue: false, // ← AÑADIDO: No tiene despliegue activo
-      tieneCodigoDisponible: true // ← AÑADIDO: Tiene código disponible
+      tieneDespliegue: false,
+      tieneCodigoDisponible: true
     },
     {
-      id: 5,
+      id: 5, // ID incrementado de 4 a 5
       titulo: 'Servicios Informáticos 1.0',
       descripcion: `Esta es la primera versión de mi idea de proyecto, realizado en 2023 como TFG para mi CFGS DAM. La aplicación está desarrollada con Android Studio (con Java), implementando consultas SQL para interactuar con la base de datos SQLite, la cual se genera de manera independiente en cada dispositivo.
 
@@ -249,8 +249,8 @@ Funcionalidades principales:
       urlProyecto: '',
       urlCodigo: 'https://github.com/tu-usuario/gestion',
       duracion: '4 meses',
-      tieneDespliegue: false, // ← AÑADIDO: No tiene despliegue (es una app móvil)
-      tieneCodigoDisponible: false // ← CAMBIADO: Como ejemplo, este proyecto no tiene código disponible
+      tieneDespliegue: false,
+      tieneCodigoDisponible: false
     }
   ];
 
@@ -471,19 +471,19 @@ Funcionalidades principales:
     return duracion;
   }
 
-  // Método para obtener título traducido
+  // 4. ACTUALIZAR: Métodos de traducción con IDs corregidos
   getTranslatedTitle(projectId: number): string {
     switch (projectId) {
-      case 1:
-        return this.translateService.instant('PROJECTS.TITLES.ZUVO_PET');
-      case 2:
-        return this.translateService.instant('PROJECTS.TITLES.CHARLAS_TAJAMAR');
-      case 3:
-        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
-      case 4:
-        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
-      case 5:
+      case 1: // Nuevo proyecto Causality360
         return this.translateService.instant('PROJECTS.TITLES.CAUSALITY360');
+      case 2: // Era ID 1, ahora ID 2
+        return this.translateService.instant('PROJECTS.TITLES.ZUVO_PET');
+      case 3: // Era ID 2, ahora ID 3
+        return this.translateService.instant('PROJECTS.TITLES.CHARLAS_TAJAMAR');
+      case 4: // Era ID 3, ahora ID 4
+        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_2');
+      case 5: // Era ID 4, ahora ID 5
+        return this.translateService.instant('PROJECTS.TITLES.SERVICIOS_INFORMATICOS_1');
       default:
         return '';
     }
@@ -492,16 +492,16 @@ Funcionalidades principales:
   // Método para obtener descripción traducida
   getTranslatedDescription(projectId: number): string {
     switch (projectId) {
-      case 1:
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.ZUVO_PET');
-      case 2:
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CHARLAS_TAJAMAR');
-      case 3:
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
-      case 4:
-        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
-      case 5:
+      case 1: // Nuevo proyecto Causality360
         return this.translateService.instant('PROJECTS.DESCRIPTIONS.CAUSALITY360');
+      case 2: // Era ID 1, ahora ID 2
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.ZUVO_PET');
+      case 3: // Era ID 2, ahora ID 3
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.CHARLAS_TAJAMAR');
+      case 4: // Era ID 3, ahora ID 4
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_2');
+      case 5: // Era ID 4, ahora ID 5
+        return this.translateService.instant('PROJECTS.DESCRIPTIONS.SERVICIOS_INFORMATICOS_1');
       default:
         return '';
     }
