@@ -4,7 +4,7 @@
   "description": "Personal website built with Angular",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd front && npm install && npx ng build --configuration production"
+    "heroku-postbuild": "cd front && npm install --include=dev && npm run heroku-postbuild"
   },
   "dependencies": {
     "express": "^4.21.2"
