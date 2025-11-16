@@ -20,20 +20,18 @@
   <!-- Projects Mosaic -->
   <div class="projects-mosaic">
     <div class="mosaic-grid">
-      <div class="mosaic-tile" *ngFor="let proyecto of proyectos; let i = index"
-        [class.expanded]="expandedProject === proyecto.id"
-        [class.dimmed]="expandedProject !== null && expandedProject !== proyecto.id"
-        (click)="toggleProject(proyecto.id, $event)" [style.--delay]="i * 0.1 + 's'">
-        <!-- Background Image -->
-        <div class="tile-background">
-          <img [src]="proyecto.imagen" [alt]="proyecto.titulo">
-          <div class="overlay"></div>
-        </div>
+      <ng-container *ngFor="let proyecto of proyectos; let i = index">
+        <div class="mosaic-tile"
+          [style.--delay]="i * 0.1 + 's'">
+          
+          <!-- Background Image -->
+          <div class="tile-background">
+            <img [src]="proyecto.imagen" [alt]="proyecto.titulo">
+            <div class="overlay"></div>
+          </div>
 
-        <!-- Tile Content -->
-        <div class="tile-content">
-          <!-- Collapsed State -->
-          <div class="tile-preview" [class.hidden]="expandedProject === proyecto.id">
+          <!-- Tile Content -->
+          <div class="tile-content">
             <div class="preview-header">
               <h3 class="project-title">{{getTranslatedTitle(proyecto.id)}}</h3>
               <div class="project-status" [style.color]="getStatusColor(proyecto.estado)">
@@ -58,161 +56,136 @@
               </span>
             </div>
 
-            <div class="expand-hint">
-              <span class="hint-text">{{ 'PROJECTS.CLICK_TO_EXPAND' | translate }}</span>
+            <button class="expand-btn" 
+                    [class.light-theme]="isLightMode()"
+                    (click)="toggleProject(proyecto.id, $event)">
+              <span class="btn-icon">{{ expandedProject === proyecto.id ? '▲' : '▼' }}</span>
+              <span class="btn-text">
+                {{ expandedProject === proyecto.id ? ('PROJECTS.HIDE_DETAILS' | translate) : ('PROJECTS.SHOW_DETAILS' | translate) }}
+              </span>
+            </button>
+          </div>
+
+          <!-- Hover Effects -->
+          <div class="tile-effects">
+            <div class="ripple-effect"></div>
+            <div class="glow-effect"></div>
+          </div>
+        </div>
+
+        <!-- Expanded Content (Below the card) -->
+        <div class="expanded-section" *ngIf="expandedProject === proyecto.id"
+          [@expandCollapse]>
+        
+        <div class="expanded-content-wrapper">
+          <div class="content-section">
+            <h4>{{ 'PROJECTS.DESCRIPTION' | translate }}</h4>
+            <p class="project-description" [innerHTML]="formatDescription(getTranslatedDescription(proyecto.id))"></p>
+          </div>
+
+          <div class="content-section">
+            <h4>{{ 'PROJECTS.TECHNOLOGIES' | translate }}</h4>
+            <div class="expanded-tech">
+              <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias">
+                {{getTranslatedTechnology(tech)}}
+              </span>
             </div>
           </div>
 
-          <!-- Expanded State -->
-          <div class="tile-expanded" [class.visible]="expandedProject === proyecto.id">
-            <div class="expanded-header">
-              <h2 class="expanded-title">{{getTranslatedTitle(proyecto.id)}}</h2>
-              <button class="close-btn" (click)="collapseProject()" [attr.aria-label]="'PROJECTS.CLOSE' | translate">
-                <span>×</span>
+          <div class="content-section">
+            <h4>{{ 'PROJECTS.CHRONOLOGY' | translate }}</h4>
+            <div class="project-timeline">
+              <div class="timeline-item">
+                <span class="timeline-label">{{ 'PROJECTS.START' | translate }}:</span>
+                <span class="timeline-value">{{formatDate(proyecto.fechaInicio)}}</span>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-label">{{ 'PROJECTS.END' | translate }}:</span>
+                <span class="timeline-value">{{formatDate(proyecto.fechaFin)}}</span>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-label">{{ 'PROJECTS.DURATION' | translate }}:</span>
+                <span class="timeline-value">{{getTranslatedDuration(proyecto.duracion)}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h4>{{ 'PROJECTS.EVALUATION' | translate }}</h4>
+            <div class="project-stats">
+              <div class="stat-item">
+                <span class="stat-label">{{ 'PROJECTS.RATING' | translate }}:</span>
+                <div class="stat-rating">
+                  <span class="rating-stars">
+                    <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]"
+                      [class.filled]="star <= proyecto.rating">★</span>
+                  </span>
+                  <span class="rating-value">{{proyecto.rating}}/10</span>
+                </div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">{{ 'PROJECTS.STATUS' | translate }}:</span>
+                <span class="stat-value" [style.color]="getStatusColor(proyecto.estado)">
+                  {{getTranslatedStatus(proyecto.estado)}}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nueva Galería de Imágenes Fullscreen -->
+          <div class="content-section gallery-section">
+            <h4>{{ 'PROJECTS.GALLERY' | translate }}</h4>
+            
+            <!-- Imagen Principal Grande -->
+            <div class="main-gallery-display">
+              <button class="gallery-nav-btn prev" 
+                (click)="prevImage($event)"
+                *ngIf="proyecto.galeria && proyecto.galeria.length > 1">
+                <span>‹</span>
+              </button>
+
+              <div class="main-image-container">
+                <img [src]="getCurrentImageForProject(proyecto.id)" 
+                     [alt]="getCurrentImageAlt(proyecto.id)">
+              </div>
+
+              <button class="gallery-nav-btn next" 
+                (click)="nextImage($event)"
+                *ngIf="proyecto.galeria && proyecto.galeria.length > 1">
+                <span>›</span>
               </button>
             </div>
 
-            <div class="expanded-content">
-              <div class="content-section">
-                <h4>{{ 'PROJECTS.DESCRIPTION' | translate }}</h4>
-                <p class="project-description" [innerHTML]="formatDescription(getTranslatedDescription(proyecto.id))">
-                </p>
-              </div>
-
-              <div class="content-section">
-                <h4>{{ 'PROJECTS.TECHNOLOGIES' | translate }}</h4>
-                <div class="expanded-tech">
-                  <span class="tech-tag" *ngFor="let tech of proyecto.tecnologias">
-                    {{getTranslatedTechnology(tech)}}
-                  </span>
-                </div>
-              </div>
-
-              <div class="content-section">
-                <h4>{{ 'PROJECTS.CHRONOLOGY' | translate }}</h4>
-                <div class="project-timeline">
-                  <div class="timeline-item">
-                    <span class="timeline-label">{{ 'PROJECTS.START' | translate }}:</span>
-                    <span class="timeline-value">{{formatDate(proyecto.fechaInicio)}}</span>
-                  </div>
-                  <div class="timeline-item">
-                    <span class="timeline-label">{{ 'PROJECTS.END' | translate }}:</span>
-                    <span class="timeline-value">{{formatDate(proyecto.fechaFin)}}</span>
-                  </div>
-                  <div class="timeline-item">
-                    <span class="timeline-label">{{ 'PROJECTS.DURATION' | translate }}:</span>
-                    <span class="timeline-value">{{getTranslatedDuration(proyecto.duracion)}}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="content-section">
-                <h4>{{ 'PROJECTS.EVALUATION' | translate }}</h4>
-                <div class="project-stats">
-                  <div class="stat-item">
-                    <span class="stat-label">{{ 'PROJECTS.RATING' | translate }}:</span>
-                    <div class="stat-rating">
-                      <span class="rating-stars">
-                        <span class="star" *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]"
-                          [class.filled]="star <= proyecto.rating">★</span>
-                      </span>
-                      <span class="rating-value">{{proyecto.rating}}/10</span>
-                    </div>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-label">{{ 'PROJECTS.STATUS' | translate }}:</span>
-                    <span class="stat-value" [style.color]="getStatusColor(proyecto.estado)">
-                      {{getTranslatedStatus(proyecto.estado)}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Galería de Imágenes -->
-              <div class="content-section">
-                <h4>{{ 'PROJECTS.GALLERY' | translate }}</h4>
-                <div class="project-gallery">
-                  <div class="gallery-grid">
-                    <div class="gallery-item" *ngFor="let imagen of getCurrentProject()?.galeria; let i = index"
-                      (click)="openGallery(i, $event)">
-                      <img [src]="imagen"
-                        [alt]="('PROJECTS.IMAGE_OF' | translate) + ' ' + (i + 1) + ' ' + getTranslatedTitle(getCurrentProject()?.id || 0)">
-                      <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Visor de Galería (integrado en el contenido) -->
-              <div class="gallery-viewer-section" *ngIf="isGalleryOpen">
-                <div class="gallery-viewer-container" (click)="$event.stopPropagation()">
-                  <div class="gallery-viewer-header">
-                    <h4>{{ 'PROJECTS.DETAILED_VIEW' | translate }}</h4>
-                    <button class="gallery-close-btn" (click)="closeGallery($event)">×</button>
-                  </div>
-
-                  <!-- En el visor de galería, reemplaza esta sección: -->
-                  <div class="gallery-main-viewer">
-                    <button class="gallery-nav prev" (click)="prevImage($event)"
-                      *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
-                      <span>‹</span>
-                    </button>
-
-                    <!-- CAMBIO: Usar gallery-image-display en lugar de gallery-image-container -->
-                    <div class="gallery-image-display">
-                      <img [src]="getCurrentImageSrc()" [alt]="getCurrentImageAlt()">
-                    </div>
-
-                    <button class="gallery-nav next" (click)="nextImage($event)"
-                      *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
-                      <span>›</span>
-                    </button>
-                  </div>
-
-                  <div class="gallery-controls">
-                    <div class="gallery-indicators-wrapper">
-                      <div class="gallery-indicators"
-                        *ngIf="getCurrentProject()?.galeria && getCurrentProject()!.galeria.length > 1">
-                        <span class="indicator" *ngFor="let img of getCurrentProject()?.galeria; let i = index"
-                          [class.active]="i === selectedImageIndex" (click)="selectImage(i, $event)">
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="gallery-counter">
-                      {{selectedImageIndex + 1}} / {{getCurrentProject()?.galeria?.length}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Botones de acción con validación para ambos botones -->
-              <div class="expanded-actions">
-                <button class="action-btn primary" [class.disabled]="!proyecto.tieneDespliegue"
-                  [title]="!proyecto.tieneDespliegue ? ('PROJECTS.PROJECT_WITHOUT_DEPLOYMENT' | translate) : ('PROJECTS.VIEW_LIVE_PROJECT' | translate)"
-                  (click)="verProyecto(proyecto, $event)">
-                  <span class="btn-icon">🚀</span>
-                  <span class="btn-text">{{ 'PROJECTS.VIEW_PROJECT' | translate }}</span>
-                </button>
-                <button class="action-btn secondary" [class.disabled]="!proyecto.tieneCodigoDisponible"
-                  [title]="!proyecto.tieneCodigoDisponible ? ('PROJECTS.CODE_NOT_AVAILABLE' | translate) : ('PROJECTS.VIEW_SOURCE_CODE' | translate)"
-                  (click)="verCodigo(proyecto, $event)">
-                  <span class="btn-icon">💻</span>
-                  <span class="btn-text">{{ 'PROJECTS.VIEW_CODE' | translate }}</span>
-                </button>
+            <!-- Miniaturas -->
+            <div class="gallery-thumbnails" *ngIf="proyecto.galeria && proyecto.galeria.length > 1">
+              <div class="thumbnail-item" 
+                   *ngFor="let imagen of proyecto.galeria; let idx = index"
+                   [class.active]="getImageIndexForProject(proyecto.id) === idx"
+                   (click)="selectImageForProject(proyecto.id, idx, $event)">
+                <img [src]="imagen" [alt]="'Miniatura ' + (idx + 1)">
               </div>
             </div>
+
+            <!-- Contador -->
+            <div class="gallery-counter" *ngIf="proyecto.galeria && proyecto.galeria.length > 1">
+              {{getImageIndexForProject(proyecto.id) + 1}} / {{proyecto.galeria.length}}
+            </div>
+          </div>
+
+          <!-- Botón de Código -->
+          <div class="expanded-actions">
+            <button class="action-btn secondary" 
+                    [disabled]="!proyecto.tieneCodigoDisponible"
+                    [class.disabled]="!proyecto.tieneCodigoDisponible"
+                    title="{{ proyecto.tieneCodigoDisponible ? ('PROJECTS.VIEW_SOURCE_CODE' | translate) : ('PROJECTS.CODE_NOT_AVAILABLE' | translate) }}"
+                    (click)="proyecto.tieneCodigoDisponible ? verCodigo(proyecto, $event) : null">
+              <span class="btn-icon">💻</span>
+              <span class="btn-text">{{ 'PROJECTS.VIEW_CODE' | translate }}</span>
+            </button>
           </div>
         </div>
-
-        <!-- Hover Effects -->
-        <div class="tile-effects">
-          <div class="ripple-effect"></div>
-          <div class="glow-effect"></div>
-        </div>
       </div>
+      </ng-container>
     </div>
   </div>
 </div>

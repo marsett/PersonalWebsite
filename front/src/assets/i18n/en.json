@@ -120,6 +120,8 @@
     "TITLE": "MY PROJECTS",
     "CLICK_TO_EXPAND": "Click to expand",
     "CLOSE": "Close",
+    "SHOW_DETAILS": "Show details",
+    "HIDE_DETAILS": "Hide details",
     "DESCRIPTION": "Description",
     "TECHNOLOGIES": "Technologies",
     "CHRONOLOGY": "Chronology",

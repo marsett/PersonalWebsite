@@ -32,7 +32,7 @@ export class InicioComponent implements OnInit, OnDestroy {
 
   // Quick Stats
   yearsOfExperience = this.calculateYearsOfExperience();
-  totalProjects = 4;
+  totalProjects = 5;
   responseTime = '< 24h';
 
   // Activity Feed

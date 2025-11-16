@@ -2,8 +2,8 @@ import { Component, OnInit, Inject, PLATFORM_ID, HostListener, ChangeDetectionSt
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
-// 1. Modificar la interfaz Proyecto para incluir galería de imágenes Y propiedad de despliegue
 interface Proyecto {
   id: number;
   titulo: string;
@@ -15,11 +15,9 @@ interface Proyecto {
   fechaInicio: string;
   fechaFin: string;
   estado: string;
-  urlProyecto: string;
   urlCodigo: string;
   duracion: string;
-  tieneDespliegue: boolean; // ← AÑADIDO: Para controlar si mostrar el botón de ver proyecto
-  tieneCodigoDisponible: boolean; // ← AÑADIDO: Para controlar si mostrar el botón de ver código
+  tieneCodigoDisponible: boolean;
 }
 
 @Component({
@@ -27,35 +25,55 @@ interface Proyecto {
   standalone: false,
   templateUrl: './proyectos.component.html',
   styleUrl: './proyectos.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('expandCollapse', [
+      transition(':enter', [
+        style({ height: '0', opacity: '0', overflow: 'hidden' }),
+        animate('400ms ease-out', style({ height: '*', opacity: '1' }))
+      ]),
+      transition(':leave', [
+        style({ height: '*', opacity: '1', overflow: 'hidden' }),
+        animate('400ms ease-in', style({ height: '0', opacity: '0' }))
+      ])
+    ])
+  ]
 })
 export class ProyectosComponent implements OnInit, OnDestroy {
 
   expandedProject: number | null = null;
   isAnimating = false;
 
-  // Propiedades para controlar la galería
-  selectedImageIndex: number = 0;
-  isGalleryOpen: boolean = false;
+  // Mapa para guardar el índice de imagen seleccionada por proyecto
+  private projectImageIndices: Map<number, number> = new Map();
 
   // Cache para traducciones
   private translationCache: Map<string, string> = new Map();
   private langChangeSubscription: Subscription = new Subscription();
 
-  // Añadir TranslateService al constructor
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private translateService: TranslateService,
     private cdr: ChangeDetectorRef
   ) { 
-    // Suscribirse a cambios de idioma para limpiar caché
     this.langChangeSubscription = this.translateService.onLangChange.subscribe(() => {
       this.translationCache.clear();
       this.cdr.markForCheck();
     });
+
+    // Detectar cambios de tema para forzar re-render
+    if (isPlatformBrowser(this.platformId)) {
+      const observer = new MutationObserver(() => {
+        this.cdr.markForCheck();
+      });
+      
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
   }
 
-  // 2. Array de proyectos actualizado con el nuevo proyecto al inicio y IDs corregidos
   proyectos: Proyecto[] = [
     {
       id: 1,
@@ -78,7 +96,7 @@ Características principales:
 Funcionalidades principales incluyen análisis automático diario a las 12:00 AM, carruseles interactivos con workflow de 4 pasos, panel lateral deslizable con análisis completo y diseño totalmente adaptativo para todos los dispositivos.
 
 🔗 Ver Proyecto en Vivo: https://ashy-bay-0e29e4a03.1.azurestaticapps.net`,
-      imagen: 'assets/images/causa11.png',
+      imagen: 'assets/images/abstract5.jpg',
       galeria: [
         'assets/images/causa1.png',
         'assets/images/causa2.png',
@@ -96,14 +114,12 @@ Funcionalidades principales incluyen análisis automático diario a las 12:00 AM
       fechaInicio: '2025-08-01',
       fechaFin: '2025-08-31',
       estado: 'Completado',
-      urlProyecto: 'https://ashy-bay-0e29e4a03.1.azurestaticapps.net',
       urlCodigo: 'https://github.com/marsett/Causality360',
       duracion: '1 mes',
-      tieneDespliegue: true,
       tieneCodigoDisponible: true
     },
     {
-      id: 2, // ID incrementado de 1 a 2
+      id: 2,
       titulo: 'Zuvo Pet - Plataforma de Adopción de Mascotas',
       descripcion: `ZuvoPet es una plataforma desarrollada como Trabajo Final del MÁSTER DESARROLLO WEB FULL STACK + MULTICLOUD de Tajamar Tech. Su propósito es conectar refugios de animales con personas interesadas en adoptar, facilitando el proceso mediante una experiencia intuitiva y funcionalidades adaptadas a cada tipo de usuario (refugios y adoptantes).
 
@@ -119,7 +135,7 @@ Posteriormente, se llevó a cabo una migración completa a Amazon Web Services (
 Este proyecto supuso una experiencia integral, abarcando desde el diseño y desarrollo hasta el despliegue real en producción sobre Azure y AWS, y consolidando competencias en desarrollo backend, arquitectura escalable y soluciones cloud multiplataforma.
 
 🔗 URL del proyecto (AWS – ya inactivo): https://zuvopet.duckdns.org`,
-      imagen: 'assets/images/zuvo0.jpg',
+      imagen: 'assets/images/abstract4.jpg',
       galeria: [
         'assets/images/zuvo1.jpg',
         'assets/images/zuvo2.jpg',
@@ -147,14 +163,12 @@ Este proyecto supuso una experiencia integral, abarcando desde el diseño y desa
       fechaInicio: '2025-02-01',
       fechaFin: '2025-06-01',
       estado: 'Completado',
-      urlProyecto: 'https://zuvopetmvcazure.azurewebsites.net',
       urlCodigo: 'https://github.com/marsett/ZuvoPetMvcAzure',
       duracion: '4 meses',
-      tieneDespliegue: true,
       tieneCodigoDisponible: true
     },
     {
-      id: 3, // ID incrementado de 2 a 3
+      id: 3,
       titulo: 'Gestión de Charlas Tajamar',
       descripcion: `Este proyecto de desarrollo web frontend fue creado colaborativamente por tres compañeras de mi máster y yo, siendo reconocido como el mejor trabajo y seleccionado para su implementación en producción. La aplicación está actualmente desplegada en Azure y accesible.
 
@@ -163,7 +177,7 @@ Desarrollamos la solución utilizando VS Code y aplicando metodologías de traba
 El objetivo principal del proyecto fue optimizar la gestión de charlas impartidas por alumnos, proporcionando una plataforma intuitiva que mejora significativamente el proceso de programación, organización y seguimiento de estas actividades formativas. La implementación exitosa demuestra nuestra capacidad para entregar soluciones funcionales que resuelven necesidades reales del entorno educativo.
 
 Esta experiencia no solo reforzó mis conocimientos técnicos, sino también mis habilidades de colaboración en proyectos de desarrollo ágil y orientados a resultados tangibles.`,
-      imagen: 'assets/images/charlas0.jpg',
+      imagen: 'assets/images/abstract3.jpg',
       galeria: [
         'assets/images/charlas1.jpg',
         'assets/images/charlas2.jpg',
@@ -176,14 +190,12 @@ Esta experiencia no solo reforzó mis conocimientos técnicos, sino también mis
       fechaInicio: '2024-11-01',
       fechaFin: '2025-02-1',
       estado: 'Completado',
-      urlProyecto: 'https://charlasalumnostajamar.azurewebsites.net',
       urlCodigo: 'https://github.com/marsett/GestionCharlas',
       duracion: '4 meses',
-      tieneDespliegue: true,
       tieneCodigoDisponible: true
     },
     {
-      id: 4, // ID incrementado de 3 a 4
+      id: 4,
       titulo: 'Servicios Informáticos 2.0',
       descripcion: `Esta es la segunda versión de mi idea de proyecto, realizado en 2024 como TFG para mi CFGS DAW. La aplicación está desarrollada con ASP .NET Core utilizando C#, implementando el patrón de diseño MVC y Entity Framework. Complementariamente, se han aplicado tecnologías frontend como HTML, CSS, Bootstrap, JavaScript, jQuery y AJAX para crear una experiencia de usuario dinámica y responsive.
 
@@ -202,7 +214,7 @@ Funcionalidades principales:
 • Trabajos valorados para profesionales
 
 El desarrollo de "Servicios Informáticos" ha consolidado mis conocimientos en desarrollo web empresarial con C# y el ecosistema ASP.NET, resultando en una plataforma robusta que facilita efectivamente la interacción entre clientes y profesionales del sector informático.`,
-      imagen: 'assets/images/daw0.jpg',
+      imagen: 'assets/images/abstract2.jpg',
       galeria: [
         'assets/images/daw1.jpg',
         'assets/images/daw2.jpg',
@@ -223,14 +235,12 @@ El desarrollo de "Servicios Informáticos" ha consolidado mis conocimientos en d
       fechaInicio: '2024-03-01',
       fechaFin: '2024-06-01',
       estado: 'Completado',
-      urlProyecto: '',
-      urlCodigo: 'https://github.com/tu-usuario/fitness',
+      urlCodigo: 'https://github.com/marsett/ServiciosInformaticos2.0',
       duracion: '4 meses',
-      tieneDespliegue: false,
       tieneCodigoDisponible: false
     },
     {
-      id: 5, // ID incrementado de 4 a 5
+      id: 5,
       titulo: 'Servicios Informáticos 1.0',
       descripcion: `Esta es la primera versión de mi idea de proyecto, realizado en 2023 como TFG para mi CFGS DAM. La aplicación está desarrollada con Android Studio (con Java), implementando consultas SQL para interactuar con la base de datos SQLite, la cual se genera de manera independiente en cada dispositivo.
 
@@ -243,7 +253,7 @@ Funcionalidades principales:
 • Búsqueda avanzada de profesionales
 • Sistema de notificaciones
 • Mensajería instantánea entre usuarios`,
-      imagen: 'assets/images/dam9.jpg',
+      imagen: 'assets/images/abstract1.jpg',
       galeria: [
         'assets/images/dam1.jpg',
         'assets/images/dam2.jpg',
@@ -259,36 +269,37 @@ Funcionalidades principales:
       fechaInicio: '2023-03-01',
       fechaFin: '2023-06-01',
       estado: 'Completado',
-      urlProyecto: '',
-      urlCodigo: 'https://github.com/tu-usuario/gestion',
+      urlCodigo: 'https://github.com/marsett/ServiciosInformaticos1.0',
       duracion: '4 meses',
-      tieneDespliegue: false,
       tieneCodigoDisponible: false
     }
   ];
 
   ngOnInit() {
     this.initializeAnimations();
+    // Inicializar índices de imágenes para todos los proyectos
+    this.proyectos.forEach(proyecto => {
+      this.projectImageIndices.set(proyecto.id, 0);
+    });
   }
 
   ngOnDestroy() {
     this.langChangeSubscription.unsubscribe();
   }
 
-  // Método optimizado para traducciones con caché
+  // Método para verificar si está en modo claro
+  isLightMode(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return document.body.classList.contains('light-mode');
+    }
+    return false;
+  }
+
   private getCachedTranslation(key: string): string {
     if (!this.translationCache.has(key)) {
       this.translationCache.set(key, this.translateService.instant(key));
     }
     return this.translationCache.get(key) || '';
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event) {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.mosaic-tile') && this.expandedProject !== null) {
-      this.collapseProject();
-    }
   }
 
   initializeAnimations() {
@@ -319,55 +330,30 @@ Funcionalidades principales:
   expandProject(projectId: number) {
     this.isAnimating = true;
     this.expandedProject = projectId;
-    this.selectedImageIndex = 0;
+    
+    // Resetear índice de imagen al expandir
+    this.projectImageIndices.set(projectId, 0);
+    
+    this.cdr.markForCheck();
 
     setTimeout(() => {
       this.isAnimating = false;
-    }, 600);
+    }, 400);
   }
 
   collapseProject() {
     this.isAnimating = true;
     this.expandedProject = null;
-    this.isGalleryOpen = false;
+    
+    this.cdr.markForCheck();
 
     setTimeout(() => {
       this.isAnimating = false;
-    }, 600);
-  }
-
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscapeKey(event: KeyboardEvent) {
-    if (this.isGalleryOpen) {
-      this.closeGallery();
-    }
-  }
-
-  // 3. MODIFICAR: Añadir validación para mostrar botón solo si tiene despliegue
-  verProyecto(proyecto: Proyecto, event: Event) {
-    event.stopPropagation();
-
-    // Validar que el proyecto tenga despliegue activo
-    if (!proyecto.tieneDespliegue) {
-      return;
-    }
-
-    const button = event.target as HTMLElement;
-    button.classList.add('clicked');
-
-    setTimeout(() => {
-      window.open(proyecto.urlProyecto, '_blank');
-      button.classList.remove('clicked');
-    }, 300);
+    }, 400);
   }
 
   verCodigo(proyecto: Proyecto, event: Event) {
     event.stopPropagation();
-
-    // Validar que el proyecto tenga código disponible
-    if (!proyecto.tieneCodigoDisponible) {
-      return;
-    }
 
     const button = event.target as HTMLElement;
     button.classList.add('clicked');
@@ -395,26 +381,19 @@ Funcionalidades principales:
     }
   }
 
-  openGallery(index: number, event: Event) {
-    event.stopPropagation();
-    this.selectedImageIndex = index;
-    this.isGalleryOpen = true;
-  }
-
-  closeGallery(event?: Event) {
-    if (event) {
-      event.stopPropagation();
-    }
-    this.isGalleryOpen = false;
-  }
-
+  // Métodos para manejar la galería por proyecto
   nextImage(event?: Event) {
     if (event) {
       event.stopPropagation();
     }
-    const currentProject = this.getCurrentProject();
-    if (currentProject && currentProject.galeria && currentProject.galeria.length > 0) {
-      this.selectedImageIndex = (this.selectedImageIndex + 1) % currentProject.galeria.length;
+    if (this.expandedProject !== null) {
+      const proyecto = this.proyectos.find(p => p.id === this.expandedProject);
+      if (proyecto && proyecto.galeria && proyecto.galeria.length > 0) {
+        const currentIndex = this.projectImageIndices.get(this.expandedProject) || 0;
+        const newIndex = (currentIndex + 1) % proyecto.galeria.length;
+        this.projectImageIndices.set(this.expandedProject, newIndex);
+        this.cdr.markForCheck();
+      }
     }
   }
 
@@ -422,46 +401,50 @@ Funcionalidades principales:
     if (event) {
       event.stopPropagation();
     }
-    const currentProject = this.getCurrentProject();
-    if (currentProject && currentProject.galeria && currentProject.galeria.length > 0) {
-      this.selectedImageIndex = this.selectedImageIndex === 0
-        ? currentProject.galeria.length - 1
-        : this.selectedImageIndex - 1;
+    if (this.expandedProject !== null) {
+      const proyecto = this.proyectos.find(p => p.id === this.expandedProject);
+      if (proyecto && proyecto.galeria && proyecto.galeria.length > 0) {
+        const currentIndex = this.projectImageIndices.get(this.expandedProject) || 0;
+        const newIndex = currentIndex === 0 ? proyecto.galeria.length - 1 : currentIndex - 1;
+        this.projectImageIndices.set(this.expandedProject, newIndex);
+        this.cdr.markForCheck();
+      }
     }
   }
 
-  getCurrentProject(): Proyecto | undefined {
-    return this.proyectos.find(p => p.id === this.expandedProject);
+  selectImageForProject(projectId: number, index: number, event: Event) {
+    event.stopPropagation();
+    this.projectImageIndices.set(projectId, index);
+    this.cdr.markForCheck();
+  }
+
+  getImageIndexForProject(projectId: number): number {
+    return this.projectImageIndices.get(projectId) || 0;
+  }
+
+  getCurrentImageForProject(projectId: number): string {
+    const proyecto = this.proyectos.find(p => p.id === projectId);
+    if (!proyecto || !proyecto.galeria || proyecto.galeria.length === 0) {
+      return '';
+    }
+    const index = this.projectImageIndices.get(projectId) || 0;
+    return proyecto.galeria[index];
+  }
+
+  getCurrentImageAlt(projectId: number): string {
+    const proyecto = this.proyectos.find(p => p.id === projectId);
+    if (!proyecto) {
+      return '';
+    }
+    const index = this.projectImageIndices.get(projectId) || 0;
+    const imageOf = this.getCachedTranslation('PROJECTS.IMAGE_OF');
+    return `${imageOf} ${index + 1} ${this.getTranslatedTitle(projectId)}`;
   }
 
   formatDescription(description: string): string {
     return description.replace(/\\n/g, '\n').replace(/\n/g, '<br>');
   }
 
-  getCurrentImageSrc(): string {
-    const currentProject = this.getCurrentProject();
-    if (!currentProject || !currentProject.galeria || !currentProject.galeria[this.selectedImageIndex]) {
-      return '';
-    }
-    return currentProject.galeria[this.selectedImageIndex];
-  }
-
-  // Actualizar el método getCurrentImageAlt para usar traducción
-  getCurrentImageAlt(): string {
-    const currentProject = this.getCurrentProject();
-    if (!currentProject) {
-      return '';
-    }
-    const imageOf = this.getCachedTranslation('PROJECTS.IMAGE_OF');
-    return `${imageOf} ${this.selectedImageIndex + 1} ${currentProject.titulo}`;
-  }
-
-  selectImage(index: number, event: Event) {
-    event.stopPropagation();
-    this.selectedImageIndex = index;
-  }
-
-  // Método para traducir estados (optimizado con caché)
   getTranslatedStatus(estado: string): string {
     const cacheKey = `status_${estado.toLowerCase()}`;
     if (this.translationCache.has(cacheKey)) {
@@ -487,14 +470,12 @@ Funcionalidades principales:
     return translation;
   }
 
-  // Método para traducir duraciones (optimizado con caché)
   getTranslatedDuration(duracion: string): string {
     const cacheKey = `duration_${duracion}`;
     if (this.translationCache.has(cacheKey)) {
       return this.translationCache.get(cacheKey) || duracion;
     }
 
-    // Extraer número y unidad
     const match = duracion.match(/(\d+)\s*(mes|meses|año|años)/i);
     let result: string;
     
@@ -518,7 +499,6 @@ Funcionalidades principales:
     return result;
   }
 
-  // Métodos de traducción optimizados con caché
   getTranslatedTitle(projectId: number): string {
     const cacheKey = `title_${projectId}`;
     if (this.translationCache.has(cacheKey)) {
@@ -550,7 +530,6 @@ Funcionalidades principales:
     return translation;
   }
 
-  // Método para obtener descripción traducida (optimizado con caché)
   getTranslatedDescription(projectId: number): string {
     const cacheKey = `description_${projectId}`;
     if (this.translationCache.has(cacheKey)) {
@@ -582,7 +561,6 @@ Funcionalidades principales:
     return translation;
   }
 
-  // Método para obtener tecnología traducida (optimizado con caché)
   getTranslatedTechnology(technology: string): string {
     const cacheKey = `tech_${technology}`;
     if (this.translationCache.has(cacheKey)) {
