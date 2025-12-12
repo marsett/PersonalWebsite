@@ -7,43 +7,66 @@
         </div>
 
         <div class="timeline">
-            <!-- Para Avanade -->
+            <!-- Para Avanade - Con dos roles -->
             <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-dot professional"></div>
                 <div class="timeline-content">
                     <div class="timeline-header-content">
                         <div class="timeline-info">
-                            <div class="timeline-date">
-                                <span>{{ 'EXPERIENCE.DATES.SEP_2025_DEC_2025' | translate }}</span>
-                            </div>
-                            <div class="timeline-badge-container">
-                                <div class="position-badge">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span>{{ 'EXPERIENCE.POSITIONS.INTERNSHIP' | translate }}</span>
-                                </div>
+                            <div class="company-logo">
+                                <img src="assets/images/avanade-logo.jpg" alt="Avanade" />
                             </div>
                         </div>
-                        <div class="company-logo">
-                            <img src="assets/images/avanade-logo.jpg" alt="Avanade" />
+                        <div class="timeline-info">
+                            <h4 class="company-name">{{ 'EXPERIENCE.COMPANIES.AVANADE' | translate }}</h4>
                         </div>
                     </div>
 
                     <div class="timeline-main-content">
-                        <h4 class="company-name">{{ 'EXPERIENCE.COMPANIES.AVANADE' | translate }}</h4>
-                        <div class="timeline-description">
-                            <p>{{ 'EXPERIENCE.DESCRIPTIONS.AVANADE' | translate }}</p>
+                        <!-- Rol 1: Junior Analyst (ACTUAL) -->
+                        <div class="role-item role-current">
+                            <div class="role-header">
+                                <div class="position-badge current-badge">
+                                    <i class="fas fa-briefcase"></i>
+                                    <span>{{ 'EXPERIENCE.POSITIONS.JUNIOR_ANALYST' | translate }}</span>
+                                </div>
+                                <span class="timeline-date">{{ 'EXPERIENCE.DATES.DEC_2025_PRESENT' | translate }}</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>{{ 'EXPERIENCE.DESCRIPTIONS.AVANADE_JUNIOR' | translate }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Separador visual de progresión -->
+                        <div class="role-progression">
+                            <div class="progression-line"></div>
+                            <div class="progression-dot">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+
+                        <!-- Rol 2: Internship (ANTERIOR) -->
+                        <div class="role-item role-past">
+                            <div class="role-header">
+                                <div class="position-badge">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>{{ 'EXPERIENCE.POSITIONS.INTERNSHIP' | translate }}</span>
+                                </div>
+                                <span class="timeline-date">{{ 'EXPERIENCE.DATES.SEP_2025_DEC_2025' | translate }}</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>{{ 'EXPERIENCE.DESCRIPTIONS.AVANADE' | translate }}</p>
+                            </div>
                         </div>
 
                         <div class="technologies-section">
                             <h5 class="technologies-title">{{ 'EXPERIENCE.TECHNOLOGIES' | translate }}</h5>
                             <div class="technologies-used">
                                 <span class="tech-badge">.NET</span>
-                                <span class="tech-badge">Angular</span>
-                                <span class="tech-badge">HTML</span>
-                                <span class="tech-badge">CSS</span>
-                                <span class="tech-badge">Blueprism</span>
-                                <span class="tech-badge">UiPath</span>
-                                <span class="tech-badge">Azure</span>
+                                <span class="tech-badge">Jira</span>
+                                <span class="tech-badge">Testing</span>
+                                <span class="tech-badge">Oracle</span>
+                                <span class="tech-badge">Citrix</span>
                             </div>
                         </div>
                     </div>
@@ -56,25 +79,28 @@
                 <div class="timeline-content">
                     <div class="timeline-header-content">
                         <div class="timeline-info">
-                            <div class="timeline-date">
-                                <span>{{ 'EXPERIENCE.DATES.MAR_2024_JUN_2024' | translate }}</span>
-                            </div>
-                            <div class="timeline-badge-container">
-                                <div class="position-badge">
-                                    <i class="fas fa-code"></i>
-                                    <span>{{ 'EXPERIENCE.POSITIONS.INTERNSHIP' | translate }}</span>
-                                </div>
+                            <div class="company-logo">
+                                <img src="assets/images/smartbits-logo.jpg" alt="SmartBits IT Business Solutions" />
                             </div>
                         </div>
-                        <div class="company-logo">
-                            <img src="assets/images/smartbits-logo.jpg" alt="SmartBits IT Business Solutions" />
+                        <div class="timeline-info">
+                            <h4 class="company-name">{{ 'EXPERIENCE.COMPANIES.SMARTBITS' | translate }}</h4>
                         </div>
                     </div>
 
                     <div class="timeline-main-content">
-                        <h4 class="company-name">{{ 'EXPERIENCE.COMPANIES.SMARTBITS' | translate }}</h4>
-                        <div class="timeline-description">
-                            <p>{{ 'EXPERIENCE.DESCRIPTIONS.SMARTBITS' | translate }}</p>
+                        <!-- Rol: Internship -->
+                        <div class="role-item role-past">
+                            <div class="role-header">
+                                <div class="position-badge">
+                                    <i class="fas fa-code"></i>
+                                    <span>{{ 'EXPERIENCE.POSITIONS.INTERNSHIP' | translate }}</span>
+                                </div>
+                                <span class="timeline-date">{{ 'EXPERIENCE.DATES.MAR_2024_JUN_2024' | translate }}</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>{{ 'EXPERIENCE.DESCRIPTIONS.SMARTBITS' | translate }}</p>
+                            </div>
                         </div>
 
                         <div class="technologies-section">
@@ -99,25 +125,28 @@
                 <div class="timeline-content">
                     <div class="timeline-header-content">
                         <div class="timeline-info">
-                            <div class="timeline-date">
-                                <span>{{ 'EXPERIENCE.DATES.MAR_2023_JUN_2023' | translate }}</span>
-                            </div>
-                            <div class="timeline-badge-container">
-                                <div class="position-badge">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span>{{ 'EXPERIENCE.POSITIONS.INTERNSHIP' | translate }}</span>
-                                </div>
+                            <div class="company-logo">
+                                <img src="assets/images/volteo-logo.jpg" alt="Volteo Digital" />
                             </div>
                         </div>
-                        <div class="company-logo">
-                            <img src="assets/images/volteo-logo.jpg" alt="Volteo Digital" />
+                        <div class="timeline-info">
+                            <h4 class="company-name">{{ 'EXPERIENCE.COMPANIES.VOLTEO' | translate }}</h4>
                         </div>
                     </div>
 
                     <div class="timeline-main-content">
-                        <h4 class="company-name">{{ 'EXPERIENCE.COMPANIES.VOLTEO' | translate }}</h4>
-                        <div class="timeline-description">
-                            <p>{{ 'EXPERIENCE.DESCRIPTIONS.VOLTEO' | translate }}</p>
+                        <!-- Rol: Internship -->
+                        <div class="role-item role-past">
+                            <div class="role-header">
+                                <div class="position-badge">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>{{ 'EXPERIENCE.POSITIONS.INTERNSHIP' | translate }}</span>
+                                </div>
+                                <span class="timeline-date">{{ 'EXPERIENCE.DATES.MAR_2023_JUN_2023' | translate }}</span>
+                            </div>
+                            <div class="timeline-description">
+                                <p>{{ 'EXPERIENCE.DESCRIPTIONS.VOLTEO' | translate }}</p>
+                            </div>
                         </div>
 
                         <div class="technologies-section">

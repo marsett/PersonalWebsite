@@ -81,6 +81,7 @@
     "FINAL_GRADE": "Nota TFG",
     "POSITIONS": {
       "INTERNSHIP": "Prácticas",
+      "JUNIOR_ANALYST": "Junior Analyst",
       "DEVELOPER": "Desarrollador",
       "SPECIALIST": "Especialista"
     },
@@ -90,7 +91,8 @@
       "VOLTEO": "Volteo Digital"
     },
     "DESCRIPTIONS": {
-      "AVANADE": "Próximas prácticas a partir de septiembre, participando en proyectos Full Stack con tareas de desarrollo y mantenimiento de aplicaciones web en .NET Core, frontend con Angular, HTML y CSS, automatización con Blueprism y Uipath, testeo de aplicaciones y trabajo en entornos cloud con herramientas de Microsoft Azure.",
+      "AVANADE": "Prácticas de septiembre a diciembre de 2025 como Intern Full-Stack Development. Realización de tareas de testing, consultas a bases de datos para gestión de peticiones e incidencias diarias y administración de aplicativos a través de .NET 3.5. Adquisición de experiencia en entornos profesionales con metodologías ágiles y herramientas de desarrollo colaborativo.",
+      "AVANADE_JUNIOR": "A partir de diciembre de 2025 como Junior Analyst en equipos de desarrollo y soporte. Continuando con el analysis y testing de aplicaciones, consultas a bases de datos Oracle, y administración de sistemas con .NET 3.5. Participando activamente en proyectos con metodología Agile, utilizando herramientas colaborativas y profundizando en la optimización de procesos.",
       "SMARTBITS": "Desarrollo y gestión de sitios web en WordPress, trabajando en la personalización de temas y funcionalidades mediante HTML, CSS, PHP, JavaScript, jQuery y AJAX. Contribuí a la optimización de la experiencia de usuario y a la mejora del rendimiento de las páginas web, aplicando buenas prácticas de desarrollo frontend.",
       "VOLTEO": "Formación y práctica en la plataforma de gestión de servicios en la nube ServiceNow, adquiriendo conocimientos en la configuración de flujos de trabajo, automatización de procesos y gestión de incidencias."
     },
@@ -109,6 +111,7 @@
     },
     "DATES": {
       "SEP_2025_DEC_2025": "Septiembre 2025 - Diciembre 2025",
+      "DEC_2025_PRESENT": "Diciembre 2025 - Presente",
       "MAR_2024_JUN_2024": "Marzo 2024 - Junio 2024",
       "MAR_2023_JUN_2023": "Marzo 2023 - Junio 2023",
       "OCT_2024_JUN_2025": "Octubre 2024 - Junio 2025",

@@ -81,6 +81,7 @@
     "FINAL_GRADE": "Final Grade",
     "POSITIONS": {
       "INTERNSHIP": "Internship",
+      "JUNIOR_ANALYST": "Junior Analyst",
       "DEVELOPER": "Developer",
       "SPECIALIST": "Specialist"
     },
@@ -90,7 +91,8 @@
       "VOLTEO": "Volteo Digital"
     },
     "DESCRIPTIONS": {
-      "AVANADE": "Upcoming internship starting in September, participating in Full Stack projects with web application development and maintenance tasks in .NET Core, frontend with Angular, HTML and CSS, automation with Blueprism and Uipath, application testing and work in cloud environments with Microsoft Azure tools.",
+      "AVANADE": "Internship from September to December 2025 as Full-Stack Development Intern. Performing testing tasks, database queries for daily request and incident management, and managing applications through .NET 3.5. Gaining experience in professional environments with agile methodologies and collaborative development tools.",
+      "AVANADE_JUNIOR": "From December 2025 as Junior Analyst in development and support teams. Continuing with application analysis and testing, Oracle database queries, and system administration with .NET 3.5. Actively participating in projects with Agile methodology, using collaborative tools and deepening process optimization knowledge.",
       "SMARTBITS": "Development and management of WordPress websites, working on theme customization and functionality using HTML, CSS, PHP, JavaScript, jQuery and AJAX. I contributed to user experience optimization and web page performance improvement, applying frontend development best practices.",
       "VOLTEO": "Training and practice on the ServiceNow cloud service management platform, acquiring knowledge in workflow configuration, process automation and incident management."
     },
@@ -109,6 +111,7 @@
     },
     "DATES": {
       "SEP_2025_DEC_2025": "September 2025 - December 2025",
+      "DEC_2025_PRESENT": "December 2025 - Present",
       "MAR_2024_JUN_2024": "March 2024 - June 2024",
       "MAR_2023_JUN_2023": "March 2023 - June 2023",
       "OCT_2024_JUN_2025": "October 2024 - June 2025",
