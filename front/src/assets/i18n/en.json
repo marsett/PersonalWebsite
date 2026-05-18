@@ -91,8 +91,8 @@
       "VOLTEO": "Volteo Digital"
     },
     "DESCRIPTIONS": {
-      "AVANADE": "Internship from September to December 2025 as Full-Stack Development Intern. Performing testing tasks, database queries for daily request and incident management, and managing applications through .NET 3.5. Gaining experience in professional environments with agile methodologies and collaborative development tools.",
-      "AVANADE_JUNIOR": "From December 2025 as Junior Analyst in development and support teams. Continuing with application analysis and testing, Oracle database queries, and system administration with .NET 3.5. Actively participating in projects with Agile methodology, using collaborative tools and deepening process optimization knowledge.",
+      "AVANADE": "Internship from September to December 2025 at Avanade, within development and support teams. Carried out testing tasks, Oracle database queries for daily request and incident management, and application administration using .NET 3.5. Worked in a professional environment following Agile methodology and collaborative development tools.",
+      "AVANADE_JUNIOR": "Since December 2025 as Junior Analyst at Avanade, developing functionalities in large-scale enterprise projects using technologies such as .NET, Oracle, IBM API Manager, BitBucket, CloudBees, Citrix and ServiceNow. Working in Agile teams with a focus on backend development and systems integration.",
       "SMARTBITS": "Development and management of WordPress websites, working on theme customization and functionality using HTML, CSS, PHP, JavaScript, jQuery and AJAX. I contributed to user experience optimization and web page performance improvement, applying frontend development best practices.",
       "VOLTEO": "Training and practice on the ServiceNow cloud service management platform, acquiring knowledge in workflow configuration, process automation and incident management."
     },
@@ -102,12 +102,15 @@
       "DAW": "Higher Degree in Web Application Development",
       "DAW_DESC": "Higher Level Training Cycle in Web Application Development, with learning in interface design, application deployment, mobile device development, client and server environment programming, and database management.",
       "DAM": "Higher Degree in Multiplatform Application Development",
-      "DAM_DESC": "Higher Level Training Cycle in Multiplatform Application Development, with learning in programming, data access, interface development, mobile devices, services and processes, as well as databases, computer systems, markup languages, development environments and business management systems."
+      "DAM_DESC": "Higher Level Training Cycle in Multiplatform Application Development, with learning in programming, data access, interface development, mobile devices, services and processes, as well as databases, computer systems, markup languages, development environments and business management systems.",
+      "UOC": "Bachelor's Degree in Computer Engineering",
+      "UOC_DESC": "Official Bachelor's Degree in Computer Engineering (240 ECTS) in online modality, combining with professional activity at Avanade. The curriculum focuses on programming, architectures, databases, networks, distributed systems and artificial intelligence, choosing the specialization in Software Engineering, oriented to the design, development and architecture of quality systems."
     },
     "INSTITUTIONS": {
       "TAJAMAR": "Tajamar",
       "SALESIANAS": "Salesianas Plaza Castilla",
-      "SANTA_ANA": "Santa Ana y San Rafael"
+      "SANTA_ANA": "Santa Ana y San Rafael",
+      "UOC": "Universitat Oberta de Catalunya"
     },
     "DATES": {
       "SEP_2025_DEC_2025": "September 2025 - December 2025",
@@ -116,7 +119,8 @@
       "MAR_2023_JUN_2023": "March 2023 - June 2023",
       "OCT_2024_JUN_2025": "October 2024 - June 2025",
       "SEP_2023_JUN_2024": "September 2023 - June 2024",
-      "SEP_2021_JUN_2023": "September 2021 - June 2023"
+      "SEP_2021_JUN_2023": "September 2021 - June 2023",
+      "SEP_2026_PRESENT": "September 2026 - Present"
     }
   },
   "PROJECTS": {

@@ -91,8 +91,8 @@
       "VOLTEO": "Volteo Digital"
     },
     "DESCRIPTIONS": {
-      "AVANADE": "Prácticas de septiembre a diciembre de 2025 como Intern Full-Stack Development. Realización de tareas de testing, consultas a bases de datos para gestión de peticiones e incidencias diarias y administración de aplicativos a través de .NET 3.5. Adquisición de experiencia en entornos profesionales con metodologías ágiles y herramientas de desarrollo colaborativo.",
-      "AVANADE_JUNIOR": "A partir de diciembre de 2025 como Junior Analyst en equipos de desarrollo y soporte. Continuando con el analysis y testing de aplicaciones, consultas a bases de datos Oracle, y administración de sistemas con .NET 3.5. Participando activamente en proyectos con metodología Agile, utilizando herramientas colaborativas y profundizando en la optimización de procesos.",
+      "AVANADE": "Prácticas de septiembre a diciembre de 2025 como Intern en Avanade, dentro de equipos de desarrollo y soporte. Realización de tareas de testing, consultas a bases de datos Oracle para la gestión de peticiones e incidencias diarias, y administración de aplicativos con .NET 3.5. Trabajo en entorno profesional con metodología Agile y herramientas de desarrollo colaborativo.",
+      "AVANADE_JUNIOR": "Desde diciembre de 2025 como Junior Analyst en Avanade, desarrollando funcionalidades en proyectos empresariales de gran escala con tecnologías como .NET, Oracle, IBM API Manager, BitBucket, CloudBees, Citrix y ServiceNow. Trabajando en equipos con metodología Agile, con foco en el desarrollo backend e integración de sistemas.",
       "SMARTBITS": "Desarrollo y gestión de sitios web en WordPress, trabajando en la personalización de temas y funcionalidades mediante HTML, CSS, PHP, JavaScript, jQuery y AJAX. Contribuí a la optimización de la experiencia de usuario y a la mejora del rendimiento de las páginas web, aplicando buenas prácticas de desarrollo frontend.",
       "VOLTEO": "Formación y práctica en la plataforma de gestión de servicios en la nube ServiceNow, adquiriendo conocimientos en la configuración de flujos de trabajo, automatización de procesos y gestión de incidencias."
     },
@@ -102,12 +102,15 @@
       "DAW": "CFGS Desarrollo de Aplicaciones Web",
       "DAW_DESC": "Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web, con aprendizaje en el diseño de interfaces, despliegue de aplicaciones, desarrollo para dispositivos móviles, programación en entornos cliente y servidor, y gestión de bases de datos.",
       "DAM": "CFGS Desarrollo de Aplicaciones Multiplataforma",
-      "DAM_DESC": "Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Multiplataforma, con aprendizaje en programación, acceso a datos, desarrollo de interfaces, dispositivos móviles, servicios y procesos, así como en bases de datos, sistemas informáticos, lenguajes de marcas, entornos de desarrollo y sistemas de gestión empresarial."
+      "DAM_DESC": "Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Multiplataforma, con aprendizaje en programación, acceso a datos, desarrollo de interfaces, dispositivos móviles, servicios y procesos, así como en bases de datos, sistemas informáticos, lenguajes de marcas, entornos de desarrollo y sistemas de gestión empresarial.",
+      "UOC": "Grado en Ingeniería Informática",
+      "UOC_DESC": "Grado oficial en Ingeniería Informática (240 ECTS) en modalidad online, compaginando con actividad profesional en Avanade. El plan de estudios se centra en programación, arquitecturas, bases de datos, redes, sistemas distribuidos e inteligencia artificial, escogiendo la especialización en Ingeniería del Software, orientada al diseño, desarrollo y arquitectura de sistemas de calidad."
     },
     "INSTITUTIONS": {
       "TAJAMAR": "Tajamar",
       "SALESIANAS": "Salesianas Plaza Castilla",
-      "SANTA_ANA": "Santa Ana y San Rafael"
+      "SANTA_ANA": "Santa Ana y San Rafael",
+      "UOC": "Universitat Oberta de Catalunya"
     },
     "DATES": {
       "SEP_2025_DEC_2025": "Septiembre 2025 - Diciembre 2025",
@@ -116,7 +119,8 @@
       "MAR_2023_JUN_2023": "Marzo 2023 - Junio 2023",
       "OCT_2024_JUN_2025": "Octubre 2024 - Junio 2025",
       "SEP_2023_JUN_2024": "Septiembre 2023 - Junio 2024",
-      "SEP_2021_JUN_2023": "Septiembre 2021 - Junio 2023"
+      "SEP_2021_JUN_2023": "Septiembre 2021 - Junio 2023",
+      "SEP_2026_PRESENT": "Septiembre 2026 - Presente"
     }
   },
   "PROJECTS": {
